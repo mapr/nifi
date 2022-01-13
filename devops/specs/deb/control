@@ -1,0 +1,10 @@
+Package: mapr-nifi
+Version: __RELEASE_VERSION__
+Section: base
+Priority: optional
+Architecture: amd64
+Depends: bash
+Maintainer: MapR Technologies, Inc.  <support@maprtech.com>
+Description: MapR: MapR nifi package
+Commit: __GIT_COMMIT__
+Branch: __RELEASE_BRANCH__

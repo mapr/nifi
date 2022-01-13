@@ -1,0 +1,53 @@
+#!/bin/bash
+
+[ -n "$VERBOSE" ] && echo "postrm called with argument \`$1'" >&2
+[ -n "$VERBOSE" ] && set -x
+
+#
+# summary of how this script can be called:
+#        * <postrm> `remove'
+#        * <postrm> `purge'
+#        * <old-postrm> `upgrade' <new-version>
+#        * <new-postrm> `failed-upgrade' <old-version>
+#        * <new-postrm> `abort-install'
+#        * <new-postrm> `abort-install' <old-version>
+#        * <new-postrm> `abort-upgrade' <old-version>
+#        * <disappearer's-postrm> `disappear' <overwriter>
+#          <overwriter-version>
+#
+
+before_remove() {
+    DAEMON_CONF="__PREFIX__/conf/daemon.conf"
+    MAPR_USER=${MAPR_USER:-$([ -f "$DAEMON_CONF" ] && grep "mapr.daemon.user" "$DAEMON_CONF" | cut -d '=' -f 2)}
+    MAPR_USER=${MAPR_USER:-"mapr"}
+
+    if [ -z "${MAPR_TICKETFILE_LOCATION}" ] && [ -e "__PREFIX__/conf/mapruserticket" ]; then
+        export MAPR_TICKETFILE_LOCATION="__PREFIX__/conf/mapruserticket"
+    fi
+
+    if sudo -u $MAPR_USER -E "__INSTALL_3DIGIT__/bin/nifi.sh" status &>/dev/null ; then
+        RESULT=$(sudo -u $MAPR_USER -E "__INSTALL_3DIGIT__/bin/nifi.sh" stop 2>&1)
+        STATUS=$?
+        if [ $STATUS -ne 0 ] ; then
+            echo "$RESULT"
+        fi
+    fi
+
+    if [ -f __PREFIX__/conf/conf.d/warden.nifi.conf ]; then
+        rm -Rf __PREFIX__/conf/conf.d/warden.nifi.conf
+    fi
+}
+
+case "$1" in
+    upgrade|remove|deconfigure)
+        before_remove
+    ;;
+
+    abort-install|abort-upgrade|failed-upgrade)
+    ;;
+
+    *)
+        echo "postrm called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
