@@ -3,9 +3,27 @@
 . "$(dirname "${BASH_SOURCE[0]}")/_initialize_package_variables.sh"
 
 function prepare_nifi_install_packages() {
-  mvn clean install -Dmaven.test.skip=true
-  create_rpm_nifi_package
-  create_deb_nifi_package
+  echo "Cleaning '${DIST_DIR}' dir..."
+  rm -rf ${DIST_DIR}
+
+  echo "Building project..."
+  mvn clean install -DskipTests
+  if (($?)); then
+    return 1
+  fi
+
+  rpmbuild > /dev/null 2>&1
+  if [ $? -ne 127 ]; then
+    echo "Building rpm..."
+    create_rpm_nifi_package
+  fi
+
+  dpkg-deb > /dev/null 2>&1
+  if [ $? -ne 127 ]; then
+    echo "Building deb..."
+    create_deb_nifi_package
+  fi
+
   cd ${DIST_DIR} && find . -not \( -name '*.deb' -or -name '*.rpm' \) -delete
   echo "Resulting packages:"
   find ./ -type f -name '*rpm' -exec readlink -f {} \;
@@ -16,9 +34,9 @@ function create_rpm_nifi_package() {
   mkdir -p ${RPM_NIFI_DIR}/{SPECS,INSTALL,SOURCES/${INSTALLATION_PREFIX}/${PKG_NAME}/${PKG_NAME}-${PKG_3DIGIT_VERSION},BUILD,RPMS/noarch}
   pack_files "${RPM_NIFI_DIR}/SOURCES/${INSTALLATION_PREFIX}/${PKG_NAME}/${PKG_NAME}-${PKG_3DIGIT_VERSION}"
   create_role ${RPM_NIFI_DIR}/SOURCES/${INSTALLATION_PREFIX} \
-          ${INSTALLATION_PREFIX}/${PKG_NAME}/${PKG_NAME}-${PKG_3DIGIT_VERSION} \
-          "${INSTALLATION_PREFIX}/${PKG_NAME}/${PKG_NAME}-${PKG_3DIGIT_VERSION}/bin/configure.sh" \
-          "nifi"
+    ${INSTALLATION_PREFIX}/${PKG_NAME}/${PKG_NAME}-${PKG_3DIGIT_VERSION} \
+    "${INSTALLATION_PREFIX}/${PKG_NAME}/${PKG_NAME}-${PKG_3DIGIT_VERSION}/bin/configure.sh" \
+    "nifi"
   cp -r devops/specs/rpm/*.spec ${RPM_NIFI_DIR}/SPECS
   build_rpm ${RPM_NIFI_DIR}
 }
@@ -27,8 +45,8 @@ function create_deb_nifi_package() {
   mkdir -p ${DEB_NIFI_DIR}/{DEBIAN,${INSTALLATION_PREFIX}/${PKG_NAME}/${PKG_NAME}-${PKG_3DIGIT_VERSION}}
   pack_files "${DEB_NIFI_DIR}/${INSTALLATION_PREFIX}/${PKG_NAME}/${PKG_NAME}-${PKG_3DIGIT_VERSION}"
   create_role ${DEB_NIFI_DIR}/${INSTALLATION_PREFIX} \
-          ${INSTALLATION_PREFIX}/${PKG_NAME}/${PKG_NAME}-${PKG_3DIGIT_VERSION} \
-          "${INSTALLATION_PREFIX}/${PKG_NAME}/${PKG_NAME}-${PKG_3DIGIT_VERSION}/bin/configure.sh" "nifi"
+    ${INSTALLATION_PREFIX}/${PKG_NAME}/${PKG_NAME}-${PKG_3DIGIT_VERSION} \
+    "${INSTALLATION_PREFIX}/${PKG_NAME}/${PKG_NAME}-${PKG_3DIGIT_VERSION}/bin/configure.sh" "nifi"
   cp -r devops/specs/deb/* ${DEB_NIFI_DIR}/DEBIAN
   build_deb ${DEB_NIFI_DIR}
 }
