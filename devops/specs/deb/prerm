@@ -21,10 +21,6 @@ before_remove() {
     MAPR_USER=${MAPR_USER:-$([ -f "$DAEMON_CONF" ] && grep "mapr.daemon.user" "$DAEMON_CONF" | cut -d '=' -f 2)}
     MAPR_USER=${MAPR_USER:-"mapr"}
 
-    if [ -z "${MAPR_TICKETFILE_LOCATION}" ] && [ -e "__PREFIX__/conf/mapruserticket" ]; then
-        export MAPR_TICKETFILE_LOCATION="__PREFIX__/conf/mapruserticket"
-    fi
-
     if sudo -u $MAPR_USER -E "__INSTALL_3DIGIT__/bin/nifi.sh" status &>/dev/null ; then
         RESULT=$(sudo -u $MAPR_USER -E "__INSTALL_3DIGIT__/bin/nifi.sh" stop 2>&1)
         STATUS=$?
