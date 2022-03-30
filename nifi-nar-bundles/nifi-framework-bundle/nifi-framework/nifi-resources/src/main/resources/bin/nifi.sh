@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 #    Licensed to the Apache Software Foundation (ASF) under one or more
 #    contributor license agreements.  See the NOTICE file distributed with
@@ -22,6 +22,8 @@
 
 # Since MacOS X, FreeBSD and some other systems lack gnu readlink, we use a more portable
 # approach based on following StackOverflow comment http://stackoverflow.com/a/1116890/888876
+
+. "$(dirname "${BASH_SOURCE[0]}")/_configure_variables.sh"
 
 TARGET_FILE=$0
 
@@ -318,7 +320,7 @@ run() {
 
     #setup directory parameters
     BOOTSTRAP_LOG_PARAMS="-Dorg.apache.nifi.bootstrap.config.log.dir='${NIFI_LOG_DIR}'"
-    BOOTSTRAP_PID_PARAMS="-Dorg.apache.nifi.bootstrap.config.pid.dir='${NIFI_PID_DIR}'"
+    BOOTSTRAP_PID_PARAMS="-Dorg.apache.nifi.bootstrap.config.pid.dir='${MAPR_HOME}/pid/nifi.pid'"
     BOOTSTRAP_CONF_PARAMS="-Dorg.apache.nifi.bootstrap.config.file='${BOOTSTRAP_CONF}'"
 
     # uncomment to allow debugging of the bootstrap process
