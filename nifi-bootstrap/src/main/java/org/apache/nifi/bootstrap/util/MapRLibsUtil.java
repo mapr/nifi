@@ -45,8 +45,6 @@ public final class MapRLibsUtil {
     );
 
     private final static List<String> JARS_EXCEPTIONS = Arrays.asList(
-            "bc-fips",
-            "bctls-fips",
             "jetty",
             "jersey",
             "jsr311-api",
