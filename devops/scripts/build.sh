@@ -18,6 +18,9 @@ function prepare_nifi_install_packages() {
     return 1
   fi
 
+  echo "Removing unnecessary nars..."
+  remove_unnecessary_nars
+
   rpmbuild > /dev/null 2>&1
   if [ $? -ne 127 ]; then
     echo "Building rpm..."
@@ -34,6 +37,14 @@ function prepare_nifi_install_packages() {
   echo "Resulting packages:"
   find ./ -type f -name '*rpm' -exec readlink -f {} \;
   find ./ -type f -name '*deb' -exec readlink -f {} \;
+}
+
+function remove_unnecessary_nars() {
+    input="$(dirname "${BASH_SOURCE[0]}")/nars_to_remove"
+    while IFS= read -r nar
+    do
+      rm nifi-assembly/target/nifi-*-bin/nifi-*/lib/$nar
+    done < "$input"
 }
 
 function create_rpm_nifi_package() {
