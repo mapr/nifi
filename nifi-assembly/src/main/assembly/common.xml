@@ -30,6 +30,7 @@
                 <include>*:logback-classic</include>
                 <include>*:nifi-api</include>
                 <include>*:nifi-property-protection-api</include>
+                <include>nifi-utils</include>
             </includes>
         </dependencySet>
 

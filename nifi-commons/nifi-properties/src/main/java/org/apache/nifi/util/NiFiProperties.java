@@ -1574,6 +1574,22 @@ public class NiFiProperties extends ApplicationProperties {
         return (value == null || value.trim().isEmpty()) ? defaultValue : value;
     }
 
+    /**
+     * Returns value from properties or hadoop configuration
+     *
+     * @param key name
+     * @return value from properties or hadoop
+     */
+    @Override
+    public String getProperty(final String key) {
+        String value = super.getProperty(key);
+        if (value != null && value.equals(MapRPropertiesUtils.MAPR_HADOOP_PROPERTY_PROVIDER)) {
+            return MapRPropertiesUtils.getHadoopProperty(key);
+        }
+
+        return value;
+    }
+
     public String getBoredYieldDuration() {
         return getProperty(BORED_YIELD_DURATION, DEFAULT_BORED_YIELD_DURATION);
     }
