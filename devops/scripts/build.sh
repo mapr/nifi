@@ -13,7 +13,7 @@ function prepare_nifi_install_packages() {
   fi
 
   echo "Building project..."
-  mvn clean install -DskipTests
+  mvn -pl nifi-assembly -am clean install -DskipTests
   if (($?)); then
     return 1
   fi
