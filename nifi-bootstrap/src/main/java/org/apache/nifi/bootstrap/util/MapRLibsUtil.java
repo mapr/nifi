@@ -16,6 +16,7 @@
  */
 package org.apache.nifi.bootstrap.util;
 
+import org.apache.nifi.util.mapr.MapRComponentsUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,8 +35,7 @@ import java.util.stream.Collectors;
 public final class MapRLibsUtil {
     private final static Logger LOGGER = LoggerFactory.getLogger(MapRLibsUtil.class);
 
-    public final static String DEFAULT_MAPR_HOME = "/opt/mapr";
-    public final static String DEFAULT_MAPR_LIBS = DEFAULT_MAPR_HOME + "/lib";
+    public final static String DEFAULT_MAPR_LIBS = MapRComponentsUtils.DEFAULT_MAPR_HOME + "/lib";
     public final static String ALL_DEPENDENCIES = "*";
 
     private final static List<String> MAPR_LIBS_PREFIXES = Arrays.asList(
@@ -62,29 +62,14 @@ public final class MapRLibsUtil {
 
         Path maprHome = maprLibs.getParent();
 
-        Path hadoopPath = Paths.get(maprHome.toString(), "hadoop");
-        jarLibs.addAll(getSpecificHadoopJars(hadoopPath));
+        jarLibs.addAll(getSpecificHadoopJars(maprHome));
 
         return jarLibs;
     }
 
-    private static List<File> getSpecificHadoopJars(Path hadoopRootPath) throws IOException {
-        Path versionPath = Paths.get(hadoopRootPath.toString(), "hadoopversion");
-        String version;
-        try {
-            version = Files.readAllLines(versionPath).get(0);
-        } catch (IOException e) {
-            throw new IOException("Could not read Hadoop version from " + versionPath, e);
-        }
-
-        if (version.isEmpty()) {
-            throw new IOException("Wrong hadoop version in " + versionPath);
-        }
-
-        Path hadoopFolder = Paths.get(hadoopRootPath.toString(), String.format("hadoop-%s", version));
-        if (!Files.exists(hadoopFolder)) {
-            throw new FileNotFoundException("Hadoop folder does not exists in " + hadoopFolder);
-        }
+    private static List<File> getSpecificHadoopJars(Path homePath) throws IOException {
+        String component = "hadoop";
+        Path hadoopFolder = MapRComponentsUtils.getComponentFolder(component, homePath.toString());
 
         Path hdfsFolder = Paths.get(hadoopFolder.toString(), "share/hadoop/hdfs");
         List<File> hadoopLibs = new ArrayList<>(getJarsFromFolder("hadoop-hdfs", hdfsFolder));
