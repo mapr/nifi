@@ -12,6 +12,7 @@ function setupWardenConfFile() {
 
 function changePermission() {
     chown -R ${MAPR_USER}:${MAPR_GROUP} ${NIFI_HOME}
+    sed -i "s~run.as=.*~run.as=$MAPR_USER~" $BOOTSTRAP_CONF
 }
 
 changePermission
