@@ -7,3 +7,4 @@ MAPR_WARDEN_CONF_DIR="${MAPR_HOME}/conf/conf.d"
 WARDEN_CONF="$NIFI_HOME/conf/warden.nifi.conf"
 MAPR_USER=`logname`
 MAPR_GROUP="$MAPR_USER"
+BOOTSTRAP_CONF="$NIFI_HOME/conf/bootstrap.conf"
