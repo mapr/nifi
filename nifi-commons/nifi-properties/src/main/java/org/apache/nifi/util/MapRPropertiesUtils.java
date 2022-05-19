@@ -55,11 +55,12 @@ public final class MapRPropertiesUtils {
     private static final String HADOOP_COMPONENT_NAME = "hadoop";
 
     private static final String HADOOP_CONF = getHadoopConfFolder();
+    private static final String HADOOP_HOME_PROPERTY = "hadoop.home.dir";
     private static final String HADOOP_CONF_INTERNAL_PATH = "etc/hadoop";
     private static final String HADOOP_CONF_SSL_SERVER_XML = "ssl-server.xml";
     private static final String HADOOP_CONF_CORE_SITE_XML = "core-site.xml";
 
-    private static Configuration hadoopConf = null;
+    private static volatile Configuration hadoopConf = null;
 
     private static final Map<String, String> mapNifiToHadoopProperties = new HashMap<>();
 
@@ -89,9 +90,9 @@ public final class MapRPropertiesUtils {
             throw new RuntimeException(String.format("No mapping for property '%s'", key));
         }
 
-        if (key.endsWith(PASSWORD_SUFFIX)) {
+        if (hadoopKey.toLowerCase().endsWith(PASSWORD_SUFFIX)) {
             try {
-                return getPassword(key);
+                return getPassword(hadoopKey);
             } catch (IOException e) {
                 throw new RuntimeException(String.format("Failed to get property '%s'", hadoopKey), e);
             }
@@ -118,14 +119,20 @@ public final class MapRPropertiesUtils {
      * @throws IOException if fails to get password value
      */
     public static String getPassword(final String property) throws IOException {
-        return new String(getHadoopConf().getPassword(property));
+        char[] data = getHadoopConf().getPassword(property);
+
+        if (data == null) {
+            return null;
+        }
+
+        return new String(data);
     }
 
-    private static Configuration getHadoopConf() {
+    private static synchronized Configuration getHadoopConf() {
         if (hadoopConf == null) {
             hadoopConf = new Configuration();
-            hadoopConf.addResource(new Path(HADOOP_CONF, HADOOP_CONF_SSL_SERVER_XML));
             hadoopConf.addResource(new Path(HADOOP_CONF, HADOOP_CONF_CORE_SITE_XML));
+            hadoopConf.addResource(new Path(HADOOP_CONF, HADOOP_CONF_SSL_SERVER_XML));
         }
 
         return hadoopConf;
@@ -133,11 +140,23 @@ public final class MapRPropertiesUtils {
 
     private static String getHadoopConfFolder() {
         String hadoopFolder;
+
         try {
             hadoopFolder = MapRComponentsUtils.getComponentFolder(HADOOP_COMPONENT_NAME).toString();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        setHadoopHomeIfNotSet(hadoopFolder);
+
         return Paths.get(hadoopFolder, HADOOP_CONF_INTERNAL_PATH).toString();
+    }
+
+    private static void setHadoopHomeIfNotSet(String hadoopFolder) {
+        String defaultHadoopHome = System.getProperty(HADOOP_HOME_PROPERTY, "");
+
+        if (defaultHadoopHome.isEmpty()) {
+            System.setProperty(HADOOP_HOME_PROPERTY, hadoopFolder);
+        }
     }
 }
