@@ -18,6 +18,7 @@
 package org.apache.nifi.registry.security.util;
 
 import org.apache.commons.lang3.StringUtils;
+import org.bouncycastle.jcajce.provider.BouncyCastleFipsProvider;
 import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +41,7 @@ public class KeyStoreUtils {
 
         KEY_STORE_TYPE_PROVIDERS.put(KeystoreType.JKS.toString(), SUN_SECURITY_PROVIDER);
         KEY_STORE_TYPE_PROVIDERS.put(KeystoreType.PKCS12.toString(), BouncyCastleProvider.PROVIDER_NAME);
-        KEY_STORE_TYPE_PROVIDERS.put(KeystoreType.BCFKS.toString(), BouncyCastleProvider.PROVIDER_NAME);
+        KEY_STORE_TYPE_PROVIDERS.put(KeystoreType.BCFKS.toString(), BouncyCastleFipsProvider.PROVIDER_NAME);
     }
 
     /**

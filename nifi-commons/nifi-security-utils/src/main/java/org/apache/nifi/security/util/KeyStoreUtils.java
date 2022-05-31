@@ -50,6 +50,7 @@ import javax.net.ssl.TrustManagerFactory;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.bouncycastle.jcajce.provider.BouncyCastleFipsProvider;
 import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,11 +83,11 @@ public class KeyStoreUtils {
     static {
         Security.addProvider(new BouncyCastleProvider());
 
-        KEY_STORE_TYPE_PROVIDERS.put(KeystoreType.BCFKS.getType(), BouncyCastleProvider.PROVIDER_NAME);
+        KEY_STORE_TYPE_PROVIDERS.put(KeystoreType.BCFKS.getType(), BouncyCastleFipsProvider.PROVIDER_NAME);
         KEY_STORE_TYPE_PROVIDERS.put(KeystoreType.PKCS12.getType(), BouncyCastleProvider.PROVIDER_NAME);
         KEY_STORE_TYPE_PROVIDERS.put(KeystoreType.JKS.getType(), SUN_PROVIDER_NAME);
 
-        SECRET_KEY_STORE_PROVIDERS.put(KeystoreType.BCFKS, BouncyCastleProvider.PROVIDER_NAME);
+        SECRET_KEY_STORE_PROVIDERS.put(KeystoreType.BCFKS, BouncyCastleFipsProvider.PROVIDER_NAME);
         SECRET_KEY_STORE_PROVIDERS.put(KeystoreType.PKCS12, SUN_JSSE_PROVIDER_NAME);
     }
 
