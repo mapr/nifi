@@ -41,7 +41,8 @@ public final class MapRLibsUtil {
     private final static List<String> MAPR_LIBS_PREFIXES = Arrays.asList(
             "hadoop-common",
             "hadoop-yarn-api",
-            "hadoop-auth"
+            "hadoop-auth",
+            "zookeeper"
     );
 
     private final static List<String> JARS_EXCEPTIONS = Arrays.asList(
