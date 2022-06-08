@@ -255,6 +255,7 @@ public class NiFiProperties extends ApplicationProperties {
 
     // cluster node properties
     public static final String CLUSTER_IS_NODE = "nifi.cluster.is.node";
+    public static final String CLUSTER_SKIP_HOSTNAME_VERIFY = "nifi.cluster.skip.hostname.verify";
     public static final String CLUSTER_NODE_ADDRESS = "nifi.cluster.node.address";
     public static final String CLUSTER_NODE_PROTOCOL_PORT = "nifi.cluster.node.protocol.port";
     public static final String CLUSTER_NODE_PROTOCOL_MAX_THREADS = "nifi.cluster.node.protocol.max.threads";

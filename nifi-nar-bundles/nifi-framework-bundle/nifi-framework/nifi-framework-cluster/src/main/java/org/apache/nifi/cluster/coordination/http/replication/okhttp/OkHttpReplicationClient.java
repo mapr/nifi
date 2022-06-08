@@ -333,6 +333,12 @@ public class OkHttpReplicationClient implements HttpReplicationClient {
             tlsConfigured = false;
         }
 
+        String skipHostnameVerifyString = properties.getProperty(NiFiProperties.CLUSTER_SKIP_HOSTNAME_VERIFY,
+                Boolean.FALSE.toString());
+        if (skipHostnameVerifyString.equals(Boolean.TRUE.toString())) {
+            okHttpClientBuilder.hostnameVerifier((hostname, session) -> true);
+        }
+
         return okHttpClientBuilder.build();
     }
 }
