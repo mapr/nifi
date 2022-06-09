@@ -8,5 +8,6 @@ WARDEN_CONF="$NIFI_HOME/conf/warden.nifi.conf"
 MAPR_USER=`logname`
 MAPR_GROUP="$MAPR_USER"
 BOOTSTRAP_CONF="$NIFI_HOME/conf/bootstrap.conf"
+NIFI_CONF="$NIFI_HOME/conf/nifi.properties"
 FIPS_CONF="${MAPR_HOME}/conf/java.security.fips"
 IS_SECURED=`cat ${MAPR_HOME}/conf/mapr-clusters.conf | sed 's/.*\(secure=\)\(true\|false\).*/\2/'`
