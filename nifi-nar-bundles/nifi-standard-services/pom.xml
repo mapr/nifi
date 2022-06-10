@@ -38,6 +38,7 @@
         <module>nifi-dbcp-service-api</module>
         <module>nifi-dbcp-service-bundle</module>
         <module>nifi-hbase-client-service-api</module>
+        <module>nifi-hbase-mapr_1-client-service-bundle</module>
         <module>nifi-hbase_1_1_2-client-service-bundle</module>
         <module>nifi-hbase_2-client-service-bundle</module>
         <module>nifi-schema-registry-service-api</module>

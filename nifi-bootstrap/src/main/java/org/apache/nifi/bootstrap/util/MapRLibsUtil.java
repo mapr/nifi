@@ -62,8 +62,8 @@ public final class MapRLibsUtil {
         List<File> jarLibs = new ArrayList<>(getJarsFromFolder(MAPR_LIBS_PREFIXES, maprLibs));
 
         Path maprHome = maprLibs.getParent();
-
         jarLibs.addAll(getSpecificHadoopJars(maprHome));
+        jarLibs.addAll(getSpecificHBaseJars(maprHome));
 
         return jarLibs;
     }
@@ -84,6 +84,17 @@ public final class MapRLibsUtil {
 
         return hadoopLibs;
     }
+
+    private static List<File> getSpecificHBaseJars(Path homePath) throws IOException {
+        String component = "hbase";
+        Path hbaseFolder = MapRComponentsUtils.getComponentFolder(component, homePath.toString());
+
+        Path hbaseLibFolder = Paths.get(hbaseFolder.toString(), "/lib");
+        List<String> hbaseLibsList = List.of("hbase-", "netty-", "metrics-");
+
+        return getJarsFromFolder(hbaseLibsList, hbaseLibFolder);
+    }
+
 
     private static List<File> getJarsFromFolder(String prefix, Path path) {
         return getJarsFromFolder(Collections.singletonList(prefix), path);
