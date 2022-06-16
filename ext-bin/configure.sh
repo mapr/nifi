@@ -10,6 +10,40 @@ function setupWardenConfFile() {
   cp $WARDEN_CONF $MAPR_WARDEN_CONF_DIR
 }
 
+function updateWardenLocalConfFile() {
+  #update warden service.ui.port
+  if [ "$IS_SECURED" == "true" ]; then
+  	port=$(cat $NIFI_CONF | grep 'nifi.web.https.port=' | sed 's/\(nifi.web.https.port=\)//')
+  else
+  	port=$(cat $NIFI_CONF | grep 'nifi.web.http.port=' | sed 's/\(nifi.web.http.port=\)//')
+  fi
+  sed -i "s~service.ui.port=.*~service.ui.port=$port~" $WARDEN_CONF
+
+  #update warden service.port
+  #collect ports from nifi.properties
+  properties="
+    nifi.remote.input.socket.port
+    nifi.cluster.node.protocol.port
+    nifi.cluster.load.balance.port
+    nifi.web.http.port
+    nifi.web.https.port
+    nifi.cluster.node.protocol.port"
+
+    service_ports=""
+    for property in $properties
+      do
+        port=$(cat $NIFI_CONF | grep "$property=" | sed 's/\('$property'=\)//')
+        if [[ $port != "" ]];
+        then
+           service_ports+="$port,"
+        fi
+    done
+    #collect port from bootstrap.conf
+    bootStrapPort=$(cat $BOOTSTRAP_CONF | grep 'nifi.bootstrap.listen.port=' | sed 's/\(nifi.bootstrap.listen.port=\)//')
+    service_ports+="$bootStrapPort"
+    sed -i "s~service.port=.*~service.port=$service_ports~" $WARDEN_CONF
+}
+
 function changePermission() {
   chown -R ${MAPR_USER}:${MAPR_GROUP} ${NIFI_HOME}
   sed -i "s~run.as=.*~run.as=$MAPR_USER~" $BOOTSTRAP_CONF
@@ -42,6 +76,7 @@ function enableFipsIfConfigured() {
 
 changePermission
 configureUiSecurity
+updateWardenLocalConfFile
 setupWardenConfFile
 enableFipsIfConfigured
 
