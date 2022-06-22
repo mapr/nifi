@@ -264,6 +264,17 @@
             </exclusions>
         </dependency>
         <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-shaded-jdk15to18</artifactId>
+            <version>${org.bouncycastle.version}</version>
+        </dependency>
+        <!-- JGit depends on bcpg so declare a consistent version with our other bouncy castle deps -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpg-shaded-jdk15to18</artifactId>
+            <version>${org.bouncycastle.version}</version>
+        </dependency>
+        <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
         </dependency>
