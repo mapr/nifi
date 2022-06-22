@@ -67,9 +67,4 @@
             </exclusions>
         </dependency>
     </dependencies>
-
-
-  <scm>
-    <tag>nifi-1.16.0-RC3</tag>
-  </scm>
 </project>

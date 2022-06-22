@@ -128,14 +128,5 @@
             <version>1.28.0</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.nifi</groupId>
-            <artifactId>nifi-utils</artifactId>
-            <version>1.28.0</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
-  <scm>
-    <tag>nifi-1.16.0-RC3</tag>
-  </scm>
 </project>
