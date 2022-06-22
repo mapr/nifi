@@ -184,7 +184,7 @@ language governing permissions and limitations under the License. -->
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-utils</artifactId>
-            <version>1.16.0.0-eep-SNAPSHOT</version>
+            <version>1.16.3.0-eep-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>
@@ -504,7 +504,7 @@ language governing permissions and limitations under the License. -->
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-hbase-mapr_1-client-service-nar</artifactId>
-            <version>1.16.0.0-eep-SNAPSHOT</version>
+            <version>1.16.3.0-eep-SNAPSHOT</version>
             <type>nar</type>
         </dependency>
         <dependency>

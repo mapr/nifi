@@ -19,24 +19,24 @@
     <parent>
         <groupId>org.apache.nifi</groupId>
         <artifactId>nifi-hbase-mapr_1-client-service-bundle</artifactId>
-        <version>1.16.0.0-eep-SNAPSHOT</version>
+        <version>1.16.3.0-eep-SNAPSHOT</version>
     </parent>
 
     <artifactId>nifi-hbase-mapr_1-client-service-nar</artifactId>
-    <version>1.16.0.0-eep-SNAPSHOT</version>
+    <version>1.16.3.0-eep-SNAPSHOT</version>
     <packaging>nar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-standard-services-api-nar</artifactId>
-            <version>1.16.0.0-eep-SNAPSHOT</version>
+            <version>1.16.3.0-eep-SNAPSHOT</version>
             <type>nar</type>
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-hbase-mapr_1-client-service</artifactId>
-            <version>1.16.0.0-eep-SNAPSHOT</version>
+            <version>1.16.3.0-eep-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.apache.hbase</groupId>

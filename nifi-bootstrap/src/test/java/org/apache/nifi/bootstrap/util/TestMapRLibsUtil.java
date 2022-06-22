@@ -16,8 +16,8 @@
  */
 package org.apache.nifi.bootstrap.util;
 
+import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.util.Assert;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,6 +38,6 @@ public class TestMapRLibsUtil {
     @Test
     public void testGetMaprLibs() throws IOException {
         List<File> libs = MapRLibsUtil.getMapRLibs(MapRLibsUtil.DEFAULT_MAPR_LIBS);
-        Assert.notEmpty(libs, "Libs list should be not empty");
+        Assert.assertFalse("Libs list should be not empty", libs.isEmpty());
     }
 }
