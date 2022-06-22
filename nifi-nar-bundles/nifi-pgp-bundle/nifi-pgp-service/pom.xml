@@ -34,7 +34,7 @@
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcpg-jdk18on</artifactId>
+            <artifactId>bcpg-shaded-jdk15to18</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
