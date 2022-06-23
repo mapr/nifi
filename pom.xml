@@ -137,7 +137,7 @@
         <nifi.groovy.version>3.0.22</nifi.groovy.version>
         <groovy.eclipse.batch.version>3.0.8-01</groovy.eclipse.batch.version>
         <surefire.version>3.5.0</surefire.version>
-        <hadoop.version>3.4.0</hadoop.version>
+        <hadoop.version>3.3.3.0-mapr-eep-000-SNAPSHOT</hadoop.version>
         <ozone.version>1.2.1</ozone.version>
         <gcs.version>2.1.9</gcs.version>
         <aspectj.version>1.9.6</aspectj.version>
@@ -195,9 +195,9 @@
         <repository>
             <id>mapr-releases</id>
             <name>MapR Repository</name>
-            <url>https://repository.mapr.com/maven/</url>
+            <url>http://df-mvn-dev.mip.storage.hpecorp.net/nexus/content/groups/public/</url>
             <snapshots>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </snapshots>
             <releases>
                 <enabled>true</enabled>
@@ -1088,6 +1088,7 @@
                                 <requireReleaseDeps>
                                     <message>Dependencies outside of Apache NiFi must not use
                                         SNAPSHOT versions</message>
+                                    <onlyWhenRelease>true</onlyWhenRelease>
                                     <failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
                                     <excludes>
                                         <exclude>org.apache.nifi:*</exclude>
