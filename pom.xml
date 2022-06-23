@@ -133,7 +133,7 @@
         <surefire.version>3.0.0-M7</surefire.version>
         <!-- The Hadoop version used by nifi-hadoop-libraries-nar and any NARs that depend on it, other NARs that need
             a specific version should override this property, or use a more specific property like abc.hadoop.version -->
-        <hadoop.version>3.3.4</hadoop.version>
+        <hadoop.version>3.3.3.0-mapr-eep-000-SNAPSHOT</hadoop.version>
         <ozone.version>1.2.1</ozone.version>
         <gcs.version>2.1.5</gcs.version>
         <aspectj.version>1.9.6</aspectj.version>
@@ -190,9 +190,9 @@
         <repository>
             <id>mapr-releases</id>
             <name>MapR Repository</name>
-            <url>https://repository.mapr.com/maven/</url>
+            <url>http://df-mvn-dev.mip.storage.hpecorp.net/nexus/content/groups/public/</url>
             <snapshots>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </snapshots>
             <releases>
                 <enabled>true</enabled>
@@ -1034,6 +1034,7 @@
                                 </requireMavenVersion>
                                 <requireReleaseDeps>
                                     <message>Dependencies outside of Apache NiFi must not use SNAPSHOT versions</message>
+                                    <onlyWhenRelease>true</onlyWhenRelease>
                                     <failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
                                     <excludes>
                                         <exclude>org.apache.nifi:*</exclude>
