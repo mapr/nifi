@@ -320,7 +320,7 @@ run() {
 
     #setup directory parameters
     BOOTSTRAP_LOG_PARAMS="-Dorg.apache.nifi.bootstrap.config.log.dir='${NIFI_LOG_DIR}'"
-    BOOTSTRAP_PID_PARAMS="-Dorg.apache.nifi.bootstrap.config.pid.dir='${MAPR_HOME}/pid/nifi.pid'"
+    BOOTSTRAP_PID_PARAMS="-Dorg.apache.nifi.bootstrap.config.pid.dir='${MAPR_HOME}/pid/'"
     BOOTSTRAP_CONF_PARAMS="-Dorg.apache.nifi.bootstrap.config.file='${BOOTSTRAP_CONF}'"
 
     # uncomment to allow debugging of the bootstrap process
@@ -459,6 +459,7 @@ run() {
     # control back to the user
     sleep 3
     echo
+    return $EXIT_STATUS
 }
 
 main() {
