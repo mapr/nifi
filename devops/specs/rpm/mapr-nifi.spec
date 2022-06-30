@@ -1,15 +1,16 @@
 %undefine __check_files
 
-summary:     MapR
-license:     MapR Technologies, Inc., CopyRight
-Vendor:      MapR Technologies, Inc., <support@maprtech.com>
+summary:     Ezmeral
+license:     Hewlett Packard Enterprise, CopyRight
+Vendor:      Hewlett Packard Enterprise, <ezmeral_software_support@hpe.com>
 name:        mapr-nifi
 version:     __RELEASE_VERSION__
 release:     1
 prefix:      /
 group:       MapR
 buildarch:   x86_64
-requires:    bash
+requires:    mapr-client >= 7.1.0, mapr-hadoop-util >= 3.3.3
+conflicts:   mapr-core < 7.1.0
 AutoReqProv: no
 
 
