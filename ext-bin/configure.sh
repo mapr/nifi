@@ -77,16 +77,18 @@ function enableFipsIfConfigured() {
 function migratePreviousConfiguration() {
   if [ -f ${NIFI_HOME}"/conf/.not_configured_yet" ]; then
     nifi_folders="$MAPR_HOME/nifi/*"
-    array_of_prev_versions=""
+    array_of_prev_versions=()
     for folder in $nifi_folders
-        do
-         if [ -d "$folder" ]; then
-            if [[ $folder =~ [0-9]{12}$ ]]; then
-              array_of_prev_versions+=($folder)
-            fi
-        fi
-      done
+    do
+       if [ -d "$folder" ]; then
+          if [[ $folder =~ [0-9]{12}$ ]]; then
+            echo "$folder"
+            array_of_prev_versions+=($folder)
+          fi
+      fi
+    done
 
+    if (( ${#array_of_prev_versions[*]} != 0 )); then
       prev_conf_folder=${array_of_prev_versions[-1]}"/conf"
       if [ -d "$prev_conf_folder" ]; then
          if ! [ -f ${prev_conf_folder}".not_configured_yet" ]; then
@@ -94,6 +96,7 @@ function migratePreviousConfiguration() {
             cp -r $prev_conf_folder $NIFI_HOME
           fi
       fi
+    fi
   fi
 }
 
