@@ -85,16 +85,20 @@ public final class MapRLibsUtil {
         return hadoopLibs;
     }
 
-    private static List<File> getSpecificHBaseJars(Path homePath) throws IOException {
+    private static List<File> getSpecificHBaseJars(Path homePath) {
         String component = "hbase";
-        Path hbaseFolder = MapRComponentsUtils.getComponentFolder(component, homePath.toString());
+        try {
+            Path hbaseFolder = MapRComponentsUtils.getComponentFolder(component, homePath.toString());
 
-        Path hbaseLibFolder = Paths.get(hbaseFolder.toString(), "/lib");
-        List<String> hbaseLibsList = List.of("hbase-", "netty-", "metrics-");
+            Path hbaseLibFolder = Paths.get(hbaseFolder.toString(), "/lib");
+            List<String> hbaseLibsList = List.of("hbase-", "netty-", "metrics-");
 
-        return getJarsFromFolder(hbaseLibsList, hbaseLibFolder);
+            return getJarsFromFolder(hbaseLibsList, hbaseLibFolder);
+        } catch (IOException e) {
+            LOGGER.warn("Hbase not installed error: {}", e.getMessage());
+            return Collections.emptyList();
+        }
     }
-
 
     private static List<File> getJarsFromFolder(String prefix, Path path) {
         return getJarsFromFolder(Collections.singletonList(prefix), path);
