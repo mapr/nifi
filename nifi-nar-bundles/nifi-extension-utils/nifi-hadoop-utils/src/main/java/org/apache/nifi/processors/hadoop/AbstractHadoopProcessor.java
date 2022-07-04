@@ -50,6 +50,7 @@ import org.apache.nifi.security.krb.KerberosKeytabUser;
 import org.apache.nifi.security.krb.KerberosPasswordUser;
 import org.apache.nifi.security.krb.KerberosUser;
 import org.ietf.jgss.GSSException;
+import org.apache.nifi.util.MapRPropertiesUtils;
 
 import javax.net.SocketFactory;
 import java.io.File;
@@ -397,6 +398,12 @@ public abstract class AbstractHadoopProcessor extends AbstractProcessor implemen
     protected List<String> getConfigLocations(PropertyContext context) {
             final ResourceReferences configResources = context.getProperty(HADOOP_CONFIGURATION_RESOURCES).evaluateAttributeExpressions().asResources();
             final List<String> locations = configResources.asLocations();
+
+            // Adding auto-detected configs if no configs were provided
+            if(locations.isEmpty()) {
+                locations.addAll(MapRPropertiesUtils.getHadoopConfigs());
+            }
+
             return locations;
     }
 
