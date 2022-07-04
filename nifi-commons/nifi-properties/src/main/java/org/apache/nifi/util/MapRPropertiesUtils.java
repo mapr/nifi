@@ -18,12 +18,13 @@
 package org.apache.nifi.util;
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.Path;
 import org.apache.nifi.util.mapr.MapRComponentsUtils;
 
 import java.io.IOException;
-import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,15 +55,17 @@ public final class MapRPropertiesUtils {
     private static final String PASSWORD_SUFFIX = "password";
     private static final String HADOOP_COMPONENT_NAME = "hadoop";
 
-    private static final String HADOOP_CONF = getHadoopConfFolder();
+    private static final Path HADOOP_CONF_PATH = getHadoopConfFolder();
     private static final String HADOOP_HOME_PROPERTY = "hadoop.home.dir";
     private static final String HADOOP_CONF_INTERNAL_PATH = "etc/hadoop";
-    private static final String HADOOP_CONF_SSL_SERVER_XML = "ssl-server.xml";
     private static final String HADOOP_CONF_CORE_SITE_XML = "core-site.xml";
+    private static final String HADOOP_CONF_SSL_SERVER_XML = "ssl-server.xml";
+    private static final String HADOOP_CONF_HDFS_SITE_XML = "hdfs-site.xml";
 
     private static volatile Configuration hadoopConf = null;
 
     private static final Map<String, String> mapNifiToHadoopProperties = new HashMap<>();
+    private static final List<String> hadoopConfigs = new ArrayList<>();
 
     static {
         //keystore
@@ -75,6 +78,20 @@ public final class MapRPropertiesUtils {
         mapNifiToHadoopProperties.put(NiFiProperties.SECURITY_TRUSTSTORE, SERVER_TRUSTSTORE_LOCATION);
         mapNifiToHadoopProperties.put(NiFiProperties.SECURITY_TRUSTSTORE_TYPE, SERVER_TRUSTSTORE_TYPE);
         mapNifiToHadoopProperties.put(NiFiProperties.SECURITY_TRUSTSTORE_PASSWD, SERVER_TRUSTSTORE_PASSWORD);
+
+        //hadoop conf
+        hadoopConfigs.add(HADOOP_CONF_PATH.resolve(HADOOP_CONF_CORE_SITE_XML).toString());
+        hadoopConfigs.add(HADOOP_CONF_PATH.resolve(HADOOP_CONF_SSL_SERVER_XML).toString());
+        hadoopConfigs.add(HADOOP_CONF_PATH.resolve(HADOOP_CONF_HDFS_SITE_XML).toString());
+    }
+
+    /**
+     * Method to get list of Hadoop configs
+     *
+     * @return list with configs paths
+     */
+    public static List<String> getHadoopConfigs() {
+        return new ArrayList<>(hadoopConfigs);
     }
 
     /**
@@ -131,25 +148,31 @@ public final class MapRPropertiesUtils {
     private static synchronized Configuration getHadoopConf() {
         if (hadoopConf == null) {
             hadoopConf = new Configuration();
-            hadoopConf.addResource(new Path(HADOOP_CONF, HADOOP_CONF_CORE_SITE_XML));
-            hadoopConf.addResource(new Path(HADOOP_CONF, HADOOP_CONF_SSL_SERVER_XML));
+            hadoopConf.addResource(new org.apache.hadoop.fs.Path(
+                    HADOOP_CONF_PATH.toString(),
+                    HADOOP_CONF_CORE_SITE_XML)
+            );
+            hadoopConf.addResource(new org.apache.hadoop.fs.Path(
+                    HADOOP_CONF_PATH.toString(),
+                    HADOOP_CONF_SSL_SERVER_XML)
+            );
         }
 
         return hadoopConf;
     }
 
-    private static String getHadoopConfFolder() {
-        String hadoopFolder;
+    private static Path getHadoopConfFolder() {
+        Path hadoopFolder;
 
         try {
-            hadoopFolder = MapRComponentsUtils.getComponentFolder(HADOOP_COMPONENT_NAME).toString();
+            hadoopFolder = MapRComponentsUtils.getComponentFolder(HADOOP_COMPONENT_NAME);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        setHadoopHomeIfNotSet(hadoopFolder);
+        setHadoopHomeIfNotSet(hadoopFolder.toString());
 
-        return Paths.get(hadoopFolder, HADOOP_CONF_INTERNAL_PATH).toString();
+        return hadoopFolder.resolve(HADOOP_CONF_INTERNAL_PATH);
     }
 
     private static void setHadoopHomeIfNotSet(String hadoopFolder) {
