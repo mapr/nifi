@@ -3,6 +3,8 @@
 MAPR_HOME=${MAPR_HOME:=/opt/mapr}
 NIFI_VERSION="1.16.0"
 NIFI_HOME="$MAPR_HOME/nifi/nifi-$NIFI_VERSION"
+NIFI_LIBS=${NIFI_HOME}"/lib/"
+NIFI_NOT_USED_LIBS=${NIFI_HOME}"/not-used-libs/"
 MAPR_WARDEN_CONF_DIR="${MAPR_HOME}/conf/conf.d"
 WARDEN_CONF="$NIFI_HOME/conf/warden.nifi.conf"
 MAPR_USER=`logname`
