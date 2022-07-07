@@ -82,7 +82,6 @@ function migratePreviousConfiguration() {
     do
        if [ -d "$folder" ]; then
           if [[ $folder =~ [0-9]{12}$ ]]; then
-            echo "$folder"
             array_of_prev_versions+=($folder)
           fi
       fi
@@ -100,11 +99,49 @@ function migratePreviousConfiguration() {
   fi
 }
 
+#$1 - libName
+function moveLibToNotUsedLibs() {
+  if ! [ -d $NIFI_NOT_USED_LIBS ]; then
+    mkdir -p $NIFI_NOT_USED_LIBS >/dev/null 2>&1
+  fi
+  if [ -f $NIFI_LIBS$1 ]; then
+    mv $NIFI_LIBS$1 $NIFI_NOT_USED_LIBS
+    if (($?)); then
+      echo "Error: while moving $NIFI_LIBS$1 to $NIFI_NOT_USED_LIBS"
+    fi
+  fi
+}
+
+#$1-lib_name
+function restoreLibFromNotUsedLibs() {
+  if [ -d $NIFI_NOT_USED_LIBS ]; then
+    if [ -f $NIFI_NOT_USED_LIBS$1 ]; then
+      mv $NIFI_NOT_USED_LIBS$1 $NIFI_LIBS
+      if (($?)); then
+         echo "Error: while moving $NIFI_NOT_USED_LIBS$1 from $NIFI_LIBS"
+      fi
+      if [ "$(ls -A $NIFI_NOT_USED_LIBS)" ]; then
+        rm -rf $NIFI_NOT_USED_LIBS
+      fi
+    fi
+  fi
+}
+
+function verifyHbaseInstalled() {
+ lib_name="nifi-hbase-mapr_1*.nar"
+ if ! [ -d "$MAPR_HOME/hbase" ]; then
+   moveLibToNotUsedLibs $lib_name
+ else
+   restoreLibFromNotUsedLibs $lib_name
+ fi
+}
+
 changePermission
 configureUiSecurity
 updateWardenLocalConfFile
 setupWardenConfFile
 migratePreviousConfiguration
+verifyHbaseInstalled
 enableFipsIfConfigured
 
 rm -rf ${NIFI_HOME}/conf/.not_configured_yet
