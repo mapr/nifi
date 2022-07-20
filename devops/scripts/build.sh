@@ -9,11 +9,11 @@ function prepare_nifi_install_packages() {
   echo "Build shaded BouncyCastle"
   mvn -f bouncycastle-shaded/ clean install
   if (($?)); then
-      return 1
+    return 1
   fi
 
   echo "Building project..."
-  mvn -pl nifi-assembly -am clean install -DskipTests
+  build_nifi
   if (($?)); then
     return 1
   fi
@@ -21,13 +21,13 @@ function prepare_nifi_install_packages() {
   echo "Removing unnecessary nars..."
   remove_unnecessary_nars
 
-  rpmbuild > /dev/null 2>&1
+  rpmbuild >/dev/null 2>&1
   if [ $? -ne 127 ]; then
     echo "Building rpm..."
     create_rpm_nifi_package
   fi
 
-  dpkg-deb > /dev/null 2>&1
+  dpkg-deb >/dev/null 2>&1
   if [ $? -ne 127 ]; then
     echo "Building deb..."
     create_deb_nifi_package
@@ -39,12 +39,24 @@ function prepare_nifi_install_packages() {
   find ./ -type f -name '*deb' -exec readlink -f {} \;
 }
 
+function build_nifi() {
+  OPERATION="deploy"
+  DEV_TEST_BRANCH="branch-0.0.0-mapr"
+
+  if [ "$JOB_BASE_NAME" == "$DEV_TEST_BRANCH" ]; then
+    echo "Building without deploy jar artifacts"
+    OPERATION="install"
+  fi
+
+  mvn -pl nifi-assembly -am clean ${OPERATION} -DskipTests -Dmapr.repo=${MAPR_CENTRAL}
+  return $?
+}
+
 function remove_unnecessary_nars() {
-    input="$(dirname "${BASH_SOURCE[0]}")/nars_to_remove"
-    while IFS= read -r nar
-    do
-      rm nifi-assembly/target/nifi-*-bin/nifi-*/lib/$nar
-    done < "$input"
+  input="$(dirname "${BASH_SOURCE[0]}")/nars_to_remove"
+  while IFS= read -r nar; do
+    rm nifi-assembly/target/nifi-*-bin/nifi-*/lib/$nar
+  done <"$input"
 }
 
 function create_rpm_nifi_package() {
