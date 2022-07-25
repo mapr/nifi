@@ -133,7 +133,7 @@
         <surefire.version>3.0.0-M7</surefire.version>
         <!-- The Hadoop version used by nifi-hadoop-libraries-nar and any NARs that depend on it, other NARs that need
             a specific version should override this property, or use a more specific property like abc.hadoop.version -->
-        <hadoop.version>3.3.3.0-mapr-eep-000-SNAPSHOT</hadoop.version>
+        <hadoop.version>3.3.3.0-mapr-eep-900-SNAPSHOT</hadoop.version>
         <ozone.version>1.2.1</ozone.version>
         <gcs.version>2.1.5</gcs.version>
         <aspectj.version>1.9.6</aspectj.version>
@@ -150,7 +150,7 @@
         <h2.version>2.1.214</h2.version>
         <zookeeper.version>3.5.6.0-mapr-2009</zookeeper.version>
 
-        <mapr.repo>http://10.163.160.99/nexus/content/groups/public/</mapr.repo>
+        <mapr.repo>http://df-mvn-dev.mip.storage.hpecorp.net/nexus/content/groups/public/</mapr.repo>
 
         <!-- maven plugin versions -->
         <maven-deploy-plugin.version>3.0.0</maven-deploy-plugin.version>
