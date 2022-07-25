@@ -137,7 +137,7 @@
         <nifi.groovy.version>3.0.22</nifi.groovy.version>
         <groovy.eclipse.batch.version>3.0.8-01</groovy.eclipse.batch.version>
         <surefire.version>3.5.0</surefire.version>
-        <hadoop.version>3.3.3.0-mapr-eep-000-SNAPSHOT</hadoop.version>
+        <hadoop.version>3.3.3.0-mapr-eep-900-SNAPSHOT</hadoop.version>
         <ozone.version>1.2.1</ozone.version>
         <gcs.version>2.1.9</gcs.version>
         <aspectj.version>1.9.6</aspectj.version>
@@ -155,7 +155,7 @@
         <zookeeper.version>3.5.6.0-mapr-2009</zookeeper.version>
         <caffeine.version>2.9.3</caffeine.version>
 
-        <mapr.repo>http://10.163.160.99/nexus/content/groups/public/</mapr.repo>
+        <mapr.repo>http://df-mvn-dev.mip.storage.hpecorp.net/nexus/content/groups/public/</mapr.repo>
 
         <!-- maven plugin versions -->
         <maven-deploy-plugin.version>3.0.0</maven-deploy-plugin.version>
