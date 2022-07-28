@@ -311,6 +311,12 @@ language governing permissions and limitations under the License. -->
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>
+            <artifactId>nifi-eep-kafka-2-6-nar</artifactId>
+            <version>1.16.3.0-eep-SNAPSHOT</version>
+            <type>nar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-confluent-platform-nar</artifactId>
             <version>1.19.1</version>
             <type>nar</type>

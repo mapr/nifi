@@ -154,6 +154,7 @@
 
         <!-- maven plugin versions -->
         <maven-deploy-plugin.version>3.0.0</maven-deploy-plugin.version>
+        <maven-shade-plugin.version>3.3.0</maven-shade-plugin.version>
     </properties>
 
     <distributionManagement>
