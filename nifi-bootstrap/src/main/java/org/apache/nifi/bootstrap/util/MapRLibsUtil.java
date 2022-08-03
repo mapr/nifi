@@ -64,6 +64,7 @@ public final class MapRLibsUtil {
         Path maprHome = maprLibs.getParent();
         jarLibs.addAll(getSpecificHadoopJars(maprHome));
         jarLibs.addAll(getSpecificHBaseJars(maprHome));
+        jarLibs.addAll(getSpecificHiveJars(maprHome));
 
         return jarLibs;
     }
@@ -96,6 +97,22 @@ public final class MapRLibsUtil {
             return getJarsFromFolder(hbaseLibsList, hbaseLibFolder);
         } catch (IOException e) {
             LOGGER.warn("Hbase not installed error: {}", e.getMessage());
+            return Collections.emptyList();
+        }
+    }
+
+    private static List<File> getSpecificHiveJars(Path homePath) {
+        String component = "hive";
+        try {
+            Path hiveFolder = MapRComponentsUtils.getComponentFolder(component, homePath.toString());
+
+            Path hiveLibFolder = Paths.get(hiveFolder.toString(), "/lib");
+            List<String> hbaseLibsList = List.of("hive-jdbc", "hive-exec", "hive-streaming", "hive-hcatalog-core",
+                    "hive-service", "hive-maprdb", "antlr", "libfb303");
+
+            return getJarsFromFolder(hbaseLibsList, hiveLibFolder);
+        } catch (IOException e) {
+            LOGGER.warn("Hive not installed error: {}", e.getMessage());
             return Collections.emptyList();
         }
     }

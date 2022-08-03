@@ -136,12 +136,22 @@ function verifyHbaseInstalled() {
  fi
 }
 
+function verifyHiveInstalled() {
+ lib_name="nifi-eep-hive3-nar-*.nar"
+ if ! [ -d "$MAPR_HOME/hive" ]; then
+   moveLibToNotUsedLibs $lib_name
+ else
+   restoreLibFromNotUsedLibs $lib_name
+ fi
+}
+
 changePermission
 configureUiSecurity
 updateWardenLocalConfFile
 setupWardenConfFile
 migratePreviousConfiguration
 verifyHbaseInstalled
+verifyHiveInstalled
 enableFipsIfConfigured
 
 rm -rf ${NIFI_HOME}/conf/.not_configured_yet
