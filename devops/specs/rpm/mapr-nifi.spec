@@ -61,7 +61,11 @@ if sudo -u $MAPR_USER -E "__INSTALL_3DIGIT__/bin/nifi.sh" status &>/dev/null ; t
 fi
 
 if [ -f __PREFIX__/conf/conf.d/warden.nifi.conf ]; then
-        rm -Rf __PREFIX__/conf/conf.d/warden.nifi.conf
+    rm -Rf __PREFIX__/conf/conf.d/warden.nifi.conf
+fi
+
+if [ -d "__INSTALL_3DIGIT__/not-used-libs/" ]; then
+  mv __INSTALL_3DIGIT__/not-used-libs/* __INSTALL_3DIGIT__/lib
 fi
 
 %postun
