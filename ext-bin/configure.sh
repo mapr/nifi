@@ -51,15 +51,37 @@ function changePermission() {
 
 function configureUiSecurity() {
   hostName=`hostname -f`
-  sed -i "s~0.0.0.0*~$hostName~" $NIFI_CONF
+  if [ -f ${NIFI_HOME}"/conf/.not_configured_yet" ]; then
+    sed -i "s~0.0.0.0*~$hostName~" $NIFI_CONF
+  fi
   if [ "$IS_SECURED" == "true" ]; then
     sed -i "s~nifi.remote.input.secure=.*~nifi.remote.input.secure=true~" $NIFI_CONF
     sed -i "s~nifi.web.http.host=.*~nifi.web.http.host=~" $NIFI_CONF
     sed -i "s~nifi.web.http.port=.*~nifi.web.http.port=~" $NIFI_CONF
+
+    port=$(cat $NIFI_CONF | grep 'nifi.web.https.port=' | sed 's/\(nifi.web.https.port=\)//')
+    if [ -z "$port" ]; then
+      sed -i "s~nifi.web.https.port=.*~nifi.web.https.port=12443~" $NIFI_CONF
+    fi
+
+    host=$(cat $NIFI_CONF | grep 'nifi.web.https.host=' | sed 's/\(nifi.web.https.host=\)//')
+    if [ -z "$host" ]; then
+      sed -i "s~nifi.web.https.host=.*~nifi.web.https.host=$hostName~" $NIFI_CONF
+    fi
   else
     sed -i "s~nifi.remote.input.secure=.*~nifi.remote.input.secure=false~" $NIFI_CONF
     sed -i "s~nifi.web.https.host=.*~nifi.web.https.host=~" $NIFI_CONF
     sed -i "s~nifi.web.https.port=.*~nifi.web.https.port=~" $NIFI_CONF
+
+    port=$(cat $NIFI_CONF | grep 'nifi.web.http.port=' | sed 's/\(nifi.web.http.port=\)//')
+    if [ -z "$port" ]; then
+      sed -i "s~nifi.web.http.port=.*~nifi.web.http.port=12080~" $NIFI_CONF
+    fi
+
+    host=$(cat $NIFI_CONF | grep 'nifi.web.http.host=' | sed 's/\(nifi.web.http.host=\)//')
+    if [ -z "$host" ]; then
+      sed -i "s~nifi.web.http.host=.*~nifi.web.http.host=$hostName~" $NIFI_CONF
+    fi
   fi
 }
 
@@ -93,6 +115,7 @@ function migratePreviousConfiguration() {
          if ! [ -f ${prev_conf_folder}".not_configured_yet" ]; then
             echo "We are migrating from ${array_of_prev_versions[-1]}"
             cp -r $prev_conf_folder $NIFI_HOME
+            rm -rf ${NIFI_HOME}/conf/.not_configured_yet
           fi
       fi
     fi
@@ -146,10 +169,10 @@ function verifyHiveInstalled() {
 }
 
 changePermission
+migratePreviousConfiguration
 configureUiSecurity
 updateWardenLocalConfFile
 setupWardenConfFile
-migratePreviousConfiguration
 verifyHbaseInstalled
 verifyHiveInstalled
 enableFipsIfConfigured
