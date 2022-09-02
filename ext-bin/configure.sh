@@ -2,9 +2,17 @@
 
 . "$(dirname "${BASH_SOURCE[0]}")/_configure_variables.sh"
 
+RESTART_NEED=false
+
 function setupWardenConfFile() {
   if ! [ -d ${MAPR_WARDEN_CONF_DIR} ]; then
     mkdir -p ${MAPR_WARDEN_CONF_DIR} >/dev/null 2>&1
+  fi
+  if [ -f ${MAPR_WARDEN_CONF} ]; then
+    diff=$(diff ${WARDEN_CONF} ${MAPR_WARDEN_CONF})
+    if [ ! -z "$diff" ]; then
+      RESTART_NEED=true
+    fi
   fi
 
   cp $WARDEN_CONF $MAPR_WARDEN_CONF_DIR
@@ -113,12 +121,28 @@ function migratePreviousConfiguration() {
       prev_conf_folder=${array_of_prev_versions[-1]}"/conf"
       if [ -d "$prev_conf_folder" ]; then
          if ! [ -f ${prev_conf_folder}".not_configured_yet" ]; then
-            echo "We are migrating from ${array_of_prev_versions[-1]}"
+            echo "Migrating from ${array_of_prev_versions[-1]}"
             cp -r $prev_conf_folder $NIFI_HOME
             rm -rf ${NIFI_HOME}/conf/.not_configured_yet
           fi
       fi
     fi
+  fi
+}
+
+createRestartFile(){
+  if [ "$RESTART_NEED" = true ] ; then
+    role="nifi"
+    mkdir -p ${MAPR_CONF_DIR}/restart
+    cat > "${MAPR_CONF_DIR}/restart/$role-${NIFI_VERSION}.restart" <<EOF
+#!/bin/bash
+if [ -z "${MAPR_TICKETFILE_LOCATION}" ] && [ -e "${MAPR_HOME}/conf/mapruserticket" ]; then
+    export MAPR_TICKETFILE_LOCATION="${MAPR_HOME}/conf/mapruserticket"
+fi
+maprcli node services -action restart -name ${role} -nodes $(hostname)
+EOF
+    chmod +x "${MAPR_CONF_DIR}/restart/$role-${NIFI_VERSION}.restart"
+    chown -R $MAPR_USER:$MAPR_GROUP "${MAPR_CONF_DIR}/restart/$role-${NIFI_VERSION}.restart"
   fi
 }
 
@@ -131,6 +155,10 @@ function moveLibToNotUsedLibs() {
     mv $NIFI_LIBS$1 $NIFI_NOT_USED_LIBS
     if (($?)); then
       echo "Error: while moving $NIFI_LIBS$1 to $NIFI_NOT_USED_LIBS"
+    else
+      if [ ! -f ${NIFI_HOME}"/conf/.not_configured_yet" ]; then
+        RESTART_NEED=true
+      fi
     fi
   fi
 }
@@ -142,8 +170,12 @@ function restoreLibFromNotUsedLibs() {
       mv $NIFI_NOT_USED_LIBS$1 $NIFI_LIBS
       if (($?)); then
          echo "Error: while moving $NIFI_NOT_USED_LIBS$1 from $NIFI_LIBS"
+      else
+        if [ ! -f ${NIFI_HOME}"/conf/.not_configured_yet" ]; then
+          RESTART_NEED=true
+        fi
       fi
-      if [ "$(ls -A $NIFI_NOT_USED_LIBS)" ]; then
+      if ! [ "$(ls -A $NIFI_NOT_USED_LIBS)" ]; then
         rm -rf $NIFI_NOT_USED_LIBS
       fi
     fi
@@ -169,12 +201,13 @@ function verifyHiveInstalled() {
 }
 
 changePermission
+verifyHbaseInstalled
+verifyHiveInstalled
 migratePreviousConfiguration
 configureUiSecurity
 updateWardenLocalConfFile
 setupWardenConfFile
-verifyHbaseInstalled
-verifyHiveInstalled
 enableFipsIfConfigured
+createRestartFile
 
 rm -rf ${NIFI_HOME}/conf/.not_configured_yet
