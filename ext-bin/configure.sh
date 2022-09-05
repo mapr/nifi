@@ -35,7 +35,7 @@ function updateWardenLocalConfFile() {
     nifi.cluster.load.balance.port
     nifi.web.http.port
     nifi.web.https.port
-    nifi.cluster.node.protocol.port"
+    nifi.listener.bootstrap.port"
 
     service_ports=""
     for property in $properties
