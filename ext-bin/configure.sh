@@ -54,6 +54,9 @@ function updateWardenLocalConfFile() {
 
 function changePermission() {
   chown -R ${MAPR_USER}:${MAPR_GROUP} ${NIFI_HOME}
+  chmod 700 ${NIFI_HOME}/conf/
+  chmod 600 ${NIFI_HOME}/conf/*
+  chmod 644 ${WARDEN_CONF}
   sed -i "s~run.as=.*~run.as=$MAPR_USER~" $BOOTSTRAP_CONF
 }
 
