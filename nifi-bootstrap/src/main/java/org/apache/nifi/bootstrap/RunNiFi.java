@@ -1296,6 +1296,7 @@ public class RunNiFi {
             // running on Java 9 or 10, internal module java.xml.bind module must be made available
             cmd.add("--add-modules=java.xml.bind");
         }
+        cmd.add("--add-opens=java.base/java.lang=ALL-UNNAMED");
         cmd.add("org.apache.nifi.NiFi");
         if (isSensitiveKeyPresent(props)) {
             Path sensitiveKeyFile = createSensitiveKeyFile(confDir);
@@ -1312,7 +1313,7 @@ public class RunNiFi {
 
         cmdLogger.info("Starting Apache NiFi...");
         cmdLogger.info("Working Directory: {}", workingDir.getAbsolutePath());
-        cmdLogger.info("Command: {}", cmdBuilder.toString());
+        cmdLogger.debug("Command: {}", cmdBuilder.toString());
 
         String gracefulShutdown = props.get(GRACEFUL_SHUTDOWN_PROP);
         if (gracefulShutdown == null) {
