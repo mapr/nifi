@@ -50,7 +50,9 @@ public final class MapRLibsUtil {
             "jersey",
             "jsr311-api",
             "jsp-api",
-            "aws-java-sdk-bundle"
+            "avro",
+            "asm",
+            "slf4j-reload4j"
     );
 
     public static List<File> getMapRLibs(String libPath) throws IOException {
