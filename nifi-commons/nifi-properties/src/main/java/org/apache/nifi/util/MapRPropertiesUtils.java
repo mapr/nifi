@@ -60,12 +60,13 @@ public final class MapRPropertiesUtils {
     private static final String HADOOP_CONF_INTERNAL_PATH = "etc/hadoop";
     private static final String HADOOP_CONF_CORE_SITE_XML = "core-site.xml";
     private static final String HADOOP_CONF_SSL_SERVER_XML = "ssl-server.xml";
+    private static final String HADOOP_CONF_SSL_CLIENT_XML = "ssl-client.xml";
     private static final String HADOOP_CONF_HDFS_SITE_XML = "hdfs-site.xml";
 
     private static volatile Configuration hadoopConf = null;
 
     private static final Map<String, String> mapNifiToHadoopProperties = new HashMap<>();
-    private static final List<String> hadoopConfigs = new ArrayList<>();
+    private static final List<String> hadoopClientConfigs = new ArrayList<>();
 
     static {
         //keystore
@@ -80,18 +81,17 @@ public final class MapRPropertiesUtils {
         mapNifiToHadoopProperties.put(NiFiProperties.SECURITY_TRUSTSTORE_PASSWD, SERVER_TRUSTSTORE_PASSWORD);
 
         //hadoop conf
-        hadoopConfigs.add(HADOOP_CONF_PATH.resolve(HADOOP_CONF_CORE_SITE_XML).toString());
-        hadoopConfigs.add(HADOOP_CONF_PATH.resolve(HADOOP_CONF_SSL_SERVER_XML).toString());
-        hadoopConfigs.add(HADOOP_CONF_PATH.resolve(HADOOP_CONF_HDFS_SITE_XML).toString());
+        hadoopClientConfigs.add(HADOOP_CONF_PATH.resolve(HADOOP_CONF_HDFS_SITE_XML).toString());
+        hadoopClientConfigs.add(HADOOP_CONF_PATH.resolve(HADOOP_CONF_SSL_CLIENT_XML).toString());
     }
 
     /**
-     * Method to get list of Hadoop configs
+     * Method to get list of Hadoop client configs
      *
      * @return list with configs paths
      */
-    public static List<String> getHadoopConfigs() {
-        return new ArrayList<>(hadoopConfigs);
+    public static List<String> getHadoopClientConfigs() {
+        return new ArrayList<>(hadoopClientConfigs);
     }
 
     /**

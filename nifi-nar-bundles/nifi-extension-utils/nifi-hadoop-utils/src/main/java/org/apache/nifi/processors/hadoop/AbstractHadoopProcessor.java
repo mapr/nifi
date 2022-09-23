@@ -366,7 +366,7 @@ public abstract class AbstractHadoopProcessor extends AbstractProcessor implemen
 
             // Adding auto-detected configs if no configs were provided
             if(locations.isEmpty()) {
-                locations.addAll(MapRPropertiesUtils.getHadoopConfigs());
+                locations.addAll(MapRPropertiesUtils.getHadoopClientConfigs());
             }
             
             return locations;
