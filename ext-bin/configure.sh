@@ -15,7 +15,10 @@ function setupWardenConfFile() {
     fi
   fi
 
-  cp $WARDEN_CONF $MAPR_WARDEN_CONF_DIR
+  user=$(cat $BOOTSTRAP_CONF | grep 'run.as=' | sed 's/\(run.as=\)//')
+  if [ "$user" == "$MAPR_USER" ]; then
+    cp $WARDEN_CONF $MAPR_WARDEN_CONF_DIR
+  fi
 }
 
 function updateWardenLocalConfFile() {
@@ -53,11 +56,34 @@ function updateWardenLocalConfFile() {
 }
 
 function changePermission() {
-  chown -R ${MAPR_USER}:${MAPR_GROUP} ${NIFI_HOME}
-  chmod 700 ${NIFI_HOME}/conf/
-  chmod 600 ${NIFI_HOME}/conf/*
-  chmod 644 ${WARDEN_CONF}
-  sed -i "s~run.as=.*~run.as=$MAPR_USER~" $BOOTSTRAP_CONF
+  user=$(cat $BOOTSTRAP_CONF | grep 'run.as=' | sed 's/\(run.as=\)//')
+  group=$MAPR_GROUP
+  if [ -z "$user" ]; then
+    user="$MAPR_USER"
+    sed -i "s~run.as=.*~run.as=$MAPR_USER~" $BOOTSTRAP_CONF
+  fi
+  oldUser=$(stat -c '%U' $NIFI_CONF)
+
+  if [ "$user" != "$MAPR_USER" ]; then
+    group=$user
+  fi
+
+  chown -R ${user}:${group} ${NIFI_HOME}
+  chown ${MAPR_USER}:${MAPR_GROUP} ${WARDEN_CONF}
+
+  if [ -f ${PID_FILE} ]; then
+    chown -R ${user}:${MAPR_GROUP} ${PID_FILE}
+  fi
+
+  if [ -f ${STATUS_FILE} ]; then
+    chown -R ${user}:${MAPR_GROUP} ${STATUS_FILE}
+  fi
+
+  if [ -f ${NIFI_HOME}"/conf/.not_configured_yet" ]; then
+    chmod 700 ${NIFI_HOME}/conf/
+    chmod 600 ${NIFI_HOME}/conf/*
+    chmod 644 ${WARDEN_CONF}
+  fi
 }
 
 function configureUiSecurity() {
