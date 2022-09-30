@@ -48,7 +48,7 @@ function build_nifi() {
     OPERATION="install"
   fi
 
-  sed -i "s~<mapr.repo>.*~<mapr.repo>$MAPR_CENTRAL</mapr.repo>~" pom.xml
+  sed -i "s~<mapr.repo>.*~<mapr.repo>$MAVEN_CENTRAL</mapr.repo>~" pom.xml
 
   mvn -pl nifi-assembly -am clean ${OPERATION} -DskipTests -Dmapr.repo=${MAPR_CENTRAL}
   return $?
