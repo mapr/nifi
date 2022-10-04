@@ -15,7 +15,7 @@ AutoReqProv: no
 
 
 %description
-MapR nifi package.
+Ezmeral Ecosystem Pack: NiFi package
 Commit: __GIT_COMMIT__
 Branch: __RELEASE_BRANCH__
 
