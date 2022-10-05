@@ -127,7 +127,7 @@ function replace_build_variables() {
   find ${REPLACE_DIR} -type f -exec \
     sed -i "s|__VERSION_3DIGIT__|${PKG_3DIGIT_VERSION}|g" {} \;
   find ${REPLACE_DIR} -type f -exec \
-    sed -i "s|__RELEASE_BRANCH__|${BRANCH_NAME}|g" {} \;
+    sed -i "s|__RELEASE_BRANCH__|${PACKAGE_INFO_BRANCH}|g" {} \;
   find ${REPLACE_DIR} -type f -exec \
     sed -i "s|__RELEASE_VERSION__|${PKG_VERSION}.${TIMESTAMP}|g" {} \;
   find ${REPLACE_DIR} -type f -exec \
