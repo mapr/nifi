@@ -8,7 +8,7 @@ version:     __RELEASE_VERSION__
 release:     1
 prefix:      /
 group:       MapR
-buildarch:   x86_64
+buildarch:   noarch
 requires:    mapr-client >= 7.1.0, mapr-hadoop-client >= 3.3.4
 conflicts:   mapr-core < 7.1.0
 AutoReqProv: no
@@ -17,7 +17,7 @@ AutoReqProv: no
 %description
 Ezmeral Ecosystem Pack: NiFi package
 Commit: __GIT_COMMIT__
-Branch: __RELEASE_BRANCH__
+Tag: __RELEASE_BRANCH__
 
 %clean
 echo "NOOP"

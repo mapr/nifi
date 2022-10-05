@@ -2,10 +2,10 @@ Package: mapr-nifi
 Version: __RELEASE_VERSION__
 Section: base
 Priority: optional
-Architecture: amd64
+Architecture: all
 Depends: mapr-client (>= 7.1.0), mapr-hadoop-client (>= 3.3.4)
 Conflicts: mapr-core (<< 7.1.0)
 Maintainer: Hewlett Packard Enterprise <ezmeral_software_support@hpe.com>
 Description: Ezmeral Ecosystem Pack: NiFi package
 Commit: __GIT_COMMIT__
-Branch: __RELEASE_BRANCH__
+Tag: __RELEASE_BRANCH__
