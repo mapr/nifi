@@ -1024,17 +1024,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.13</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <stagingProgressTimeoutMinutes>15</stagingProgressTimeoutMinutes>
-                    <serverId>repository.apache.org</serverId>
-                    <nexusUrl>https://repository.apache.org/</nexusUrl>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>3.1.0</version>
