@@ -43,7 +43,7 @@ function build_nifi() {
   OPERATION="deploy"
   DEV_TEST_BRANCH="branch-0.0.0-mapr"
 
-  if [ "$JOB_BASE_NAME" == "$DEV_TEST_BRANCH" ]; then
+  if [ "$JOB_BASE_NAME" == "$DEV_TEST_BRANCH" ] || [ "$JOB_BASE_NAME" == "" ]; then
     echo "Building without deploy jar artifacts"
     OPERATION="install"
   fi
