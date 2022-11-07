@@ -32,7 +32,7 @@
                 <include>*:nifi-api</include>
                 <include>*:nifi-property-protection-api</include>
                 <include>*:nifi-per-process-group-logging</include>
-                <include>nifi-utils</include>
+                <include>*:nifi-utils</include>
             </includes>
         </dependencySet>
 
