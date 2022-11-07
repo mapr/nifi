@@ -513,18 +513,19 @@ language governing permissions and limitations under the License. -->
             <version>1.19.1.0-eep-SNAPSHOT</version>
             <type>nar</type>
         </dependency>
-        <dependency>
-            <groupId>org.apache.nifi</groupId>
-            <artifactId>nifi-hbase_1_1_2-client-service-nar</artifactId>
-            <version>1.19.1.0-eep-SNAPSHOT</version>
-            <type>nar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.nifi</groupId>
-            <artifactId>nifi-hbase_2-client-service-nar</artifactId>
-            <version>1.19.1.0-eep-SNAPSHOT</version>
-            <type>nar</type>
-        </dependency>
+<!-- Unused dependencies       -->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.nifi</groupId>-->
+<!--            <artifactId>nifi-hbase_1_1_2-client-service-nar</artifactId>-->
+<!--            <version>1.19.1.0-eep-SNAPSHOT</version>-->
+<!--            <type>nar</type>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.nifi</groupId>-->
+<!--            <artifactId>nifi-hbase_2-client-service-nar</artifactId>-->
+<!--            <version>1.19.1.0-eep-SNAPSHOT</version>-->
+<!--            <type>nar</type>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-oauth2-provider-nar</artifactId>
