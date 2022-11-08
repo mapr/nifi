@@ -75,7 +75,7 @@
         <dependency>
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-client</artifactId>
-            <version>${org.apache.hbase.client.version}</version>
+            <version>${eep.hbase.version}</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
