@@ -116,7 +116,6 @@
         <org.apache.commons.text.version>1.10.0</org.apache.commons.text.version>
         <org.apache.httpcomponents.httpclient.version>4.5.13</org.apache.httpcomponents.httpclient.version>
         <org.apache.httpcomponents.httpcore.version>4.4.15</org.apache.httpcomponents.httpcore.version>
-        <org.apache.hbase.client.version>1.4.13.200-eep-810</org.apache.hbase.client.version>
         <org.bouncycastle.version>1.71</org.bouncycastle.version>
         <testcontainers.version>1.17.5</testcontainers.version>
         <org.slf4j.version>1.7.36</org.slf4j.version>
@@ -133,7 +132,7 @@
         <surefire.version>3.0.0-M7</surefire.version>
         <!-- The Hadoop version used by nifi-hadoop-libraries-nar and any NARs that depend on it, other NARs that need
             a specific version should override this property, or use a more specific property like abc.hadoop.version -->
-        <hadoop.version>3.3.4.0-eep-900-SNAPSHOT</hadoop.version>
+        <hadoop.version>${eep.hadoop.version}</hadoop.version>
         <ozone.version>1.2.1</ozone.version>
         <gcs.version>2.1.5</gcs.version>
         <aspectj.version>1.9.6</aspectj.version>
@@ -148,7 +147,17 @@
         <spring.security.version>5.8.0</spring.security.version>
         <swagger.annotations.version>1.6.6</swagger.annotations.version>
         <h2.version>2.1.214</h2.version>
-        <zookeeper.version>3.5.6.0-mapr-2009</zookeeper.version>
+        <zookeeper.version>${eep.zookeeper.version}</zookeeper.version>
+
+        <!-- EEP ECO components versions -->
+        <eep.hadoop.version>3.3.4.0-eep-900</eep.hadoop.version>
+        <eep.hbase.version>1.4.14.200-eep-900</eep.hbase.version>
+        <eep.hive.version>3.1.3.0-eep-900</eep.hive.version>
+        <eep.kafka.version>2.6.1.300-eep-900</eep.kafka.version>
+        <eep.zookeeper.version>3.5.6.0-mapr-2210</eep.zookeeper.version>
+
+        <bc-fips.version>1.0.2.3</bc-fips.version>
+        <bctls-fips.version>1.0.12.2</bctls-fips.version>
 
         <mapr.repo>http://df-mvn-dev.mip.storage.hpecorp.net/nexus/content/groups/public/</mapr.repo>
 
