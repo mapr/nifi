@@ -40,12 +40,15 @@ function prepare_nifi_install_packages() {
 }
 
 function build_nifi() {
-  OPERATION="deploy"
+  OPERATION=${DEPLOY_OPERATION:="install"}
   DEV_TEST_BRANCH="branch-0.0.0-mapr"
 
   if [ "$JOB_BASE_NAME" == "$DEV_TEST_BRANCH" ] || [ "$JOB_BASE_NAME" == "" ]; then
-    echo "Building without deploy jar artifacts"
     OPERATION="install"
+  fi
+
+  if [ "$OPERATION" == "install" ]; then
+    echo "Building without deploy jar artifacts"
   fi
 
   sed -i "s~<mapr.repo>.*~<mapr.repo>$MAVEN_CENTRAL</mapr.repo>~" pom.xml
@@ -96,6 +99,12 @@ function pack_files() {
   cp -r nifi-assembly/target/nifi-*-bin/nifi-*/* ${HOME_PATH}/
   cp ext-bin/* ${HOME_PATH}/bin
   cp ext-conf/* ${HOME_PATH}/conf
+
+  find ${HOME_PATH}/bin -type f -exec \
+      sed -i "s|__VERSION_3DIGIT__|${PKG_3DIGIT_VERSION}|g" {} \;
+  find ${HOME_PATH}/conf -type f -exec \
+      sed -i "s|__VERSION_3DIGIT__|${PKG_3DIGIT_VERSION}|g" {} \;
+
   echo ${PKG_3DIGIT_VERSION} >${HOME_PATH}/../nifiversion
 }
 
