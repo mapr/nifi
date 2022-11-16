@@ -20,6 +20,3 @@ nifi-social-media-*.nar
 nifi-splunk-*.nar
 nifi-websocket-*.nar
 nifi-windows-event-log-*.nar
-nifi-hbase_2-client-service-*.nar
-nifi-hive-nar-*.nar
-nifi-hbase_1_1_2-client-service-nar-*.nar

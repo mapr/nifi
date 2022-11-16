@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 MAPR_HOME=${MAPR_HOME:=/opt/mapr}
-NIFI_VERSION="1.16.0"
+NIFI_VERSION="__VERSION_3DIGIT__"
 NIFI_HOME="$MAPR_HOME/nifi/nifi-$NIFI_VERSION"
 NIFI_LIBS=${NIFI_HOME}"/lib/"
 NIFI_NOT_USED_LIBS=${NIFI_HOME}"/not-used-libs/"
