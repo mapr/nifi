@@ -151,6 +151,9 @@ function migratePreviousConfiguration() {
       if [ -d "$prev_conf_folder" ]; then
          if ! [ -f ${prev_conf_folder}".not_configured_yet" ]; then
             echo "Migrating from ${array_of_prev_versions[-1]}"
+            if [ -f ${prev_conf_folder}/warden.nifi.conf ]; then
+              rm $prev_conf_folder/warden.nifi.conf
+            fi
             cp -r $prev_conf_folder $NIFI_HOME
             rm -rf ${NIFI_HOME}/conf/.not_configured_yet
           fi
@@ -229,11 +232,11 @@ function verifyHiveInstalled() {
  fi
 }
 
-changePermission
 verifyHbaseInstalled
 verifyHiveInstalled
 migratePreviousConfiguration
 configureUiSecurity
+changePermission
 updateWardenLocalConfFile
 setupWardenConfFile
 enableFipsIfConfigured
