@@ -32,13 +32,8 @@ if [ $1 -eq 2 ]; then
     MY_OLD_TIMESTAMP=$(rpm -qi mapr-nifi | awk -F': ' '/Version/ {print $2}')
     MY_OLD_CD_VERSION="$(echo $MY_OLD_TIMESTAMP | cut -d'.' -f1-3 )"
     MY_OLD_CD_HOME=__PREFIX__/nifi/nifi-$MY_OLD_CD_VERSION
-    mkdir -p __PREFIX__/nifi/nifi-$MY_OLD_TIMESTAMP/conf
-    cp -r $MY_OLD_CD_HOME/conf/* __PREFIX__/nifi/nifi-${MY_OLD_TIMESTAMP}/conf
-
-    if [ -d "$MY_OLD_CD_HOME/logs" ]; then
-        mkdir -p __PREFIX__/nifi/nifi-${MY_OLD_TIMESTAMP}/logs
-        cp -r $MY_OLD_CD_HOME/logs/* __PREFIX__/nifi/nifi-${MY_OLD_TIMESTAMP}/logs
-    fi
+    mkdir -p __PREFIX__/nifi/nifi-${MY_OLD_TIMESTAMP}/
+    cp -r $MY_OLD_CD_HOME/* __PREFIX__/nifi/nifi-${MY_OLD_TIMESTAMP}/
 fi
 
 %post

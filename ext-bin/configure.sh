@@ -140,8 +140,11 @@ function migratePreviousConfiguration() {
     for folder in $nifi_folders
     do
        if [ -d "$folder" ]; then
-          if [[ $folder =~ [0-9]{12}$ ]]; then
+          if [[ $folder =~ ^.*nifi-[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\.[0-9]{12}$ ]]; then
             array_of_prev_versions+=($folder)
+          elif [[ $folder =~ ^.*nifi-[0-9]+\.[0-9]+\.[0-9]+$ ]] && [ $folder != ${NIFI_HOME} ]; then
+            echo "Removing ${folder}"
+            rm -rf ${folder}
           fi
       fi
     done
