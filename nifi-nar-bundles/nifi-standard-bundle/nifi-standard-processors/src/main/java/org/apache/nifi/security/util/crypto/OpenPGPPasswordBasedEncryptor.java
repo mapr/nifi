@@ -16,7 +16,7 @@
  */
 package org.apache.nifi.security.util.crypto;
 
-import static org.bouncycastle.openpgp.PGPUtil.getDecoderStream;
+import static org.bouncycastle.shaded.openpgp.PGPUtil.getDecoderStream;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,18 +25,18 @@ import java.util.Map;
 import org.apache.nifi.processor.exception.ProcessException;
 import org.apache.nifi.processor.io.StreamCallback;
 import org.apache.nifi.processors.standard.EncryptContent.Encryptor;
-import org.bouncycastle.openpgp.PGPCompressedData;
-import org.bouncycastle.openpgp.PGPEncryptedDataList;
-import org.bouncycastle.openpgp.PGPException;
-import org.bouncycastle.openpgp.PGPLiteralData;
-import org.bouncycastle.openpgp.PGPPBEEncryptedData;
-import org.bouncycastle.openpgp.jcajce.JcaPGPObjectFactory;
-import org.bouncycastle.openpgp.operator.PBEDataDecryptorFactory;
-import org.bouncycastle.openpgp.operator.PGPDigestCalculatorProvider;
-import org.bouncycastle.openpgp.operator.PGPKeyEncryptionMethodGenerator;
-import org.bouncycastle.openpgp.operator.jcajce.JcaPGPDigestCalculatorProviderBuilder;
-import org.bouncycastle.openpgp.operator.jcajce.JcePBEDataDecryptorFactoryBuilder;
-import org.bouncycastle.openpgp.operator.jcajce.JcePBEKeyEncryptionMethodGenerator;
+import org.bouncycastle.shaded.openpgp.PGPCompressedData;
+import org.bouncycastle.shaded.openpgp.PGPEncryptedDataList;
+import org.bouncycastle.shaded.openpgp.PGPException;
+import org.bouncycastle.shaded.openpgp.PGPLiteralData;
+import org.bouncycastle.shaded.openpgp.PGPPBEEncryptedData;
+import org.bouncycastle.shaded.openpgp.jcajce.JcaPGPObjectFactory;
+import org.bouncycastle.shaded.openpgp.operator.PBEDataDecryptorFactory;
+import org.bouncycastle.shaded.openpgp.operator.PGPDigestCalculatorProvider;
+import org.bouncycastle.shaded.openpgp.operator.PGPKeyEncryptionMethodGenerator;
+import org.bouncycastle.shaded.openpgp.operator.jcajce.JcaPGPDigestCalculatorProviderBuilder;
+import org.bouncycastle.shaded.openpgp.operator.jcajce.JcePBEDataDecryptorFactoryBuilder;
+import org.bouncycastle.shaded.openpgp.operator.jcajce.JcePBEKeyEncryptionMethodGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

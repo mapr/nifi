@@ -35,7 +35,7 @@ import org.apache.nifi.processor.io.StreamCallback;
 import org.apache.nifi.processor.util.StandardValidators;
 import org.apache.nifi.processors.cipher.io.DecryptStreamCallback;
 import org.apache.nifi.annotation.documentation.DeprecationNotice;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKeyFactory;

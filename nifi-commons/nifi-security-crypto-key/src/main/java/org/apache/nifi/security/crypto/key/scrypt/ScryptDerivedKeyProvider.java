@@ -20,7 +20,7 @@ import org.apache.nifi.security.crypto.key.DerivedKey;
 import org.apache.nifi.security.crypto.key.DerivedKeyProvider;
 import org.apache.nifi.security.crypto.key.DerivedKeySpec;
 import org.apache.nifi.security.crypto.key.DerivedSecretKey;
-import org.bouncycastle.crypto.generators.SCrypt;
+import org.bouncycastle.shaded.crypto.generators.SCrypt;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;

@@ -165,7 +165,7 @@ public class ScryptSecureHasher extends AbstractSecureHasher {
      * @return the generated hash
      */
     byte[] hash(byte[] input, byte[] rawSalt) {
-        logger.debug("Creating {} byte Scrypt hash with salt [{}]", dkLength, org.bouncycastle.util.encoders.Hex.toHexString(rawSalt));
+        logger.debug("Creating {} byte Scrypt hash with salt [{}]", dkLength, org.bouncycastle.shaded.util.encoders.Hex.toHexString(rawSalt));
 
         if (!isSaltLengthValid(rawSalt.length)) {
             throw new IllegalArgumentException("The salt length (" + rawSalt.length + " bytes) is invalid");

@@ -21,13 +21,13 @@ import org.apache.nifi.util.NoOpProcessor;
 import org.apache.nifi.util.TestRunner;
 import org.apache.nifi.util.TestRunners;
 
-import org.bouncycastle.asn1.ASN1ObjectIdentifier;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.openssl.jcajce.JcaPEMWriter;
-import org.bouncycastle.openssl.jcajce.JcaPKCS8Generator;
-import org.bouncycastle.openssl.jcajce.JceOpenSSLPKCS8EncryptorBuilder;
-import org.bouncycastle.operator.OperatorCreationException;
-import org.bouncycastle.operator.OutputEncryptor;
+import org.bouncycastle.shaded.asn1.ASN1ObjectIdentifier;
+import org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.shaded.openssl.jcajce.JcaPEMWriter;
+import org.bouncycastle.shaded.openssl.jcajce.JcaPKCS8Generator;
+import org.bouncycastle.shaded.openssl.jcajce.JceOpenSSLPKCS8EncryptorBuilder;
+import org.bouncycastle.shaded.operator.OperatorCreationException;
+import org.bouncycastle.shaded.operator.OutputEncryptor;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,9 +45,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.util.UUID;
 
-import static org.bouncycastle.openssl.jcajce.JceOpenSSLPKCS8EncryptorBuilder.AES_256_CBC;
-import static org.bouncycastle.openssl.jcajce.JceOpenSSLPKCS8EncryptorBuilder.DES3_CBC;
-import static org.bouncycastle.openssl.jcajce.JceOpenSSLPKCS8EncryptorBuilder.PBE_SHA1_3DES;
+import static org.bouncycastle.shaded.openssl.jcajce.JceOpenSSLPKCS8EncryptorBuilder.AES_256_CBC;
+import static org.bouncycastle.shaded.openssl.jcajce.JceOpenSSLPKCS8EncryptorBuilder.DES3_CBC;
+import static org.bouncycastle.shaded.openssl.jcajce.JceOpenSSLPKCS8EncryptorBuilder.PBE_SHA1_3DES;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StandardPrivateKeyServiceTest {

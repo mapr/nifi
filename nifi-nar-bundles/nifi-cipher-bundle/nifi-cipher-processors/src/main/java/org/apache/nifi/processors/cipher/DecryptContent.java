@@ -42,7 +42,7 @@ import org.apache.nifi.security.crypto.key.detection.DetectedDerivedKeyParameter
 import org.apache.nifi.security.crypto.key.detection.DetectedDerivedKeyProvider;
 import org.apache.nifi.security.crypto.key.io.ByteBufferSearch;
 import org.apache.nifi.annotation.documentation.DeprecationNotice;
-import org.bouncycastle.util.encoders.Hex;
+import org.bouncycastle.shaded.util.encoders.Hex;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.GCMParameterSpec;

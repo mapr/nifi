@@ -53,7 +53,7 @@ import javax.security.auth.x500.X500Principal;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.nifi.security.cert.builder.StandardCertificateBuilder;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

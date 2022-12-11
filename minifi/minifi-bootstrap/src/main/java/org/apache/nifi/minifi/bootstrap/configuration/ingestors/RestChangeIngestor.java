@@ -49,7 +49,7 @@ import org.apache.nifi.minifi.bootstrap.util.ConfigTransformer;
 import org.apache.nifi.security.ssl.StandardKeyStoreBuilder;
 import org.apache.nifi.security.ssl.StandardSslContextBuilder;
 import org.apache.nifi.security.util.TlsPlatform;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;

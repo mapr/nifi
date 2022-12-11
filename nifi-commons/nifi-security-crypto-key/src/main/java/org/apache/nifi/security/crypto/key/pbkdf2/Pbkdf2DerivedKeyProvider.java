@@ -20,11 +20,11 @@ import org.apache.nifi.security.crypto.key.DerivedKey;
 import org.apache.nifi.security.crypto.key.DerivedKeyProvider;
 import org.apache.nifi.security.crypto.key.DerivedKeySpec;
 import org.apache.nifi.security.crypto.key.DerivedSecretKey;
-import org.bouncycastle.crypto.CipherParameters;
-import org.bouncycastle.crypto.Digest;
-import org.bouncycastle.crypto.digests.SHA512Digest;
-import org.bouncycastle.crypto.generators.PKCS5S2ParametersGenerator;
-import org.bouncycastle.crypto.params.KeyParameter;
+import org.bouncycastle.shaded.crypto.CipherParameters;
+import org.bouncycastle.shaded.crypto.Digest;
+import org.bouncycastle.shaded.crypto.digests.SHA512Digest;
+import org.bouncycastle.shaded.crypto.generators.PKCS5S2ParametersGenerator;
+import org.bouncycastle.shaded.crypto.params.KeyParameter;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;

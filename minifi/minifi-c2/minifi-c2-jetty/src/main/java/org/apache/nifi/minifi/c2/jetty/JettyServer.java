@@ -43,7 +43,7 @@ import org.apache.nifi.jetty.configuration.connector.StandardServerConnectorFact
 import org.apache.nifi.minifi.c2.api.properties.C2Properties;
 import org.apache.nifi.security.ssl.StandardKeyStoreBuilder;
 import org.apache.nifi.security.ssl.StandardSslContextBuilder;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;

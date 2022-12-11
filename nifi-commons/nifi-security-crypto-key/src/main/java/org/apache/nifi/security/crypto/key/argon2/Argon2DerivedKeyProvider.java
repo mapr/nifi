@@ -20,8 +20,8 @@ import org.apache.nifi.security.crypto.key.DerivedKey;
 import org.apache.nifi.security.crypto.key.DerivedKeyProvider;
 import org.apache.nifi.security.crypto.key.DerivedKeySpec;
 import org.apache.nifi.security.crypto.key.DerivedSecretKey;
-import org.bouncycastle.crypto.generators.Argon2BytesGenerator;
-import org.bouncycastle.crypto.params.Argon2Parameters;
+import org.bouncycastle.shaded.crypto.generators.Argon2BytesGenerator;
+import org.bouncycastle.shaded.crypto.params.Argon2Parameters;
 
 import java.util.Base64;
 
