@@ -10,12 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.bouncycastle</groupId>
-    <artifactId>bcprov-shaded-${artifact.id}</artifactId>
+    <artifactId>bcmail-shaded-${artifact.id}</artifactId>
     <version>${org.bouncycastle.version}</version>
     <dependencies>
         <dependency>
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-${artifact.id}</artifactId>
+            <artifactId>bcmail-${artifact.id}</artifactId>
             <version>${org.bouncycastle.version}</version>
         </dependency>
     </dependencies>

@@ -6,17 +6,19 @@
 
     <groupId>org.bouncycastle</groupId>
     <artifactId>bouncycastle-shaded</artifactId>
-    <version>1.70</version>
+    <version>1.72</version>
     <packaging>pom</packaging>
 
     <properties>
         <artifact.id>jdk15to18</artifact.id>
-        <org.bouncycastle.version>1.70</org.bouncycastle.version>
+        <org.bouncycastle.version>1.72</org.bouncycastle.version>
     </properties>
 
     <modules>
         <module>bcprov-shaded</module>
         <module>bcpkix-shaded</module>
         <module>bcpg-shaded</module>
+        <module>bcutil-shaded</module>
+        <module>bcmail-shaded</module>
     </modules>
 </project>
