@@ -42,8 +42,8 @@ import org.apache.nifi.util.NiFiBootstrapUtils
 import org.apache.nifi.util.NiFiProperties
 import org.apache.nifi.util.console.TextDevice
 import org.apache.nifi.util.console.TextDevices
-import org.bouncycastle.crypto.generators.SCrypt
-import org.bouncycastle.jce.provider.BouncyCastleProvider
+import  org.bouncycastle.shaded.crypto.generators.SCrypt
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.xml.sax.SAXException

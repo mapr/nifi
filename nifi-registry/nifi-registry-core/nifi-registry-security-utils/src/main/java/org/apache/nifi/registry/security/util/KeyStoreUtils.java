@@ -18,7 +18,7 @@
 package org.apache.nifi.registry.security.util;
 
 import org.apache.commons.lang3.StringUtils;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

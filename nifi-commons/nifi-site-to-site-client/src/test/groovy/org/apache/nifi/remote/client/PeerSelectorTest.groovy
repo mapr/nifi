@@ -22,7 +22,7 @@ import org.apache.nifi.remote.PeerStatus
 import org.apache.nifi.remote.TransferDirection
 import org.apache.nifi.remote.protocol.SiteToSiteTransportProtocol
 import org.apache.nifi.remote.util.PeerStatusCache
-import org.bouncycastle.jce.provider.BouncyCastleProvider
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach

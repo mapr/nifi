@@ -20,7 +20,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.nifi.processor.exception.ProcessException;
 import org.apache.nifi.processor.io.StreamCallback;
 import org.apache.nifi.security.util.EncryptionMethod;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
 import org.junit.jupiter.api.Test;
 
 import javax.crypto.SecretKey;

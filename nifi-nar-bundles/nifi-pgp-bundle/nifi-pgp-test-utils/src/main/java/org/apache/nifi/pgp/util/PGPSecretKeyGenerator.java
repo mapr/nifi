@@ -16,23 +16,23 @@
  */
 package org.apache.nifi.pgp.util;
 
-import org.bouncycastle.bcpg.HashAlgorithmTags;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.openpgp.PGPEncryptedData;
-import org.bouncycastle.openpgp.PGPException;
-import org.bouncycastle.openpgp.PGPKeyPair;
-import org.bouncycastle.openpgp.PGPKeyRingGenerator;
-import org.bouncycastle.openpgp.PGPPublicKey;
-import org.bouncycastle.openpgp.PGPSecretKey;
-import org.bouncycastle.openpgp.PGPSecretKeyRing;
-import org.bouncycastle.openpgp.PGPSignature;
-import org.bouncycastle.openpgp.operator.PBESecretKeyEncryptor;
-import org.bouncycastle.openpgp.operator.PGPContentSignerBuilder;
-import org.bouncycastle.openpgp.operator.PGPDigestCalculator;
-import org.bouncycastle.openpgp.operator.jcajce.JcaPGPContentSignerBuilder;
-import org.bouncycastle.openpgp.operator.jcajce.JcaPGPDigestCalculatorProviderBuilder;
-import org.bouncycastle.openpgp.operator.jcajce.JcaPGPKeyPair;
-import org.bouncycastle.openpgp.operator.jcajce.JcePBESecretKeyEncryptorBuilder;
+import  org.bouncycastle.shaded.bcpg.HashAlgorithmTags;
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
+import  org.bouncycastle.shaded.openpgp.PGPEncryptedData;
+import  org.bouncycastle.shaded.openpgp.PGPException;
+import  org.bouncycastle.shaded.openpgp.PGPKeyPair;
+import  org.bouncycastle.shaded.openpgp.PGPKeyRingGenerator;
+import  org.bouncycastle.shaded.openpgp.PGPPublicKey;
+import  org.bouncycastle.shaded.openpgp.PGPSecretKey;
+import  org.bouncycastle.shaded.openpgp.PGPSecretKeyRing;
+import  org.bouncycastle.shaded.openpgp.PGPSignature;
+import  org.bouncycastle.shaded.openpgp.operator.PBESecretKeyEncryptor;
+import  org.bouncycastle.shaded.openpgp.operator.PGPContentSignerBuilder;
+import  org.bouncycastle.shaded.openpgp.operator.PGPDigestCalculator;
+import  org.bouncycastle.shaded.openpgp.operator.jcajce.JcaPGPContentSignerBuilder;
+import  org.bouncycastle.shaded.openpgp.operator.jcajce.JcaPGPDigestCalculatorProviderBuilder;
+import  org.bouncycastle.shaded.openpgp.operator.jcajce.JcaPGPKeyPair;
+import  org.bouncycastle.shaded.openpgp.operator.jcajce.JcePBESecretKeyEncryptorBuilder;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;

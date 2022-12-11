@@ -16,15 +16,15 @@
  */
 package org.apache.nifi.pgp.util;
 
-import org.bouncycastle.bcpg.HashAlgorithmTags;
-import org.bouncycastle.openpgp.PGPException;
-import org.bouncycastle.openpgp.PGPLiteralDataGenerator;
-import org.bouncycastle.openpgp.PGPOnePassSignature;
-import org.bouncycastle.openpgp.PGPPrivateKey;
-import org.bouncycastle.openpgp.PGPSignature;
-import org.bouncycastle.openpgp.PGPSignatureGenerator;
-import org.bouncycastle.openpgp.operator.PGPContentSignerBuilder;
-import org.bouncycastle.openpgp.operator.jcajce.JcaPGPContentSignerBuilder;
+import  org.bouncycastle.shaded.bcpg.HashAlgorithmTags;
+import  org.bouncycastle.shaded.openpgp.PGPException;
+import  org.bouncycastle.shaded.openpgp.PGPLiteralDataGenerator;
+import  org.bouncycastle.shaded.openpgp.PGPOnePassSignature;
+import  org.bouncycastle.shaded.openpgp.PGPPrivateKey;
+import  org.bouncycastle.shaded.openpgp.PGPSignature;
+import  org.bouncycastle.shaded.openpgp.PGPSignatureGenerator;
+import  org.bouncycastle.shaded.openpgp.operator.PGPContentSignerBuilder;
+import  org.bouncycastle.shaded.openpgp.operator.jcajce.JcaPGPContentSignerBuilder;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

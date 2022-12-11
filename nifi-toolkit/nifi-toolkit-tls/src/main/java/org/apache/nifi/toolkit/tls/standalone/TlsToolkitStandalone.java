@@ -30,9 +30,9 @@ import org.apache.nifi.toolkit.tls.properties.NiFiPropertiesWriterFactory;
 import org.apache.nifi.toolkit.tls.util.OutputStreamFactory;
 import org.apache.nifi.toolkit.tls.util.TlsHelper;
 import org.apache.nifi.util.StringUtils;
-import org.bouncycastle.asn1.x509.Extensions;
-import org.bouncycastle.openssl.jcajce.JcaMiscPEMGenerator;
-import org.bouncycastle.util.io.pem.PemWriter;
+import  org.bouncycastle.shaded.asn1.x509.Extensions;
+import  org.bouncycastle.shaded.openssl.jcajce.JcaMiscPEMGenerator;
+import  org.bouncycastle.shaded.util.io.pem.PemWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

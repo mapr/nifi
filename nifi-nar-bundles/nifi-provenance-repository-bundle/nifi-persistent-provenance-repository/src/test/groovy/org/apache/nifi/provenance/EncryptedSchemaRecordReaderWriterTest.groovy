@@ -28,8 +28,8 @@ import org.apache.nifi.repository.encryption.AesGcmByteArrayRepositoryEncryptor
 import org.apache.nifi.repository.encryption.RepositoryEncryptor
 import org.apache.nifi.repository.encryption.configuration.EncryptionMetadataHeader
 import org.apache.nifi.security.kms.KeyProvider
-import org.bouncycastle.jce.provider.BouncyCastleProvider
-import org.bouncycastle.util.encoders.Hex
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider
+import  org.bouncycastle.shaded.util.encoders.Hex
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

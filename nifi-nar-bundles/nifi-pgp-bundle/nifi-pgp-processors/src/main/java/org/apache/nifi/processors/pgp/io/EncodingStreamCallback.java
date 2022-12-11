@@ -21,11 +21,11 @@ import org.apache.nifi.processors.pgp.attributes.CompressionAlgorithm;
 import org.apache.nifi.processors.pgp.attributes.FileEncoding;
 import org.apache.nifi.processors.pgp.exception.PGPProcessException;
 import org.apache.nifi.stream.io.StreamUtils;
-import org.bouncycastle.bcpg.ArmoredOutputStream;
-import org.bouncycastle.openpgp.PGPCompressedDataGenerator;
-import org.bouncycastle.openpgp.PGPException;
-import org.bouncycastle.openpgp.PGPLiteralData;
-import org.bouncycastle.openpgp.PGPLiteralDataGenerator;
+import  org.bouncycastle.shaded.bcpg.ArmoredOutputStream;
+import  org.bouncycastle.shaded.openpgp.PGPCompressedDataGenerator;
+import  org.bouncycastle.shaded.openpgp.PGPException;
+import  org.bouncycastle.shaded.openpgp.PGPLiteralData;
+import  org.bouncycastle.shaded.openpgp.PGPLiteralDataGenerator;
 
 import java.io.IOException;
 import java.io.InputStream;

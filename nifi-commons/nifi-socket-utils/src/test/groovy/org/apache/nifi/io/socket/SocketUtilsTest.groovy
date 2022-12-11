@@ -20,7 +20,7 @@ import org.apache.nifi.security.util.KeystoreType
 import org.apache.nifi.security.util.StandardTlsConfiguration
 import org.apache.nifi.security.util.TlsConfiguration
 import org.apache.nifi.util.NiFiProperties
-import org.bouncycastle.jce.provider.BouncyCastleProvider
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.slf4j.Logger

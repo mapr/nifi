@@ -19,12 +19,12 @@ package org.apache.nifi.processors.pgp.io;
 import org.apache.nifi.processors.pgp.attributes.CompressionAlgorithm;
 import org.apache.nifi.processors.pgp.attributes.FileEncoding;
 import org.apache.nifi.stream.io.StreamUtils;
-import org.bouncycastle.openpgp.PGPCompressedData;
-import org.bouncycastle.openpgp.PGPException;
-import org.bouncycastle.openpgp.PGPLiteralData;
-import org.bouncycastle.openpgp.PGPObjectFactory;
-import org.bouncycastle.openpgp.PGPUtil;
-import org.bouncycastle.openpgp.jcajce.JcaPGPObjectFactory;
+import  org.bouncycastle.shaded.openpgp.PGPCompressedData;
+import  org.bouncycastle.shaded.openpgp.PGPException;
+import  org.bouncycastle.shaded.openpgp.PGPLiteralData;
+import  org.bouncycastle.shaded.openpgp.PGPObjectFactory;
+import  org.bouncycastle.shaded.openpgp.PGPUtil;
+import  org.bouncycastle.shaded.openpgp.jcajce.JcaPGPObjectFactory;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;

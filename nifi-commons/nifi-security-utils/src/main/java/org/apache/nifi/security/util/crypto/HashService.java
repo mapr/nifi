@@ -27,7 +27,7 @@ import java.util.List;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.nifi.components.AllowableValue;
-import org.bouncycastle.crypto.digests.Blake2bDigest;
+import  org.bouncycastle.shaded.crypto.digests.Blake2bDigest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -17,9 +17,9 @@
 
 package org.apache.nifi.toolkit.tls.util
 
-import org.bouncycastle.crypto.params.RSAKeyParameters
-import org.bouncycastle.jcajce.provider.asymmetric.rsa.BCRSAPublicKey
-import org.bouncycastle.jce.provider.BouncyCastleProvider
+import  org.bouncycastle.shaded.crypto.params.RSAKeyParameters
+import  org.bouncycastle.shaded.jcajce.provider.asymmetric.rsa.BCRSAPublicKey
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 

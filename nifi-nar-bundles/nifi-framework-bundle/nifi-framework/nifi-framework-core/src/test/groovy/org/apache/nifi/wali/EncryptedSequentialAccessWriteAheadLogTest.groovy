@@ -26,7 +26,7 @@ import org.apache.nifi.controller.repository.claim.StandardResourceClaimManager
 import org.apache.nifi.repository.schema.NoOpFieldCache
 import org.apache.nifi.security.kms.StaticKeyProvider
 import org.apache.nifi.util.NiFiProperties
-import org.bouncycastle.jce.provider.BouncyCastleProvider
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider
 import org.junit.*
 import org.junit.rules.TestName
 import org.junit.runner.RunWith

@@ -20,7 +20,7 @@ import org.apache.nifi.repository.encryption.configuration.EncryptionMetadataHea
 import org.apache.nifi.repository.encryption.configuration.RepositoryEncryptionMethod;
 import org.apache.nifi.repository.encryption.metadata.RecordMetadata;
 import org.apache.nifi.security.kms.KeyProvider;
-import org.bouncycastle.util.Arrays;
+import  org.bouncycastle.shaded.util.Arrays;
 
 import javax.crypto.Cipher;
 import java.io.ByteArrayInputStream;

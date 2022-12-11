@@ -16,7 +16,7 @@
  */
 package org.apache.nifi.registry.security.util;
 
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
 import org.junit.Assert;
 import org.junit.Test;
 

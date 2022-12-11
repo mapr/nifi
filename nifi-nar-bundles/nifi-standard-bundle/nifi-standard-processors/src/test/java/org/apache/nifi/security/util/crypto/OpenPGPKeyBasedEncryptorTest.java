@@ -21,7 +21,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import org.apache.nifi.processor.io.StreamCallback;
 import org.apache.nifi.security.util.EncryptionMethod;
-import org.bouncycastle.openpgp.PGPEncryptedData;
+import  org.bouncycastle.shaded.openpgp.PGPEncryptedData;
 
 import org.junit.jupiter.api.Test;
 

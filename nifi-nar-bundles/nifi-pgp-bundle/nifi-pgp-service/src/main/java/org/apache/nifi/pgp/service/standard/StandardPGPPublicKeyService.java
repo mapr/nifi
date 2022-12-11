@@ -33,12 +33,12 @@ import org.apache.nifi.processor.util.StandardValidators;
 import org.apache.nifi.reporting.InitializationException;
 import org.apache.nifi.util.StringUtils;
 
-import org.bouncycastle.openpgp.PGPException;
-import org.bouncycastle.openpgp.PGPPublicKey;
-import org.bouncycastle.openpgp.PGPPublicKeyRingCollection;
-import org.bouncycastle.openpgp.PGPUtil;
-import org.bouncycastle.openpgp.operator.KeyFingerPrintCalculator;
-import org.bouncycastle.openpgp.operator.jcajce.JcaKeyFingerprintCalculator;
+import  org.bouncycastle.shaded.openpgp.PGPException;
+import  org.bouncycastle.shaded.openpgp.PGPPublicKey;
+import  org.bouncycastle.shaded.openpgp.PGPPublicKeyRingCollection;
+import  org.bouncycastle.shaded.openpgp.PGPUtil;
+import  org.bouncycastle.shaded.openpgp.operator.KeyFingerPrintCalculator;
+import  org.bouncycastle.shaded.openpgp.operator.jcajce.JcaKeyFingerprintCalculator;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;

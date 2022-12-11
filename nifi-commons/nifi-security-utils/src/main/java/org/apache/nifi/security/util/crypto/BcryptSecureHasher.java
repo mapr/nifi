@@ -21,7 +21,7 @@ import at.favre.lib.crypto.bcrypt.Radix64Encoder;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 import org.apache.commons.codec.binary.Base64;
-import org.bouncycastle.util.encoders.Hex;
+import  org.bouncycastle.shaded.util.encoders.Hex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

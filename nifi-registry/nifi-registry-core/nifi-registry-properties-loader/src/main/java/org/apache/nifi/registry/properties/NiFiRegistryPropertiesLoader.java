@@ -21,7 +21,7 @@ import org.apache.nifi.properties.SensitivePropertyProvider;
 import org.apache.nifi.properties.SensitivePropertyProviderFactory;
 import org.apache.nifi.properties.StandardSensitivePropertyProviderFactory;
 import org.apache.nifi.registry.properties.util.NiFiRegistryBootstrapUtils;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

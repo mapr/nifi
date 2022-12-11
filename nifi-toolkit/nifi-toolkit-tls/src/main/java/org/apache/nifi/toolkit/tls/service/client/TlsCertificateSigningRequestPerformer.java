@@ -44,7 +44,7 @@ import org.apache.nifi.toolkit.tls.configuration.TlsClientConfig;
 import org.apache.nifi.toolkit.tls.service.dto.TlsCertificateAuthorityRequest;
 import org.apache.nifi.toolkit.tls.service.dto.TlsCertificateAuthorityResponse;
 import org.apache.nifi.toolkit.tls.util.TlsHelper;
-import org.bouncycastle.pkcs.jcajce.JcaPKCS10CertificationRequest;
+import  org.bouncycastle.shaded.pkcs.jcajce.JcaPKCS10CertificationRequest;
 import org.eclipse.jetty.server.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

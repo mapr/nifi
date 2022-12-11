@@ -29,8 +29,8 @@ import org.apache.nifi.security.util.TlsException;
 import org.apache.nifi.util.NiFiBootstrapUtils;
 import org.apache.nifi.util.NiFiProperties;
 import org.apache.nifi.util.StringUtils;
-import org.bouncycastle.util.encoders.DecoderException;
-import org.bouncycastle.util.encoders.Hex;
+import  org.bouncycastle.shaded.util.encoders.DecoderException;
+import  org.bouncycastle.shaded.util.encoders.Hex;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;

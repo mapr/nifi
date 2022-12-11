@@ -16,8 +16,8 @@
  */
 package org.apache.nifi.security.util.crypto
 
-import org.bouncycastle.jce.provider.BouncyCastleProvider
-import org.bouncycastle.util.encoders.Hex
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider
+import  org.bouncycastle.shaded.util.encoders.Hex
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty

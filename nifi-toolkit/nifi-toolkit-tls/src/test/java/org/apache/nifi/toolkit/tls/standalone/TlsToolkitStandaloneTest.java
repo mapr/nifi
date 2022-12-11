@@ -31,7 +31,7 @@ import org.apache.nifi.toolkit.tls.service.TlsCertificateAuthorityTest;
 import org.apache.nifi.toolkit.tls.util.TlsHelper;
 import org.apache.nifi.toolkit.tls.util.TlsHelperTest;
 import org.apache.nifi.util.NiFiProperties;
-import org.bouncycastle.asn1.x509.GeneralName;
+import  org.bouncycastle.shaded.asn1.x509.GeneralName;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

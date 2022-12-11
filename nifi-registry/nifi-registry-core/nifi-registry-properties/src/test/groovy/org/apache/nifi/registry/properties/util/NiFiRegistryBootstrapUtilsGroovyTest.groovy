@@ -18,7 +18,7 @@ package org.apache.nifi.registry.properties.util
 
 import org.apache.commons.lang3.SystemUtils
 import org.apache.nifi.registry.security.crypto.CryptoKeyProvider
-import org.bouncycastle.jce.provider.BouncyCastleProvider
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider
 import org.junit.Assume
 import org.junit.BeforeClass
 import org.junit.Test

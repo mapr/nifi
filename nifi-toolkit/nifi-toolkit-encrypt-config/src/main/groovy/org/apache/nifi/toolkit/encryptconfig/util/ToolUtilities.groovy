@@ -20,7 +20,7 @@ import org.apache.commons.cli.CommandLine
 import org.apache.commons.codec.binary.Hex
 import org.apache.nifi.util.console.TextDevice
 import org.apache.nifi.util.console.TextDevices
-import org.bouncycastle.crypto.generators.SCrypt
+import  org.bouncycastle.shaded.crypto.generators.SCrypt
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 

@@ -23,10 +23,10 @@ import org.apache.nifi.util.TestRunner;
 import org.apache.nifi.util.TestRunners;
 import org.apache.nifi.pgp.util.PGPSecretKeyGenerator;
 
-import org.bouncycastle.openpgp.PGPPrivateKey;
-import org.bouncycastle.openpgp.PGPSecretKey;
+import  org.bouncycastle.shaded.openpgp.PGPPrivateKey;
+import  org.bouncycastle.shaded.openpgp.PGPSecretKey;
 
-import org.bouncycastle.openpgp.PGPSecretKeyRing;
+import  org.bouncycastle.shaded.openpgp.PGPSecretKeyRing;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -20,9 +20,9 @@ package org.apache.nifi.toolkit.tls.service.client;
 import org.apache.http.HttpHost;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.protocol.HttpContext;
-import org.bouncycastle.asn1.x500.style.BCStyle;
-import org.bouncycastle.asn1.x500.style.IETFUtils;
-import org.bouncycastle.cert.jcajce.JcaX509CertificateHolder;
+import  org.bouncycastle.shaded.asn1.x500.style.BCStyle;
+import  org.bouncycastle.shaded.asn1.x500.style.IETFUtils;
+import  org.bouncycastle.shaded.cert.jcajce.JcaX509CertificateHolder;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocket;

@@ -33,16 +33,16 @@ import org.apache.nifi.processor.util.StandardValidators;
 import org.apache.nifi.reporting.InitializationException;
 import org.apache.nifi.util.StringUtils;
 
-import org.bouncycastle.openpgp.PGPException;
-import org.bouncycastle.openpgp.PGPPrivateKey;
-import org.bouncycastle.openpgp.PGPSecretKey;
-import org.bouncycastle.openpgp.PGPSecretKeyRing;
-import org.bouncycastle.openpgp.PGPSecretKeyRingCollection;
-import org.bouncycastle.openpgp.PGPUtil;
-import org.bouncycastle.openpgp.operator.KeyFingerPrintCalculator;
-import org.bouncycastle.openpgp.operator.PBESecretKeyDecryptor;
-import org.bouncycastle.openpgp.operator.jcajce.JcaKeyFingerprintCalculator;
-import org.bouncycastle.openpgp.operator.jcajce.JcePBESecretKeyDecryptorBuilder;
+import  org.bouncycastle.shaded.openpgp.PGPException;
+import  org.bouncycastle.shaded.openpgp.PGPPrivateKey;
+import  org.bouncycastle.shaded.openpgp.PGPSecretKey;
+import  org.bouncycastle.shaded.openpgp.PGPSecretKeyRing;
+import  org.bouncycastle.shaded.openpgp.PGPSecretKeyRingCollection;
+import  org.bouncycastle.shaded.openpgp.PGPUtil;
+import  org.bouncycastle.shaded.openpgp.operator.KeyFingerPrintCalculator;
+import  org.bouncycastle.shaded.openpgp.operator.PBESecretKeyDecryptor;
+import  org.bouncycastle.shaded.openpgp.operator.jcajce.JcaKeyFingerprintCalculator;
+import  org.bouncycastle.shaded.openpgp.operator.jcajce.JcePBESecretKeyDecryptorBuilder;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;

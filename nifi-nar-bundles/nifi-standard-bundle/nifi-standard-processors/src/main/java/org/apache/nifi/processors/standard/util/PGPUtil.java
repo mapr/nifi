@@ -18,16 +18,16 @@ package org.apache.nifi.processors.standard.util;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.nifi.processors.standard.EncryptContent;
-import org.bouncycastle.bcpg.ArmoredOutputStream;
-import org.bouncycastle.openpgp.PGPCompressedData;
-import org.bouncycastle.openpgp.PGPCompressedDataGenerator;
-import org.bouncycastle.openpgp.PGPEncryptedData;
-import org.bouncycastle.openpgp.PGPEncryptedDataGenerator;
-import org.bouncycastle.openpgp.PGPException;
-import org.bouncycastle.openpgp.PGPLiteralData;
-import org.bouncycastle.openpgp.PGPLiteralDataGenerator;
-import org.bouncycastle.openpgp.operator.PGPKeyEncryptionMethodGenerator;
-import org.bouncycastle.openpgp.operator.jcajce.JcePGPDataEncryptorBuilder;
+import  org.bouncycastle.shaded.bcpg.ArmoredOutputStream;
+import  org.bouncycastle.shaded.openpgp.PGPCompressedData;
+import  org.bouncycastle.shaded.openpgp.PGPCompressedDataGenerator;
+import  org.bouncycastle.shaded.openpgp.PGPEncryptedData;
+import  org.bouncycastle.shaded.openpgp.PGPEncryptedDataGenerator;
+import  org.bouncycastle.shaded.openpgp.PGPException;
+import  org.bouncycastle.shaded.openpgp.PGPLiteralData;
+import  org.bouncycastle.shaded.openpgp.PGPLiteralDataGenerator;
+import  org.bouncycastle.shaded.openpgp.operator.PGPKeyEncryptionMethodGenerator;
+import  org.bouncycastle.shaded.openpgp.operator.jcajce.JcePGPDataEncryptorBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

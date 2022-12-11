@@ -16,7 +16,7 @@
  */
 package org.apache.nifi.registry.properties
 
-import org.bouncycastle.jce.provider.BouncyCastleProvider
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider
 import org.junit.AfterClass
 import org.junit.Before
 import org.junit.BeforeClass

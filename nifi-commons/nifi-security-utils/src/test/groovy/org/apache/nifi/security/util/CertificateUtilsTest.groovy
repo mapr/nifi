@@ -16,16 +16,16 @@
  */
 package org.apache.nifi.security.util
 
-import org.bouncycastle.asn1.pkcs.PKCSObjectIdentifiers
-import org.bouncycastle.asn1.x500.X500Name
-import org.bouncycastle.asn1.x500.style.BCStyle
-import org.bouncycastle.asn1.x500.style.IETFUtils
-import org.bouncycastle.asn1.x509.*
-import org.bouncycastle.operator.OperatorCreationException
-import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder
-import org.bouncycastle.pkcs.jcajce.JcaPKCS10CertificationRequest
-import org.bouncycastle.pkcs.jcajce.JcaPKCS10CertificationRequestBuilder
-import org.bouncycastle.util.IPAddress
+import  org.bouncycastle.shaded.asn1.pkcs.PKCSObjectIdentifiers
+import  org.bouncycastle.shaded.asn1.x500.X500Name
+import  org.bouncycastle.shaded.asn1.x500.style.BCStyle
+import  org.bouncycastle.shaded.asn1.x500.style.IETFUtils
+import  org.bouncycastle.shaded.asn1.x509.*
+import  org.bouncycastle.shaded.operator.OperatorCreationException
+import  org.bouncycastle.shaded.operator.jcajce.JcaContentSignerBuilder
+import  org.bouncycastle.shaded.pkcs.jcajce.JcaPKCS10CertificationRequest
+import  org.bouncycastle.shaded.pkcs.jcajce.JcaPKCS10CertificationRequestBuilder
+import  org.bouncycastle.shaded.util.IPAddress
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.slf4j.Logger

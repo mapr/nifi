@@ -35,9 +35,9 @@ import org.apache.nifi.util.MockProcessContext;
 import org.apache.nifi.util.StringUtils;
 import org.apache.nifi.util.TestRunner;
 import org.apache.nifi.util.TestRunners;
-import org.bouncycastle.bcpg.BCPGInputStream;
-import org.bouncycastle.bcpg.SymmetricKeyEncSessionPacket;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import  org.bouncycastle.shaded.bcpg.BCPGInputStream;
+import  org.bouncycastle.shaded.bcpg.SymmetricKeyEncSessionPacket;
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

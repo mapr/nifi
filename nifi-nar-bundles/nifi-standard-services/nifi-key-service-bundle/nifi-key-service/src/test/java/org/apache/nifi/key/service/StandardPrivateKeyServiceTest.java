@@ -21,12 +21,12 @@ import org.apache.nifi.util.NoOpProcessor;
 import org.apache.nifi.util.TestRunner;
 import org.apache.nifi.util.TestRunners;
 
-import org.bouncycastle.openssl.PKCS8Generator;
-import org.bouncycastle.openssl.jcajce.JcaPEMWriter;
-import org.bouncycastle.openssl.jcajce.JcaPKCS8Generator;
-import org.bouncycastle.openssl.jcajce.JceOpenSSLPKCS8EncryptorBuilder;
-import org.bouncycastle.operator.OperatorCreationException;
-import org.bouncycastle.operator.OutputEncryptor;
+import  org.bouncycastle.shaded.openssl.PKCS8Generator;
+import  org.bouncycastle.shaded.openssl.jcajce.JcaPEMWriter;
+import  org.bouncycastle.shaded.openssl.jcajce.JcaPKCS8Generator;
+import  org.bouncycastle.shaded.openssl.jcajce.JceOpenSSLPKCS8EncryptorBuilder;
+import  org.bouncycastle.shaded.operator.OperatorCreationException;
+import  org.bouncycastle.shaded.operator.OutputEncryptor;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

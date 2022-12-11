@@ -19,9 +19,9 @@ package org.apache.nifi.toolkit.tls.standalone
 
 import org.apache.nifi.security.util.CertificateUtils
 import org.apache.nifi.toolkit.tls.configuration.StandaloneConfig
-import org.bouncycastle.jce.provider.BouncyCastleProvider
-import org.bouncycastle.openssl.jcajce.JcaMiscPEMGenerator
-import org.bouncycastle.util.io.pem.PemWriter
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider
+import  org.bouncycastle.shaded.openssl.jcajce.JcaMiscPEMGenerator
+import  org.bouncycastle.shaded.util.io.pem.PemWriter
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir

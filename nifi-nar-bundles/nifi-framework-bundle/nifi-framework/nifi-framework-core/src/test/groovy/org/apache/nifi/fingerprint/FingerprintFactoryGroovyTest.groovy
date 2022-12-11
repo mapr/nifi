@@ -21,7 +21,7 @@ import org.apache.nifi.encrypt.SensitiveValueEncoder
 import org.apache.nifi.nar.ExtensionManager
 import org.apache.nifi.nar.StandardExtensionDiscoveringManager
 import org.apache.nifi.util.NiFiProperties
-import org.bouncycastle.jce.provider.BouncyCastleProvider
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider
 import org.junit.After
 import org.junit.AfterClass
 import org.junit.Before

@@ -16,7 +16,7 @@
  */
 package org.apache.nifi.security.util.crypto;
 
-import org.bouncycastle.util.encoders.Hex;
+import  org.bouncycastle.shaded.util.encoders.Hex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

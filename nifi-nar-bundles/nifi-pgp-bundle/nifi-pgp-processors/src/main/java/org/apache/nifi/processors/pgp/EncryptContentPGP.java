@@ -45,17 +45,17 @@ import org.apache.nifi.processors.pgp.io.EncodingStreamCallback;
 import org.apache.nifi.stream.io.StreamUtils;
 import org.apache.nifi.util.StringUtils;
 
-import org.bouncycastle.bcpg.BCPGInputStream;
-import org.bouncycastle.bcpg.Packet;
-import org.bouncycastle.openpgp.PGPEncryptedDataGenerator;
-import org.bouncycastle.openpgp.PGPException;
-import org.bouncycastle.openpgp.PGPPublicKey;
-import org.bouncycastle.openpgp.PGPUtil;
-import org.bouncycastle.openpgp.operator.PGPDataEncryptorBuilder;
-import org.bouncycastle.openpgp.operator.PGPKeyEncryptionMethodGenerator;
-import org.bouncycastle.openpgp.operator.bc.BcPGPDataEncryptorBuilder;
-import org.bouncycastle.openpgp.operator.bc.BcPublicKeyKeyEncryptionMethodGenerator;
-import org.bouncycastle.openpgp.operator.jcajce.JcePBEKeyEncryptionMethodGenerator;
+import  org.bouncycastle.shaded.bcpg.BCPGInputStream;
+import  org.bouncycastle.shaded.bcpg.Packet;
+import  org.bouncycastle.shaded.openpgp.PGPEncryptedDataGenerator;
+import  org.bouncycastle.shaded.openpgp.PGPException;
+import  org.bouncycastle.shaded.openpgp.PGPPublicKey;
+import  org.bouncycastle.shaded.openpgp.PGPUtil;
+import  org.bouncycastle.shaded.openpgp.operator.PGPDataEncryptorBuilder;
+import  org.bouncycastle.shaded.openpgp.operator.PGPKeyEncryptionMethodGenerator;
+import  org.bouncycastle.shaded.openpgp.operator.bc.BcPGPDataEncryptorBuilder;
+import  org.bouncycastle.shaded.openpgp.operator.bc.BcPublicKeyKeyEncryptionMethodGenerator;
+import  org.bouncycastle.shaded.openpgp.operator.jcajce.JcePBEKeyEncryptionMethodGenerator;
 
 import java.io.IOException;
 import java.io.InputStream;

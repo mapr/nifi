@@ -16,7 +16,7 @@
  */
 package org.apache.nifi.processors.pgp.attributes;
 
-import org.bouncycastle.bcpg.CompressionAlgorithmTags;
+import  org.bouncycastle.shaded.bcpg.CompressionAlgorithmTags;
 
 /**
  * PGP Compression Algorithm Definitions supported for Encryption

@@ -72,7 +72,7 @@ import org.apache.nifi.flow.VersionedParameterContext;
 import org.apache.nifi.flow.ParameterProviderReference;
 import org.apache.nifi.registry.revision.entity.RevisionInfo;
 import org.apache.nifi.registry.util.FileUtils;
-import org.bouncycastle.util.encoders.Hex;
+import  org.bouncycastle.shaded.util.encoders.Hex;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.junit.After;
 import org.junit.Before;

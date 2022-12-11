@@ -24,8 +24,8 @@ import org.apache.nifi.controller.repository.util.DiskUtils
 import org.apache.nifi.events.EventReporter
 import org.apache.nifi.security.kms.StaticKeyProvider
 import org.apache.nifi.util.NiFiProperties
-import org.bouncycastle.jce.provider.BouncyCastleProvider
-import org.bouncycastle.util.encoders.Hex
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider
+import  org.bouncycastle.shaded.util.encoders.Hex
 import org.junit.After
 import org.junit.Assume
 import org.junit.Before

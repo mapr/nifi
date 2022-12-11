@@ -16,7 +16,7 @@
  */
 package org.apache.nifi.processors.pgp.attributes;
 
-import org.bouncycastle.bcpg.SymmetricKeyAlgorithmTags;
+import  org.bouncycastle.shaded.bcpg.SymmetricKeyAlgorithmTags;
 
 /**
  * PGP Symmetric-Key Algorithm Definitions supported for Encryption

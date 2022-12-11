@@ -17,7 +17,7 @@
 package org.apache.nifi.pgp.service.api;
 
 import org.apache.nifi.controller.ControllerService;
-import org.bouncycastle.openpgp.PGPPrivateKey;
+import  org.bouncycastle.shaded.openpgp.PGPPrivateKey;
 
 import java.util.Optional;
 

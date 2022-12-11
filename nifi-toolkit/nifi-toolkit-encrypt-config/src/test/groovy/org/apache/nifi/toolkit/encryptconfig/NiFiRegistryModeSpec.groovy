@@ -17,7 +17,7 @@
 package org.apache.nifi.toolkit.encryptconfig
 
 import org.apache.nifi.toolkit.encryptconfig.util.BootstrapUtil
-import org.bouncycastle.jce.provider.BouncyCastleProvider
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import spock.lang.Specification

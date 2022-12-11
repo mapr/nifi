@@ -16,19 +16,19 @@
  */
 package org.apache.nifi.key.service.reader;
 
-import org.bouncycastle.asn1.pkcs.PrivateKeyInfo;
-import org.bouncycastle.openssl.PEMDecryptorProvider;
-import org.bouncycastle.openssl.PEMEncryptedKeyPair;
-import org.bouncycastle.openssl.PEMException;
-import org.bouncycastle.openssl.PEMKeyPair;
-import org.bouncycastle.openssl.PEMParser;
-import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter;
-import org.bouncycastle.openssl.jcajce.JceOpenSSLPKCS8DecryptorProviderBuilder;
-import org.bouncycastle.openssl.jcajce.JcePEMDecryptorProviderBuilder;
-import org.bouncycastle.operator.InputDecryptorProvider;
-import org.bouncycastle.operator.OperatorCreationException;
-import org.bouncycastle.pkcs.PKCS8EncryptedPrivateKeyInfo;
-import org.bouncycastle.pkcs.PKCSException;
+import  org.bouncycastle.shaded.asn1.pkcs.PrivateKeyInfo;
+import  org.bouncycastle.shaded.openssl.PEMDecryptorProvider;
+import  org.bouncycastle.shaded.openssl.PEMEncryptedKeyPair;
+import  org.bouncycastle.shaded.openssl.PEMException;
+import  org.bouncycastle.shaded.openssl.PEMKeyPair;
+import  org.bouncycastle.shaded.openssl.PEMParser;
+import  org.bouncycastle.shaded.openssl.jcajce.JcaPEMKeyConverter;
+import  org.bouncycastle.shaded.openssl.jcajce.JceOpenSSLPKCS8DecryptorProviderBuilder;
+import  org.bouncycastle.shaded.openssl.jcajce.JcePEMDecryptorProviderBuilder;
+import  org.bouncycastle.shaded.operator.InputDecryptorProvider;
+import  org.bouncycastle.shaded.operator.OperatorCreationException;
+import  org.bouncycastle.shaded.pkcs.PKCS8EncryptedPrivateKeyInfo;
+import  org.bouncycastle.shaded.pkcs.PKCSException;
 
 import java.io.IOException;
 import java.io.InputStream;

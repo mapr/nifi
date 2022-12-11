@@ -22,7 +22,7 @@ import org.apache.nifi.security.util.KeyStoreUtils;
 import org.apache.nifi.security.util.StandardTlsConfiguration;
 import org.apache.nifi.security.util.TlsConfiguration;
 import org.apache.nifi.util.NiFiProperties;
-import org.bouncycastle.util.IPAddress;
+import  org.bouncycastle.shaded.util.IPAddress;
 import org.slf4j.Logger;
 
 import java.io.File;

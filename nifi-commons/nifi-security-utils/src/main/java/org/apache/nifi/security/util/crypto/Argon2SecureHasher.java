@@ -17,9 +17,9 @@
 package org.apache.nifi.security.util.crypto;
 
 import java.util.concurrent.TimeUnit;
-import org.bouncycastle.crypto.generators.Argon2BytesGenerator;
-import org.bouncycastle.crypto.params.Argon2Parameters;
-import org.bouncycastle.util.encoders.Hex;
+import  org.bouncycastle.shaded.crypto.generators.Argon2BytesGenerator;
+import  org.bouncycastle.shaded.crypto.params.Argon2Parameters;
+import  org.bouncycastle.shaded.util.encoders.Hex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

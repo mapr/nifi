@@ -18,8 +18,8 @@ package org.apache.nifi.encrypt;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.util.Arrays;
+import  org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
+import  org.bouncycastle.shaded.util.Arrays;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;

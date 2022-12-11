@@ -19,12 +19,12 @@ package org.apache.nifi.security.util.crypto;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.nifi.processor.exception.ProcessException;
 import org.apache.nifi.security.util.EncryptionMethod;
-import org.bouncycastle.crypto.Digest;
-import org.bouncycastle.crypto.digests.MD5Digest;
-import org.bouncycastle.crypto.digests.SHA1Digest;
-import org.bouncycastle.crypto.digests.SHA256Digest;
-import org.bouncycastle.crypto.digests.SHA384Digest;
-import org.bouncycastle.crypto.digests.SHA512Digest;
+import  org.bouncycastle.shaded.crypto.Digest;
+import  org.bouncycastle.shaded.crypto.digests.MD5Digest;
+import  org.bouncycastle.shaded.crypto.digests.SHA1Digest;
+import  org.bouncycastle.shaded.crypto.digests.SHA256Digest;
+import  org.bouncycastle.shaded.crypto.digests.SHA384Digest;
+import  org.bouncycastle.shaded.crypto.digests.SHA512Digest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
