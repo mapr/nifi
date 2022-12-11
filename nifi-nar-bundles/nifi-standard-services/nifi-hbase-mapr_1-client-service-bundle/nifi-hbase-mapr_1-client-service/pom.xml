@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.apache.nifi</groupId>
         <artifactId>nifi-hbase-mapr_1-client-service-bundle</artifactId>
-        <version>1.16.3.0-eep-SNAPSHOT</version>
+        <version>1.19.1.0-eep-SNAPSHOT</version>
     </parent>
     <artifactId>nifi-hbase-mapr_1-client-service</artifactId>
     <packaging>jar</packaging>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-hbase-client-service-api</artifactId>
-            <version>1.16.3.0-eep-SNAPSHOT</version>
+            <version>1.19.1.0-eep-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -43,17 +43,17 @@
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-utils</artifactId>
-            <version>1.16.3.0-eep-SNAPSHOT</version>
+            <version>1.19.1.0-eep-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-security-kerberos</artifactId>
-            <version>1.16.3.0-eep-SNAPSHOT</version>
+            <version>1.19.1.0-eep-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-hadoop-utils</artifactId>
-            <version>1.16.3.0-eep-SNAPSHOT</version>
+            <version>1.19.1.0-eep-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>
@@ -125,7 +125,7 @@
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-mock</artifactId>
-            <version>1.16.3.0-eep-SNAPSHOT</version>
+            <version>1.19.1.0-eep-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

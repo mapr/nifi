@@ -18,10 +18,10 @@
     <parent>
         <groupId>org.apache.nifi</groupId>
         <artifactId>nifi-standard-services</artifactId>
-        <version>1.16.3.0-eep-SNAPSHOT</version>
+        <version>1.19.1.0-eep-SNAPSHOT</version>
     </parent>
     <artifactId>nifi-hbase-mapr_1-client-service-bundle</artifactId>
-    <version>1.16.3.0-eep-SNAPSHOT</version>
+    <version>1.19.1.0-eep-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
         <module>nifi-hbase-mapr_1-client-service</module>

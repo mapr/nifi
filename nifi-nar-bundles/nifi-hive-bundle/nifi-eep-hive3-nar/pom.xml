@@ -19,11 +19,11 @@
     <parent>
         <groupId>org.apache.nifi</groupId>
         <artifactId>nifi-hive-bundle</artifactId>
-        <version>1.16.3.0-eep-SNAPSHOT</version>
+        <version>1.19.1.0-eep-SNAPSHOT</version>
     </parent>
 
     <artifactId>nifi-eep-hive3-nar</artifactId>
-    <version>1.16.3.0-eep-SNAPSHOT</version>
+    <version>1.19.1.0-eep-SNAPSHOT</version>
     <packaging>nar</packaging>
     <properties>
         <maven.javadoc.skip>true</maven.javadoc.skip>
@@ -34,13 +34,13 @@
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-hive-services-api-nar</artifactId>
-            <version>1.16.3.0-eep-SNAPSHOT</version>
+            <version>1.19.1.0-eep-SNAPSHOT</version>
             <type>nar</type>
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-eep-hive3-processors</artifactId>
-            <version>1.16.3.0-eep-SNAPSHOT</version>
+            <version>1.19.1.0-eep-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.nifi</groupId>
