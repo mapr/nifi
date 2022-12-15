@@ -51,33 +51,35 @@ public class PublishKafkaRecord_EEP_2_6 extends PublishKafkaRecord_2_6 {
             .defaultValue("false")
             .required(true)
             .build();
-
     private static final List<PropertyDescriptor> PROPERTIES_EEP;
     private static final Set<Relationship> RELATIONSHIPS_EEP;
 
     static {
         final List<PropertyDescriptor> properties = new ArrayList<>();
-        properties.add(KafkaProcessorUtils.BOOTSTRAP_SERVERS);
+        properties.add(BOOTSTRAP_SERVERS);
         properties.add(TOPIC);
         properties.add(RECORD_READER);
         properties.add(RECORD_WRITER);
         properties.add(USE_TRANSACTIONS_EEP);
         properties.add(TRANSACTIONAL_ID_PREFIX);
-        properties.add(KafkaProcessorUtils.FAILURE_STRATEGY);
+        properties.add(FAILURE_STRATEGY);
         properties.add(DELIVERY_GUARANTEE);
+        properties.add(PUBLISH_STRATEGY);
+        properties.add(RECORD_KEY_WRITER);
+        properties.add(RECORD_METADATA_STRATEGY);
         properties.add(ATTRIBUTE_NAME_REGEX);
         properties.add(MESSAGE_HEADER_ENCODING);
-        properties.add(KafkaProcessorUtils.SECURITY_PROTOCOL);
-        properties.add(KafkaProcessorUtils.SASL_MECHANISM);
-        properties.add(KafkaProcessorUtils.KERBEROS_CREDENTIALS_SERVICE);
-        properties.add(KafkaProcessorUtils.SELF_CONTAINED_KERBEROS_USER_SERVICE);
-        properties.add(KafkaProcessorUtils.JAAS_SERVICE_NAME);
-        properties.add(KafkaProcessorUtils.USER_PRINCIPAL);
-        properties.add(KafkaProcessorUtils.USER_KEYTAB);
-        properties.add(KafkaProcessorUtils.USERNAME);
-        properties.add(KafkaProcessorUtils.PASSWORD);
-        properties.add(KafkaProcessorUtils.TOKEN_AUTH);
-        properties.add(KafkaProcessorUtils.SSL_CONTEXT_SERVICE);
+        properties.add(SECURITY_PROTOCOL);
+        properties.add(SASL_MECHANISM);
+        properties.add(KERBEROS_CREDENTIALS_SERVICE);
+        properties.add(SELF_CONTAINED_KERBEROS_USER_SERVICE);
+        properties.add(KERBEROS_SERVICE_NAME);
+        properties.add(KERBEROS_PRINCIPAL);
+        properties.add(KERBEROS_KEYTAB);
+        properties.add(SASL_USERNAME);
+        properties.add(SASL_PASSWORD);
+        properties.add(TOKEN_AUTHENTICATION);
+        properties.add(SSL_CONTEXT_SERVICE);
         properties.add(MESSAGE_KEY_FIELD);
         properties.add(MAX_REQUEST_SIZE);
         properties.add(ACK_WAIT_TIME);
