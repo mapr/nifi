@@ -29,6 +29,8 @@
         <module>nifi-livy-controller-service-api</module>
         <module>nifi-livy-controller-service</module>
         <module>nifi-livy-processors</module>
+        <module>nifi-eep-livy-controller-service</module>
+        <module>nifi-eep-livy-nar</module>
     </modules>
 
     <dependencyManagement>
