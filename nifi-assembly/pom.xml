@@ -667,13 +667,13 @@ language governing permissions and limitations under the License. -->
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-eep-livy-nar</artifactId>
-            <version>1.18.0.0-eep-SNAPSHOT</version>
+            <version>1.19.1.0-eep-SNAPSHOT</version>
             <type>nar</type>
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-livy-controller-service-api-nar</artifactId>
-            <version>1.18.0.0-eep-SNAPSHOT</version>
+            <version>1.19.1.0-eep-SNAPSHOT</version>
             <type>nar</type>
         </dependency>
         <dependency>
