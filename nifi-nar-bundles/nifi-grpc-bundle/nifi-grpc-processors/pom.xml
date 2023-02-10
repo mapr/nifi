@@ -32,6 +32,10 @@ language governing permissions and limitations under the License. -->
             <artifactId>nifi-ssl-context-service-api</artifactId>
         </dependency>
         <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-mock</artifactId>
             <version>1.28.0.200-eep-1000-SNAPSHOT</version>

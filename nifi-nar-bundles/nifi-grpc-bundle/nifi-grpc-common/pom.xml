@@ -131,18 +131,4 @@
             </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>jigsaw</id>
-            <activation>
-                <jdk>(1.8,)</jdk>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>javax.annotation</groupId>
-                    <artifactId>javax.annotation-api</artifactId>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
 </project>
