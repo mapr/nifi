@@ -32,5 +32,10 @@
             <artifactId>nifi-utils</artifactId>
             <version>1.19.1.0-eep-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.nifi</groupId>
+            <artifactId>nifi-mock</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>
