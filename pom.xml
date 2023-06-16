@@ -89,11 +89,10 @@
         <url>https://issues.apache.org/jira/browse/NIFI</url>
     </issueManagement>
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.release>17</maven.compiler.release>
         <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
         <!-- Set minimum Java version for maven-enforcer-plugin from parent POM -->
-        <minimalJavaBuildVersion>11.0.16</minimalJavaBuildVersion>
+        <minimalJavaBuildVersion>17.0.6</minimalJavaBuildVersion>
         <maven.surefire.arguments />
         <!-- Disable maven-site-plugin from parent POM -->
         <maven.site.skip>true</maven.site.skip>
@@ -134,7 +133,8 @@
         <jakarta.xml.bind-api.version>2.3.3</jakarta.xml.bind-api.version>
         <json.smart.version>2.5.2</json.smart.version>
         <nifi.groovy.version>3.0.22</nifi.groovy.version>
-        <groovy.eclipse.batch.version>3.0.8-01</groovy.eclipse.batch.version>
+        <groovy.eclipse.compiler.version>3.9.0</groovy.eclipse.compiler.version>
+        <groovy.eclipse.batch.version>3.0.9-03</groovy.eclipse.batch.version>
         <surefire.version>3.5.0</surefire.version>
         <hadoop.version>${eep.hadoop.version}</hadoop.version>
         <ozone.version>1.2.1</ozone.version>
@@ -168,6 +168,23 @@
         <maven-deploy-plugin.version>3.0.0</maven-deploy-plugin.version>
         <maven-shade-plugin.version>3.3.0</maven-shade-plugin.version>
     </properties>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </pluginRepository>
+        <pluginRepository>
+            <id>groovy-plugins-release</id>
+            <url>https://groovy.jfrog.io/artifactory/plugins-release</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <distributionManagement>
         <snapshotRepository>
@@ -244,20 +261,6 @@
             </releases>
         </repository>
     </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>central</id>
-            <name>Central Repository</name>
-            <url>https://repo.maven.apache.org/maven2</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </pluginRepository>
-    </pluginRepositories>
 
     <dependencyManagement>
         <dependencies>
@@ -915,7 +918,7 @@
                 <plugin>
                     <groupId>org.codehaus.groovy</groupId>
                     <artifactId>groovy-eclipse-compiler</artifactId>
-                    <version>3.7.0</version>
+                    <version>${groovy.eclipse.compiler.version}</version>
                     <extensions>true</extensions>
                 </plugin>
                 <plugin>
@@ -1096,7 +1099,7 @@
                     <dependency>
                         <groupId>org.codehaus.groovy</groupId>
                         <artifactId>groovy-eclipse-compiler</artifactId>
-                        <version>3.7.0</version>
+                        <version>${groovy.eclipse.compiler.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>org.codehaus.groovy</groupId>

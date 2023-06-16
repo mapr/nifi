@@ -535,7 +535,7 @@ public abstract class ConsumerLease implements Closeable, ConsumerRebalanceListe
                     try {
                         reader = readerFactory.createRecordReader(attributes, in, recordBytes.length, logger);
                     } catch (final IOException e) {
-                        yield();
+                        this.yield();
                         rollback(topicPartition);
                         handleParseFailure(consumerRecord, session, e, "Failed to parse message from Kafka due to comms failure. Will roll back session and try again momentarily.");
                         closeWriter(writer);
@@ -566,7 +566,7 @@ public abstract class ConsumerLease implements Closeable, ConsumerRebalanceListe
                                     logger.error("Failed to obtain Schema for FlowFile. Will roll back the Kafka message offsets.", e);
 
                                     rollback(topicPartition);
-                                    yield();
+                                    this.yield();
 
                                     throw new ProcessException(e);
                                 }

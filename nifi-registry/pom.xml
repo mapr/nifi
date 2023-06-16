@@ -40,7 +40,6 @@
         <flyway.version>8.5.13</flyway.version>
         <flyway.tests.version>7.0.0</flyway.tests.version>
         <swagger.ui.version>3.12.0</swagger.ui.version>
-        <groovy.eclipse.compiler.version>3.7.0</groovy.eclipse.compiler.version>
         <jaxb.version>2.3.2</jaxb.version>
         <jgit.version>5.13.3.202401111512-r</jgit.version>
         <!-- JGit 5.13 requires SSHD 2.9.3 or earlier -->
