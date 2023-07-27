@@ -263,16 +263,26 @@ function replaceDependenciesForEnvVersions() {
     envDependency=$(echo "$maprLibs" | grep -E "$dependency")
 
     if [ -n "$envDependency" ]; then
+      envDependencyJarName=$(basename "$envDependency")
 
-      echo "$nifiJars" | grep -E "$dependency" | while read -r nifiJar; do
+      while read -r nifiJar; do
+        if [ "$envDependencyJarName" == "$(basename "$nifiJar")" ]; then
+          continue
+        fi
+
         nifiJarDirectory=$(dirname "$nifiJar")
         rm "$nifiJar"
         ln -sf "$envDependency" "$nifiJarDirectory"
-      done
+        RESTART_NEED=true
+      done <<< "$(echo "$nifiJars" | grep -E "$dependency")"
 
-      echo "$nifiNars" | while read -r nar; do
+      while read -r nar; do
         jarPathInNar=$(jar tf "$nar" | grep -E "$dependency")
         if [ -n "$jarPathInNar" ]; then
+          if [ "$envDependencyJarName" == "$(basename "$jarPathInNar")" ]; then
+            continue
+          fi
+
           replaceFileInNar "$nar" "$jarPathInNar" "$envDependency"
 
           if ! $(echo "$nar" | grep -q "\-withEnvDep"); then
@@ -283,8 +293,9 @@ function replaceDependenciesForEnvVersions() {
 
           unpackedNarDir=$(echo "$(basename "$nar")"-unpacked)
           find "$NIFI_HOME/work" -name "$unpackedNarDir" -exec rm -r {} + &>/dev/null
+          RESTART_NEED=true
         fi
-      done
+      done <<< "$nifiNars"
       nifiNars=$(find "$NIFI_LIBS" -name "*.nar")
     fi
   done
