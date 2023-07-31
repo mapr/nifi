@@ -52,7 +52,6 @@ import org.apache.nifi.util.MapRPropertiesUtils;
 import javax.net.SocketFactory;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.URI;
@@ -378,47 +377,16 @@ public abstract class AbstractHadoopProcessor extends AbstractProcessor implemen
         if (resources != null) {
             // Attempt to close the FileSystem
             final FileSystem fileSystem = resources.getFileSystem();
-            try {
-                interruptStatisticsThread(fileSystem);
-            } catch (Exception e) {
-                getLogger().warn("Error stopping FileSystem statistics thread: " + e.getMessage());
-                getLogger().debug("", e);
-            } finally {
-                if (fileSystem != null) {
-                    try {
-                        fileSystem.close();
-                    } catch (IOException e) {
-                        getLogger().warn("Error close FileSystem: " + e.getMessage(), e);
-                    }
+            if (fileSystem != null) {
+                try {
+                    fileSystem.close();
+                } catch (IOException e) {
+                    getLogger().warn("Error close FileSystem: " + e.getMessage(), e);
                 }
             }
         }
-
         // Clear out the reference to the resources
         hdfsResources.set(EMPTY_HDFS_RESOURCES);
-    }
-
-    private void interruptStatisticsThread(final FileSystem fileSystem) throws NoSuchFieldException, IllegalAccessException {
-        final Field statsField = FileSystem.class.getDeclaredField("statistics");
-        statsField.setAccessible(true);
-
-        final Object statsObj = statsField.get(fileSystem);
-        if (statsObj instanceof FileSystem.Statistics) {
-            final FileSystem.Statistics statistics = (FileSystem.Statistics) statsObj;
-
-            final Field statsThreadField = statistics.getClass().getDeclaredField("STATS_DATA_CLEANER");
-            statsThreadField.setAccessible(true);
-
-            final Object statsThreadObj = statsThreadField.get(statistics);
-            if (statsThreadObj instanceof Thread) {
-                final Thread statsThread = (Thread) statsThreadObj;
-                try {
-                    statsThread.interrupt();
-                } catch (Exception e) {
-                    getLogger().warn("Error interrupting thread: " + e.getMessage(), e);
-                }
-            }
-        }
     }
 
     private static Configuration getConfigurationFromResources(final Configuration config, final List<String> locations) throws IOException {
