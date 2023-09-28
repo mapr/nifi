@@ -17,7 +17,7 @@ function setupWardenConfFile() {
 
   user=$(cat $BOOTSTRAP_CONF | grep 'run.as=' | sed 's/\(run.as=\)//')
   if [ "$user" == "$MAPR_USER" ]; then
-    cp $WARDEN_CONF $MAPR_WARDEN_CONF_DIR
+    cp -p $WARDEN_CONF $MAPR_WARDEN_CONF_DIR
   fi
 }
 
