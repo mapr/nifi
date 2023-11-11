@@ -29,11 +29,30 @@ __PREFIX__/roles/nifi
 
 %pre
 if [ $1 -eq 2 ]; then
-    MY_OLD_TIMESTAMP=$(rpm -qi mapr-nifi | awk -F': ' '/Version/ {print $2}')
-    MY_OLD_CD_VERSION="$(echo $MY_OLD_TIMESTAMP | cut -d'.' -f1-3 )"
-    MY_OLD_CD_HOME=__PREFIX__/nifi/nifi-$MY_OLD_CD_VERSION
-    mkdir -p __PREFIX__/nifi/nifi-${MY_OLD_TIMESTAMP}/
-    cp -r $MY_OLD_CD_HOME/* __PREFIX__/nifi/nifi-${MY_OLD_TIMESTAMP}/
+    MY_OLD_TIMESTAMP_VERSION=$(rpm -qi mapr-nifi | awk -F': ' '/Version/ {print $2}')
+    MY_OLD_3DIGIT_VERSION="$(echo $MY_OLD_TIMESTAMP_VERSION | cut -d'.' -f1-3 )"
+    MY_OLD_HOME_DIR=__PREFIX__/nifi/nifi-$MY_OLD_3DIGIT_VERSION
+
+    rm -rf __PREFIX__/nifi/nifi-$MY_OLD_3DIGIT_VERSION/work
+
+    mkdir -p __PREFIX__/nifi/nifi-${MY_OLD_TIMESTAMP_VERSION}/
+    cp -r $MY_OLD_HOME_DIR/* __PREFIX__/nifi/nifi-${MY_OLD_TIMESTAMP_VERSION}/
+
+    rm -rf __PREFIX__/nifi/nifi-$MY_OLD_3DIGIT_VERSION/lib/*
+
+    createDummyRpmFiles() {
+      rpmFilePaths="$(rpm -ql mapr-nifi | grep "/lib/" | grep -e "nar$" -e "jar$")"
+      while read filePath
+      do
+        parentDir="$(dirname "${filePath}")"
+        if [ ! -d "${parentDir}" ]
+        then
+          mkdir -p "${parentDir}"
+        fi
+        touch "${filePath}"
+      done <<< "${rpmFilePaths}"
+    }
+    createDummyRpmFiles
 fi
 
 %post
@@ -63,6 +82,20 @@ fi
 if [ -d "__INSTALL_3DIGIT__/not-used-libs/" ]; then
   mv __INSTALL_3DIGIT__/not-used-libs/* __INSTALL_3DIGIT__/lib
 fi
+
+createDummyRpmFiles() {
+  rpmFilePaths="$(rpm -ql mapr-nifi | grep "/lib/" | grep -e "nar$" -e "jar$")"
+  while read filePath
+  do
+    parentDir="$(dirname "${filePath}")"
+    if [ ! -d "${parentDir}" ]
+    then
+      mkdir -p "${parentDir}"
+    fi
+    touch "${filePath}"
+  done <<< "${rpmFilePaths}"
+}
+createDummyRpmFiles
 
 %postun
 if [ "$1" = "0" ]; then
