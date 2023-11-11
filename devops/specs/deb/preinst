@@ -11,11 +11,11 @@
 #
 
 copy_old_data() {
-    MY_OLD_TIMESTAMP=$1
-    MY_OLD_CD_VERSION="$( echo $MY_OLD_TIMESTAMP| cut -d'.' -f1-3 )"
-    MY_OLD_CD_HOME=__PREFIX__/nifi/nifi-$MY_OLD_CD_VERSION
-    mkdir -p __PREFIX__/nifi/nifi-$MY_OLD_TIMESTAMP
-    cp -r $MY_OLD_CD_HOME/* __PREFIX__/nifi/nifi-${MY_OLD_TIMESTAMP}
+    local MY_OLD_HOME_DIR="${1}"
+    local MY_OLD_TIMESTAMP_VERSION="${2}"
+
+    mkdir -p __PREFIX__/nifi/nifi-$MY_OLD_TIMESTAMP_VERSION
+    cp -r $MY_OLD_HOME_DIR/* __PREFIX__/nifi/nifi-${MY_OLD_TIMESTAMP_VERSION}
 }
 
 case "$1" in
@@ -24,7 +24,13 @@ case "$1" in
 
     upgrade)
       if [ -n "$2" ]; then
-        copy_old_data "$2"
+        MY_OLD_TIMESTAMP_VERSION=$2
+        MY_OLD_3DIGIT_VERSION="$( echo $MY_OLD_TIMESTAMP_VERSION| cut -d'.' -f1-3 )"
+        MY_OLD_HOME_DIR=__PREFIX__/nifi/nifi-$MY_OLD_3DIGIT_VERSION
+
+        rm -rf "${MY_OLD_HOME_DIR}/work"
+        copy_old_data "${MY_OLD_HOME_DIR}" "${MY_OLD_TIMESTAMP_VERSION}"
+        rm -rf "${MY_OLD_HOME_DIR}/lib/*"
       fi
         ;;
 
