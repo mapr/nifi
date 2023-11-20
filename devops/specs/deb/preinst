@@ -30,7 +30,7 @@ case "$1" in
 
         rm -rf "${MY_OLD_HOME_DIR}/work"
         copy_old_data "${MY_OLD_HOME_DIR}" "${MY_OLD_TIMESTAMP_VERSION}"
-        rm -rf "${MY_OLD_HOME_DIR}/lib/*"
+        rm -rf "${MY_OLD_HOME_DIR}/lib/"*
       fi
         ;;
 
