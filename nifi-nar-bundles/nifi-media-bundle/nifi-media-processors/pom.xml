@@ -101,7 +101,7 @@
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcmail-shaded-jdk15on18</artifactId>
+            <artifactId>bcmail-shaded-jdk15to18</artifactId>
             <version>${org.bouncycastle.version}</version>
         </dependency>
         <dependency>
