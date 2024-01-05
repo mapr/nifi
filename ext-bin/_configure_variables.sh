@@ -14,6 +14,6 @@ MAPR_USER=${MAPR_USER:-"mapr"}
 BOOTSTRAP_CONF="$NIFI_HOME/conf/bootstrap.conf"
 NIFI_CONF="$NIFI_HOME/conf/nifi.properties"
 FIPS_CONF="${MAPR_HOME}/conf/java.security.fips"
-IS_SECURED=`cat ${MAPR_HOME}/conf/mapr-clusters.conf | sed 's/.*\(secure=\)\(true\|false\).*/\2/'`
+IS_SECURED=$(head -1 ${MAPR_HOME}/conf/mapr-clusters.conf | grep -o 'secure=\w*' | cut -d= -f2)
 PID_FILE="${MAPR_HOME}/pid/nifi.pid"
 STATUS_FILE="${MAPR_HOME}/pid/nifi.status"
