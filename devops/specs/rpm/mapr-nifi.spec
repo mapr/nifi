@@ -39,6 +39,7 @@ if [ $1 -eq 2 ]; then
     cp -r $MY_OLD_HOME_DIR/* __PREFIX__/nifi/nifi-${MY_OLD_TIMESTAMP_VERSION}/
 
     rm -rf __PREFIX__/nifi/nifi-$MY_OLD_3DIGIT_VERSION/lib/*
+    rm -rf __PREFIX__/nifi/nifi-$MY_OLD_3DIGIT_VERSION/not-used-libs
 
     createDummyRpmFiles() {
       rpmFilePaths="$(rpm -ql mapr-nifi | grep "/lib/" | grep -e "nar$" -e "jar$")"
@@ -77,10 +78,6 @@ fi
 
 if [ -f __PREFIX__/conf/conf.d/warden.nifi.conf ]; then
     rm -Rf __PREFIX__/conf/conf.d/warden.nifi.conf
-fi
-
-if [ -d "__INSTALL_3DIGIT__/not-used-libs/" ]; then
-  mv __INSTALL_3DIGIT__/not-used-libs/* __INSTALL_3DIGIT__/lib
 fi
 
 createDummyRpmFiles() {
