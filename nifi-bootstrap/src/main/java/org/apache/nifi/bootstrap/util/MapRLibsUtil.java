@@ -109,10 +109,10 @@ public final class MapRLibsUtil {
             Path hiveFolder = MapRComponentsUtils.getComponentFolder(component, homePath.toString());
 
             Path hiveLibFolder = Paths.get(hiveFolder.toString(), "/lib");
-            List<String> hbaseLibsList = List.of("hive-jdbc", "hive-exec", "hive-streaming", "hive-hcatalog-core",
-                    "hive-service", "hive-maprdb", "antlr", "libfb303");
+            List<String> hiveLibsList = List.of("hive-jdbc", "hive-exec", "hive-streaming", "hive-hcatalog-core",
+                    "hive-service", "hive-maprdb", "antlr", "libfb303", "mapr-util");
 
-            return getJarsFromFolder(hbaseLibsList, hiveLibFolder);
+            return getJarsFromFolder(hiveLibsList, hiveLibFolder);
         } catch (IOException e) {
             LOGGER.warn("Hive not installed error: {}", e.getMessage());
             return Collections.emptyList();
