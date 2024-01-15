@@ -76,8 +76,13 @@ if sudo -u $MAPR_USER -E "__INSTALL_3DIGIT__/bin/nifi.sh" status &>/dev/null ; t
     fi
 fi
 
-if [ -f __PREFIX__/conf/conf.d/warden.nifi.conf ]; then
+# $1 equals to 1 in %preun scriplet if it is an upgrade.
+# We don't want to remove warden config in case of an upgrade,
+# updating warden conf is handled by configure.sh
+if [ ! $1 -eq 1 ]; then
+  if [ -f __PREFIX__/conf/conf.d/warden.nifi.conf ]; then
     rm -Rf __PREFIX__/conf/conf.d/warden.nifi.conf
+  fi
 fi
 
 createDummyRpmFiles() {

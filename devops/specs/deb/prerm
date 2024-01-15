@@ -16,6 +16,12 @@
 #          <overwriter-version>
 #
 
+remove_warden_conf() {
+    if [ -f __PREFIX__/conf/conf.d/warden.nifi.conf ]; then
+        rm -Rf __PREFIX__/conf/conf.d/warden.nifi.conf
+    fi
+}
+
 before_remove() {
     DAEMON_CONF="__PREFIX__/conf/daemon.conf"
     MAPR_USER=${MAPR_USER:-$([ -f "$DAEMON_CONF" ] && grep "mapr.daemon.user" "$DAEMON_CONF" | cut -d '=' -f 2)}
@@ -28,15 +34,18 @@ before_remove() {
             echo "$RESULT"
         fi
     fi
-
-    if [ -f __PREFIX__/conf/conf.d/warden.nifi.conf ]; then
-        rm -Rf __PREFIX__/conf/conf.d/warden.nifi.conf
-    fi
 }
 
 case "$1" in
-    upgrade|remove|deconfigure)
+    upgrade)
         before_remove
+        # We don't want to remove warden config in case of an upgrade,
+        # updating warden conf is handled by configure.sh
+    ;;
+
+    remove|deconfigure)
+        before_remove
+        remove_warden_conf
     ;;
 
     abort-install|abort-upgrade|failed-upgrade)
