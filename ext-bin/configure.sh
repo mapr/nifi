@@ -166,7 +166,7 @@ function migratePreviousConfiguration() {
 }
 
 createRestartFile(){
-  if [ "$RESTART_NEED" = true ] ; then
+  if [ ! -f ${NIFI_HOME}"/conf/.not_configured_yet" -a "$RESTART_NEED" = true ] ; then
     role="nifi"
     mkdir -p ${MAPR_CONF_DIR}/restart
     cat > "${MAPR_CONF_DIR}/restart/$role-${NIFI_VERSION}.restart" <<EOF
@@ -191,9 +191,7 @@ function moveLibToNotUsedLibs() {
     if (($?)); then
       echo "Error: while moving $NIFI_LIBS$1 to $NIFI_NOT_USED_LIBS"
     else
-      if [ ! -f ${NIFI_HOME}"/conf/.not_configured_yet" ]; then
-        RESTART_NEED=true
-      fi
+      RESTART_NEED=true
     fi
   fi
 }
@@ -204,11 +202,9 @@ function restoreLibFromNotUsedLibs() {
     if [ -f $NIFI_NOT_USED_LIBS$1 ]; then
       mv $NIFI_NOT_USED_LIBS$1 $NIFI_LIBS
       if (($?)); then
-         echo "Error: while moving $NIFI_NOT_USED_LIBS$1 from $NIFI_LIBS"
+        echo "Error: while moving $NIFI_NOT_USED_LIBS$1 from $NIFI_LIBS"
       else
-        if [ ! -f ${NIFI_HOME}"/conf/.not_configured_yet" ]; then
-          RESTART_NEED=true
-        fi
+        RESTART_NEED=true
       fi
       if ! [ "$(ls -A $NIFI_NOT_USED_LIBS)" ]; then
         rm -rf $NIFI_NOT_USED_LIBS
