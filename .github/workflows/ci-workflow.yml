@@ -43,7 +43,6 @@ env:
     --no-snapshot-updates
     --no-transfer-progress
     --fail-fast
-    -pl -:minifi-c2-integration-tests
     -pl -:minifi-integration-tests
     -pl -:minifi-assembly
     -pl -:nifi-assembly
@@ -75,7 +74,6 @@ env:
     -P skip-nifi-bin-assembly
   MAVEN_PROJECTS: >-
     -pl -minifi/minifi-assembly
-    -pl -minifi/minifi-c2/minifi-c2-assembly
     -pl -minifi/minifi-toolkit/minifi-toolkit-assembly
     -pl -nifi-registry/nifi-registry-assembly
     -pl -nifi-registry/nifi-registry-toolkit/nifi-registry-toolkit-assembly

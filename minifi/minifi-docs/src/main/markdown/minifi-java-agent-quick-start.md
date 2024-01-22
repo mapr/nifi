@@ -111,7 +111,7 @@ config.sh transform input_file output_file
 **Result:** Once you have your _config.yml_ file in the `minifi/conf` directory, launch that instance of MiNiFi and your dataflow begins automatically.
 
 ### Utilizing a C2 Server via the c2 protocol
-If you have a [C2 server](../../../../minifi-c2/README.md) running, you can expose the whole _config.yml_ for the agent to download. As the agent is heartbeating via the C2 protocol, changes in flow version will trigger automatic config updates.
+If you have a C2 server running, you can expose the whole _flow.json_ for the agent to download. As the agent is heartbeating via the C2 protocol, changes in flow version will trigger automatic config updates.
 
 1. Launch C2 server
 2. Configure MiNiFi for C2 capability
