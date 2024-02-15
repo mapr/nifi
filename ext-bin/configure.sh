@@ -217,26 +217,22 @@ function restoreLibFromNotUsedLibs() {
   fi
 }
 
-function verifyHbaseInstalled() {
- lib_name="nifi-hbase-mapr_1*.nar"
- if ! [ -d "$MAPR_HOME/hbase" ]; then
-   moveLibToNotUsedLibs $lib_name
- else
-   restoreLibFromNotUsedLibs $lib_name
- fi
+function handleNotUsedLibsFor() {
+  # $1 -- role name
+  lib_mask="nifi*$1*.nar"
+  libs=$(find $NIFI_LIBS $NIFI_NOT_USED_LIBS -iname "$lib_mask" -printf "%f ")
+
+  for lib in $libs; do
+   if ! [ -f "$MAPR_HOME/roles/$1" ]; then
+     moveLibToNotUsedLibs $lib
+   else
+     restoreLibFromNotUsedLibs $lib
+   fi
+  done
 }
 
-function verifyHiveInstalled() {
- lib_name="nifi-eep-hive3-nar-*.nar"
- if ! [ -d "$MAPR_HOME/hive" ]; then
-   moveLibToNotUsedLibs $lib_name
- else
-   restoreLibFromNotUsedLibs $lib_name
- fi
-}
-
-verifyHbaseInstalled
-verifyHiveInstalled
+handleNotUsedLibsFor hbase
+handleNotUsedLibsFor hive
 migratePreviousConfiguration
 configureUiSecurity
 changePermission
