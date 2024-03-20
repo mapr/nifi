@@ -195,6 +195,19 @@
             </snapshots>
         </repository>
         <repository>
+            <id>mapr-repo</id>
+            <name>MapR Repository</name>
+            <url>${mapr.repo}</url>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <updatePolicy>always</updatePolicy>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
             <id>apache-repo</id>
             <name>Apache Repository</name>
             <url>https://repository.apache.org/content/repositories/releases</url>
@@ -213,19 +226,6 @@
                 <enabled>false</enabled>
             </snapshots>
             <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-        <repository>
-            <id>mapr-repo</id>
-            <name>MapR Repository</name>
-            <url>${mapr.repo}</url>
-            <snapshots>
-                <updatePolicy>always</updatePolicy>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <updatePolicy>always</updatePolicy>
                 <enabled>true</enabled>
             </releases>
         </repository>
