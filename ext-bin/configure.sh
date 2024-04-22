@@ -65,7 +65,7 @@ function changePermission() {
   oldUser=$(stat -c '%U' $NIFI_CONF)
 
   if [ "$user" != "$MAPR_USER" ]; then
-    group=$user
+    group=$(id -gn $user)
   fi
 
   chown -R ${user}:${group} ${NIFI_HOME}
