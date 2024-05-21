@@ -238,7 +238,7 @@
                 </dependency>
             </dependencies>
         </profile>
-        <!-- Includes hadoop-azure and hadoop-azure-datalake for accessing HDFS with wasb://, abfs://, and adl:// filesystems -->
+        <!-- Includes hadoop-azure for accessing HDFS with wasb:// and abfs:// filesystems -->
         <profile>
             <id>include-hadoop-azure</id>
             <activation>
@@ -258,37 +258,6 @@
                             <groupId>com.fasterxml.jackson.core</groupId>
                             <artifactId>jackson-core</artifactId>
                         </exclusion>
-                    </exclusions>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.hadoop</groupId>
-                    <artifactId>hadoop-azure-datalake</artifactId>
-                    <version>${ranger.hadoop.version}</version>
-                    <exclusions>
-                        <exclusion>
-                            <groupId>com.fasterxml.jackson.core</groupId>
-                            <artifactId>jackson-core</artifactId>
-                        </exclusion>
-                    </exclusions>
-                </dependency>
-            </dependencies>
-        </profile>
-        <!-- Includes hadoop-cloud-storage -->
-        <profile>
-            <id>include-hadoop-cloud-storage</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.apache.hadoop</groupId>
-                    <artifactId>hadoop-cloud-storage</artifactId>
-                    <version>${ranger.hadoop.version}</version>
-                    <exclusions>
-                      <exclusion>
-                          <groupId>commons-logging</groupId>
-                          <artifactId>commons-logging</artifactId>
-                      </exclusion>
                     </exclusions>
                 </dependency>
             </dependencies>

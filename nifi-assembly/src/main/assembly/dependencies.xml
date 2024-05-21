@@ -45,6 +45,9 @@
                 <exclude>jakarta.xml.bind:jakarta.xml.bind-api</exclude>
                 <exclude>javax.annotation:javax.annotation-api</exclude>
 
+                <!-- exclude HPE properties libraries from lib, they'll be included in the hpe-properties subdir -->
+                <exclude>org.apache.nifi:nifi-hadoop-hpe-properties</exclude>
+
                 <!-- exclude AspectJ library from lib, it'll be included in the aspectj subdir -->
                 <exclude>org.aspectj:aspectjweaver</exclude>
             </excludes>

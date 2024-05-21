@@ -67,7 +67,6 @@
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-auth</artifactId>
             <version>${hadoop.version}</version>
-            <scope>provided</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -80,6 +79,10 @@
                 <exclusion>
                     <groupId>log4j</groupId>
                     <artifactId>log4j</artifactId>
+                </exclusion>
+		<exclusion>
+                    <groupId>commons-logging</groupId>
+		    <artifactId>commons-logging</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>

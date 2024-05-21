@@ -513,6 +513,11 @@ language governing permissions and limitations under the License. -->
             <version>1.19.1.100-eep-922-SNAPSHOT</version>
             <type>nar</type>
         </dependency>
+        <dependency>
+            <groupId>org.apache.nifi</groupId>
+            <artifactId>nifi-hadoop-hpe-properties</artifactId>
+            <version>1.19.1.0-eep-SNAPSHOT</version>
+        </dependency>
 <!-- Unused dependencies       -->
 <!--        <dependency>-->
 <!--            <groupId>org.apache.nifi</groupId>-->

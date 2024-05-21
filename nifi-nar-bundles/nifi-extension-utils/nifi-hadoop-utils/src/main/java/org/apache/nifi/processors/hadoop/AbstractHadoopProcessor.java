@@ -47,7 +47,7 @@ import org.apache.nifi.processor.util.StandardValidators;
 import org.apache.nifi.security.krb.KerberosKeytabUser;
 import org.apache.nifi.security.krb.KerberosPasswordUser;
 import org.apache.nifi.security.krb.KerberosUser;
-import org.apache.nifi.util.MapRPropertiesUtils;
+import org.apache.nifi.util.hpe.HpePropertiesUtils;
 
 import javax.net.SocketFactory;
 import java.io.File;
@@ -365,7 +365,7 @@ public abstract class AbstractHadoopProcessor extends AbstractProcessor implemen
 
             // Adding auto-detected configs if no configs were provided
             if(locations.isEmpty()) {
-                locations.addAll(MapRPropertiesUtils.getHadoopClientConfigs());
+                locations.addAll(HpePropertiesUtils.getHadoopClientConfigs());
             }
             
             return locations;

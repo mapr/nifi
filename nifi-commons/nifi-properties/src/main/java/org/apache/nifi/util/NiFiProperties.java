@@ -17,6 +17,7 @@
 package org.apache.nifi.util;
 
 import org.apache.nifi.properties.ApplicationProperties;
+import org.apache.nifi.util.hpe.HpePropertiesUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -1585,8 +1586,8 @@ public class NiFiProperties extends ApplicationProperties {
     public String getProperty(final String key) {
         String value = super.getProperty(key);
 
-        if (value != null && value.equals(MapRPropertiesUtils.MAPR_HADOOP_PROPERTY_PROVIDER)) {
-            return MapRPropertiesUtils.getHadoopProperty(key);
+        if (value != null && value.equals(HpePropertiesUtils.MAPR_HADOOP_PROPERTY_PROVIDER)) {
+            return HpePropertiesUtils.getHadoopProperty(key);
         }
 
         return value;

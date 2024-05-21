@@ -40,7 +40,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>
-            <artifactId>nifi-standard-services-api-nar</artifactId>
+            <artifactId>nifi-hadoop-libraries-nar</artifactId>
             <version>1.19.1.100-eep-922-SNAPSHOT</version>
             <type>nar</type>
         </dependency>
