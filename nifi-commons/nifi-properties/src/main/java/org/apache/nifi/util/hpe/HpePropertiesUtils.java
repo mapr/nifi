@@ -15,12 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.nifi.util;
+package org.apache.nifi.util.hpe;
 
-import org.apache.hadoop.conf.Configuration;
+import org.apache.nifi.util.NiFiProperties;
 import org.apache.nifi.util.mapr.MapRComponentsUtils;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +31,7 @@ import java.util.Map;
 /**
  * Class for providing property's values from Hadoop
  */
-public final class MapRPropertiesUtils {
+public final class HpePropertiesUtils {
 
     /**
      * Value to notify that this property should be found in Hadoop
@@ -63,7 +64,7 @@ public final class MapRPropertiesUtils {
     private static final String HADOOP_CONF_SSL_CLIENT_XML = "ssl-client.xml";
     private static final String HADOOP_CONF_HDFS_SITE_XML = "hdfs-site.xml";
 
-    private static volatile Configuration hadoopConf = null;
+    private static volatile HpeProperties hpeProperties = null;
 
     private static final Map<String, String> mapNifiToHadoopProperties = new HashMap<>();
     private static final List<String> hadoopClientConfigs = new ArrayList<>();
@@ -111,7 +112,7 @@ public final class MapRPropertiesUtils {
             try {
                 return getPassword(hadoopKey);
             } catch (IOException e) {
-                throw new RuntimeException(String.format("Failed to get property '%s'", hadoopKey), e);
+                throw new UncheckedIOException(String.format("Failed to get property '%s'", hadoopKey), e);
             }
         } else {
             return getProperty(hadoopKey);
@@ -125,7 +126,7 @@ public final class MapRPropertiesUtils {
      * @return property value
      */
     public static String getProperty(final String property) {
-        return getHadoopConf().get(property);
+        return getHpeProperties().get(property);
     }
 
     /**
@@ -136,7 +137,7 @@ public final class MapRPropertiesUtils {
      * @throws IOException if fails to get password value
      */
     public static String getPassword(final String property) throws IOException {
-        char[] data = getHadoopConf().getPassword(property);
+        char[] data = getHpeProperties().getPassword(property);
 
         if (data == null) {
             return null;
@@ -145,20 +146,14 @@ public final class MapRPropertiesUtils {
         return new String(data);
     }
 
-    private static synchronized Configuration getHadoopConf() {
-        if (hadoopConf == null) {
-            hadoopConf = new Configuration();
-            hadoopConf.addResource(new org.apache.hadoop.fs.Path(
-                    HADOOP_CONF_PATH.toString(),
-                    HADOOP_CONF_CORE_SITE_XML)
-            );
-            hadoopConf.addResource(new org.apache.hadoop.fs.Path(
-                    HADOOP_CONF_PATH.toString(),
-                    HADOOP_CONF_SSL_SERVER_XML)
-            );
+    private static synchronized HpeProperties getHpeProperties() {
+        if (hpeProperties == null) {
+            hpeProperties = HpePropertiesLoader.getHpeProperties();
+            hpeProperties.addResource(HADOOP_CONF_PATH.toString(), HADOOP_CONF_CORE_SITE_XML);
+            hpeProperties.addResource(HADOOP_CONF_PATH.toString(), HADOOP_CONF_SSL_SERVER_XML);
         }
 
-        return hadoopConf;
+        return hpeProperties;
     }
 
     private static Path getHadoopConfFolder() {
@@ -167,7 +162,7 @@ public final class MapRPropertiesUtils {
         try {
             hadoopFolder = MapRComponentsUtils.getComponentFolder(HADOOP_COMPONENT_NAME);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new UncheckedIOException(e);
         }
 
         setHadoopHomeIfNotSet(hadoopFolder.toString());

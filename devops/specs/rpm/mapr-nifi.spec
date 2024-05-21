@@ -9,7 +9,7 @@ release:     1
 prefix:      /
 group:       MapR
 buildarch:   noarch
-requires:    mapr-client >= 7.1.0, mapr-hadoop-client >= 3.3.4
+requires:    mapr-client >= 7.1.0, mapr-hadoop-client >= 3.3.4, zip
 conflicts:   mapr-core < 7.1.0
 AutoReqProv: no
 

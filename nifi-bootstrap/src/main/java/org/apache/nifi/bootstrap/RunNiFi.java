@@ -19,7 +19,6 @@ package org.apache.nifi.bootstrap;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.nifi.bootstrap.notification.NotificationType;
 import org.apache.nifi.bootstrap.util.DumpFileValidator;
-import org.apache.nifi.bootstrap.util.MapRLibsUtil;
 import org.apache.nifi.bootstrap.util.OSUtils;
 import org.apache.nifi.bootstrap.util.RuntimeVersionProvider;
 import org.apache.nifi.bootstrap.util.SecureNiFiConfigUtil;
@@ -1203,15 +1202,9 @@ public class RunNiFi {
                 return filename.toLowerCase().endsWith(".jar");
             }
         });
-        final String maprLibFilename = replaceNull(props.get("mapr.lib.dir"), MapRLibsUtil.DEFAULT_MAPR_LIBS).trim();
-        List<File> maprLibFiles = MapRLibsUtil.getMapRLibs(maprLibFilename);
 
         if (libFiles == null || libFiles.length == 0) {
             throw new RuntimeException("Could not find lib directory at " + libDir.getAbsolutePath());
-        }
-
-        if (maprLibFiles == null || maprLibFiles.size() == 0) {
-            throw new RuntimeException("Could not find MapR lib directory at " + maprLibFilename);
         }
 
         final File[] confFiles = confDir.listFiles();
@@ -1219,13 +1212,9 @@ public class RunNiFi {
             throw new RuntimeException("Could not find conf directory at " + confDir.getAbsolutePath());
         }
 
-        final List<String> cpFiles = new ArrayList<>(confFiles.length + libFiles.length
-                + maprLibFiles.size());
+        final List<String> cpFiles = new ArrayList<>(confFiles.length + libFiles.length);
         cpFiles.add(confDir.getAbsolutePath());
         for (final File file : libFiles) {
-            cpFiles.add(file.getAbsolutePath());
-        }
-        for (final File file : maprLibFiles) {
             cpFiles.add(file.getAbsolutePath());
         }
 

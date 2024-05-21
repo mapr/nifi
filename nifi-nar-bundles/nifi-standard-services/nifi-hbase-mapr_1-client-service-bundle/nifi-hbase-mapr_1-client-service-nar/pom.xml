@@ -29,7 +29,7 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.nifi</groupId>
-            <artifactId>nifi-standard-services-api-nar</artifactId>
+            <artifactId>nifi-hadoop-libraries-nar</artifactId>
             <version>1.28.0</version>
             <type>nar</type>
         </dependency>
@@ -42,7 +42,6 @@
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-client</artifactId>
             <version>${eep.hbase.version}</version>
-            <scope>provided</scope>
             <exclusions>
                 <exclusion>
                     <groupId>commons-codec</groupId>

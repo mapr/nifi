@@ -79,5 +79,6 @@
         <module>nifi-web-utils</module>
         <module>nifi-write-ahead-log</module>
         <module>nifi-xml-processing</module>
+        <module>nifi-hadoop-hpe-properties</module>
     </modules>
 </project>

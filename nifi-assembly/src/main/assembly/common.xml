@@ -81,6 +81,19 @@
             </includes>
         </dependencySet>
 
+        <!-- Write HPE configuration libraries to isolated directory-->
+        <dependencySet>
+            <scope>compile</scope>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>lib/hpe-properties</outputDirectory>
+            <directoryMode>0770</directoryMode>
+            <fileMode>0664</fileMode>
+            <useTransitiveFiltering>true</useTransitiveFiltering>
+            <includes>
+                <include>org.apache.nifi:nifi-hadoop-hpe-properties</include>
+            </includes>
+        </dependencySet>
+
         <!-- Write out the conf directory contents -->
         <dependencySet>
             <scope>runtime</scope>

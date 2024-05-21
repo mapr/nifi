@@ -231,6 +231,66 @@ function handleNotUsedLibsFor() {
   done
 }
 
+function replaceFileInNar() {
+  narToUpdate="$1"
+  fileToReplace="$2"
+  newFile="$3"
+
+  zip -d "$narToUpdate" "$fileToReplace" >/dev/null
+
+  tempDir=$(mktemp -d)
+  dirOfFileToReplace=$(echo "$fileToReplace" | rev | cut -d'/' -f2- | rev)
+  mkdir -p "$tempDir/$dirOfFileToReplace"
+  cp "$newFile" "$tempDir/$dirOfFileToReplace"
+
+  pushd "$tempDir" >/dev/null || exit 1
+  newTmpFile=$(find "$dirOfFileToReplace"/*)
+  popd >/dev/null || exit 1
+
+  jar -uf "$narToUpdate" -C "$tempDir" "$newTmpFile"
+
+  rm "$tempDir" -r
+}
+
+function replaceDependenciesForEnvVersions() {
+  dependencies+=("maprfs-[0-9.]*-mapr(-SNAPSHOT)?.jar")
+
+  maprLibs=$(find "$MAPR_HOME"/lib -name "*.jar")
+  nifiJars=$(find "$NIFI_LIBS" -name "*.jar")
+  nifiNars=$(find "$NIFI_LIBS" -name "*.nar")
+
+  for dependency in "${dependencies[@]}"; do
+    envDependency=$(echo "$maprLibs" | grep -E "$dependency")
+
+    if [ -n "$envDependency" ]; then
+
+      echo "$nifiJars" | grep -E "$dependency" | while read -r nifiJar; do
+        nifiJarDirectory=$(dirname "$nifiJar")
+        rm "$nifiJar"
+        ln -sf "$envDependency" "$nifiJarDirectory"
+      done
+
+      echo "$nifiNars" | while read -r nar; do
+        jarPathInNar=$(jar tf "$nar" | grep -E "$dependency")
+        if [ -n "$jarPathInNar" ]; then
+          replaceFileInNar "$nar" "$jarPathInNar" "$envDependency"
+
+          if ! $(echo "$nar" | grep -q "\-withEnvDep"); then
+            narWithoutExtension=$(echo "${nar%.*}")
+            newNarName="$(echo "$narWithoutExtension"-withEnvDep.nar)"
+            mv "$nar" "$newNarName"
+          fi
+
+          unpackedNarDir=$(echo "$(basename "$nar")"-unpacked)
+          find "$NIFI_HOME/work" -name "$unpackedNarDir" -exec rm -r {} + &>/dev/null
+        fi
+      done
+      nifiNars=$(find "$NIFI_LIBS" -name "*.nar")
+    fi
+  done
+}
+
+replaceDependenciesForEnvVersions
 handleNotUsedLibsFor hbase
 handleNotUsedLibsFor hive
 migratePreviousConfiguration
