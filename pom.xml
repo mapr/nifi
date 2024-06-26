@@ -120,7 +120,7 @@
         <testcontainers.version>1.17.5</testcontainers.version>
         <org.slf4j.version>1.7.36</org.slf4j.version>
         <ranger.version>2.3.0</ranger.version>
-        <jetty.version>9.4.49.v20220914</jetty.version>
+        <jetty.version>9.4.54.v20240208</jetty.version>
         <jackson.bom.version>2.14.1</jackson.bom.version>
         <avro.version>1.11.1</avro.version>
         <jaxb.runtime.version>2.3.5</jaxb.runtime.version>
@@ -143,8 +143,8 @@
         <netty.3.version>3.10.6.Final</netty.3.version>
         <snakeyaml.version>1.33</snakeyaml.version>
         <netty.4.version>4.1.85.Final</netty.4.version>
-        <spring.version>5.3.24</spring.version>
-        <spring.security.version>5.8.0</spring.security.version>
+        <spring.version>5.3.37</spring.version>
+        <spring.security.version>5.8.13</spring.security.version>
         <swagger.annotations.version>1.6.6</swagger.annotations.version>
         <h2.version>2.1.214</h2.version>
         <zookeeper.version>${eep.zookeeper.version}</zookeeper.version>
