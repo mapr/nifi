@@ -17,10 +17,10 @@
 
 package org.apache.nifi.util.mapr;
 
-import org.junit.Assert;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.Assert;
+import org.junit.jupiter.Rule;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.rules.TemporaryFolder;
 
 import java.io.File;
 import java.io.FileNotFoundException;
