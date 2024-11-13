@@ -17,79 +17,95 @@
 
 package org.apache.nifi.util.mapr;
 
-import org.junit.jupiter.Assert;
-import org.junit.jupiter.Rule;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.rules.TemporaryFolder;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test class for {@link MapRComponentsUtils}
  */
 public class TestMapRComponentsUtils {
-    private static final String MY_COMPONENT = "mycomponent";
-    private static final String VERSION_PATH = String.format("%s/%sversion", MY_COMPONENT, MY_COMPONENT);
-
+    private static final String COMPONENT_NAME = "mycomponent";
+    private static final String VERSION_FILE_NAME = String.format("%sversion", COMPONENT_NAME, COMPONENT_NAME);
     private static final String VERSION = "1.2.3";
-    private static final String COMPONENT_PATH_WITH_VERSION = String.format("%s/%s-%s", MY_COMPONENT, MY_COMPONENT,
-            VERSION);
+    private static final String COMPONENT_DIR_NAME = String.format("%s-%s", COMPONENT_NAME, VERSION);
 
-    @Rule
-    public TemporaryFolder tempFolder = new TemporaryFolder();
+    @TempDir
+    private File tempDir;
 
-    @Test(expected = IOException.class)
-    public void testNoComponentFolder() throws IOException {
-        File homeFolder = tempFolder.newFolder();
-        MapRComponentsUtils.getComponentFolder(MY_COMPONENT, homeFolder.getAbsolutePath());
+    @Test
+    public void testNoComponentParentDirectory() throws IOException {
+        assertThrows(IOException.class, () -> {
+            MapRComponentsUtils.getComponentFolder(COMPONENT_NAME, tempDir.getAbsolutePath());
+        });
     }
 
-    @Test(expected = IOException.class)
+    @Test
     public void testNoVersionFile() throws IOException {
-        File componentFolder = tempFolder.newFolder(MY_COMPONENT);
+        File componentParentDir = new File(tempDir, COMPONENT_NAME);
+        assertTrue(componentParentDir.mkdir());
+        File componentDir = new File(componentParentDir, COMPONENT_DIR_NAME);
+        assertTrue(componentDir.mkdir());
 
-        File homeFolder = componentFolder.getParentFile();
-        MapRComponentsUtils.getComponentFolder(MY_COMPONENT, homeFolder.getAbsolutePath());
+        assertThrows(IOException.class, () -> {
+            MapRComponentsUtils.getComponentFolder(COMPONENT_NAME, tempDir.getAbsolutePath());
+        });
     }
 
-    @Test(expected = IOException.class)
+    @Test
     public void testEmptyVersionFile() throws IOException {
-        tempFolder.newFolder(MY_COMPONENT);
+        File componentParentDir = new File(tempDir, COMPONENT_NAME);
+        assertTrue(componentParentDir.mkdir());
 
-        File versionFile = tempFolder.newFile(VERSION_PATH);
+        File componentDir = new File(componentParentDir, COMPONENT_DIR_NAME);
+        assertTrue(componentDir.mkdir());
 
-        File homeFolder = versionFile.getParentFile().getParentFile();
-        MapRComponentsUtils.getComponentFolder(MY_COMPONENT, homeFolder.getAbsolutePath());
+        File versionFile = new File(componentParentDir, VERSION_FILE_NAME);
+        versionFile.createNewFile();
+
+        assertThrows(IOException.class, () -> {
+            MapRComponentsUtils.getComponentFolder(COMPONENT_NAME, tempDir.getAbsolutePath());
+        });
     }
 
-    @Test(expected = FileNotFoundException.class)
-    public void testNoComponentVersionFolder() throws IOException {
-        String component = MY_COMPONENT.toLowerCase();
-        tempFolder.newFolder(component);
+    @Test
+    public void testNoComponentDirectory() throws IOException {
+        File componentParentDir = new File(tempDir, COMPONENT_NAME);
+        assertTrue(componentParentDir.mkdir());
 
-        File versionFile = tempFolder.newFile(VERSION_PATH);
-        Files.write(versionFile.toPath(), VERSION.getBytes());
+        File versionFile = new File(componentParentDir, VERSION_FILE_NAME);
+        Files.write(versionFile.toPath(), VERSION.getBytes(), StandardOpenOption.CREATE);
 
-        File homeFolder = versionFile.getParentFile().getParentFile();
-        MapRComponentsUtils.getComponentFolder(MY_COMPONENT, homeFolder.getAbsolutePath());
+        assertThrows(FileNotFoundException.class, () -> {
+            MapRComponentsUtils.getComponentFolder(COMPONENT_NAME, tempDir.getAbsolutePath());
+        });
     }
 
     @Test
     public void testUpperCaseComponentName() throws IOException {
-        String component = MY_COMPONENT.toLowerCase();
-        tempFolder.newFolder(component);
-        String expectedFolder = tempFolder.newFolder(COMPONENT_PATH_WITH_VERSION).getAbsolutePath();
+        File componentParentDir = new File(tempDir, COMPONENT_NAME);
+        assertTrue(componentParentDir.mkdir());
 
-        File versionFile = tempFolder.newFile(VERSION_PATH);
+        File componentDir = new File(componentParentDir, COMPONENT_DIR_NAME);
+        assertTrue(componentDir.mkdir());
+
+        File versionFile = new File(componentParentDir, VERSION_FILE_NAME);
+        versionFile.createNewFile();
+
         Files.write(versionFile.toPath(), VERSION.getBytes());
 
-        File homeFolder = versionFile.getParentFile().getParentFile();
-        String resultFolder = MapRComponentsUtils.getComponentFolder(MY_COMPONENT.toUpperCase(),
-                homeFolder.getAbsolutePath()).toString();
+        String resultFolder = MapRComponentsUtils.getComponentFolder(COMPONENT_NAME.toUpperCase(),
+                tempDir.getAbsolutePath()).toString();
 
-        Assert.assertEquals(expectedFolder, resultFolder);
+        assertEquals(componentDir.getAbsolutePath(), resultFolder);
     }
 }
