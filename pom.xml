@@ -342,6 +342,11 @@
                 <version>${org.bouncycastle.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcutil-shaded-jdk15to18</artifactId>
+                <version>${org.bouncycastle.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.avro</groupId>
                 <artifactId>avro</artifactId>
                 <version>${avro.version}</version>
