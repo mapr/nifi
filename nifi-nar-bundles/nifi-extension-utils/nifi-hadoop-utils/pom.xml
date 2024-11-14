@@ -117,6 +117,10 @@
             <artifactId>httpclient</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.nifi</groupId>
+            <artifactId>nifi-properties</artifactId>
+        </dependency>
         <!-- Test dependencies -->
         <dependency>
             <groupId>org.apache.nifi</groupId>
