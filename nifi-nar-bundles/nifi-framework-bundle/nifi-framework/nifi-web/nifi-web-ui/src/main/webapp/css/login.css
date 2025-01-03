@@ -72,6 +72,12 @@ body.login-body input, body.login-body textarea {
 
 div.login-container {
     width: 412px;
+    overflow: hidden
+}
+
+#oidc-button {
+    width: inherit;
+    padding: inherit;
 }
 
 /*

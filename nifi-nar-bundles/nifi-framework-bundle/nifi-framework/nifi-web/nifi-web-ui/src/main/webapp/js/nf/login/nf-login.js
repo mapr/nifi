@@ -52,7 +52,8 @@
         urls: {
             token: '../nifi-api/access/token',
             accessStatus: '../nifi-api/access',
-            accessConfig: '../nifi-api/access/config'
+            accessConfig: '../nifi-api/access/config',
+            oidc: '../nifi-api/oauth2/authorization/consumer'
         }
     };
 
@@ -80,6 +81,12 @@
                 login();
             }
         });
+
+        $('#oidc-button').on('click', function () {
+            if (!$('#oidc-button').is('.disabled-button')) {
+                window.location.href = config.urls.oidc
+            }
+        })
 
         $('#login-submission-container').show();
     };

@@ -34,8 +34,6 @@ import java.net.URI;
  * Filter for determining appropriate login location.
  */
 public class LoginFilter implements Filter {
-    private static final String OAUTH2_AUTHORIZATION_PATH = "/nifi-api/oauth2/authorization/consumer";
-
     private static final String SAML2_AUTHENTICATE_FILTER_PATH = "/nifi-api/saml2/authenticate/consumer";
 
     private ServletContext servletContext;
@@ -47,7 +45,6 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
-        final boolean supportsOidc = Boolean.parseBoolean(servletContext.getInitParameter("oidc-supported"));
         final boolean supportsKnoxSso = Boolean.parseBoolean(servletContext.getInitParameter("knox-supported"));
         final boolean supportsSAML = Boolean.parseBoolean(servletContext.getInitParameter("saml-supported"));
 
@@ -57,11 +54,8 @@ public class LoginFilter implements Filter {
         if  (supportsKnoxSso) {
             final ServletContext apiContext = servletContext.getContext("/nifi-api");
             apiContext.getRequestDispatcher("/access/knox/request").forward(request, response);
-        } else if (supportsOidc) {
-            final URI redirectUri = requestUriBuilder.path(OAUTH2_AUTHORIZATION_PATH).build();
-            // Redirect to authorization URL defined in Spring Security OAuth2AuthorizationRequestRedirectFilter
-            sendRedirect(response, redirectUri);
-        } else if (supportsSAML) {
+        }
+        else if (supportsSAML) {
             final URI redirectUri = requestUriBuilder.path(SAML2_AUTHENTICATE_FILTER_PATH).build();
             // Redirect to request consumer URL defined in Spring Security OpenSamlAuthenticationRequestResolver.requestMatcher
             sendRedirect(response, redirectUri);

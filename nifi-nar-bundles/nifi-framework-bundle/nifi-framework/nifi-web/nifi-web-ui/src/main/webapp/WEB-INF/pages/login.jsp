@@ -59,6 +59,7 @@
             <jsp:include page="/WEB-INF/partials/login/login-message.jsp"/>
             <jsp:include page="/WEB-INF/partials/login/login-form.jsp"/>
             <jsp:include page="/WEB-INF/partials/login/login-submission.jsp"/>
+            <jsp:include page="/WEB-INF/partials/login/oidc.jsp"/>
             <jsp:include page="/WEB-INF/partials/login/login-progress.jsp"/>
         </div>
         <jsp:include page="/WEB-INF/partials/ok-dialog.jsp"/>
