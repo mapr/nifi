@@ -19,6 +19,8 @@ package org.apache.nifi.util.hpe;
 
 import org.apache.nifi.util.NiFiProperties;
 import org.apache.nifi.util.mapr.MapRComponentsUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -32,6 +34,7 @@ import java.util.Map;
  * Class for providing property's values from Hadoop
  */
 public final class HpePropertiesUtils {
+    private static final Logger logger = LoggerFactory.getLogger(HpePropertiesUtils.class);
 
     /**
      * Value to notify that this property should be found in Hadoop
@@ -54,6 +57,7 @@ public final class HpePropertiesUtils {
     public static final String SERVER_KEYSTORE_TYPE = "ssl.server.keystore.type";
 
     private static final String PASSWORD_SUFFIX = "password";
+    private static final String OIDC_SECURITY_SUFFIX = "nifi.security.user.oidc";
     private static final String HADOOP_COMPONENT_NAME = "hadoop";
 
     private static final Path HADOOP_CONF_PATH = getHadoopConfFolder();
@@ -102,6 +106,9 @@ public final class HpePropertiesUtils {
      * @return Hadoop value
      */
     public static String getHadoopProperty(final String key) {
+        if (key.startsWith(OIDC_SECURITY_SUFFIX)) {
+            return getOidcSecurityProperty(key);
+        }
         String hadoopKey = mapNifiToHadoopProperties.get(key);
 
         if (hadoopKey == null) {
@@ -144,6 +151,20 @@ public final class HpePropertiesUtils {
         }
 
         return new String(data);
+    }
+
+    private static String getOidcSecurityProperty(String key) {
+        switch (key) {
+            case NiFiProperties.SECURITY_USER_OIDC_DISCOVERY_URL:
+                return getHpeProperties().getOidcDiscoveryUrl();
+            case NiFiProperties.SECURITY_USER_OIDC_CLIENT_ID:
+                return getHpeProperties().getOidcClientId();
+            case NiFiProperties.SECURITY_USER_OIDC_CLIENT_SECRET:
+                return getHpeProperties().getOidcClientSecret();
+            default:
+                logger.warn("OIDC property '{}' can't be loaded from Hadoop", key);
+                return null;
+        }
     }
 
     private static synchronized HpeProperties getHpeProperties() {

@@ -95,10 +95,6 @@
                     <artifactId>kerb-simplekdc</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>com.google.code.gson</groupId>
-                    <artifactId>gson</artifactId>
-                </exclusion>
-                <exclusion>
                     <groupId>net.java.dev.jets3t</groupId>
                     <artifactId>jets3t</artifactId>
                 </exclusion>

@@ -3,6 +3,7 @@ package org.apache.nifi.properties;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.security.authentication.util.SsoConfigurationUtil;
 import org.apache.nifi.util.hpe.HpeProperties;
 
 import java.io.IOException;
@@ -46,4 +47,34 @@ public class HadoopConfiguration implements HpeProperties {
             Thread.currentThread().setContextClassLoader(originalClassLoader);
         }
     }
+
+    @Override
+    public String getOidcDiscoveryUrl() {
+        if (isSsoAuthenticationEnabled()) {
+            return SsoConfigurationUtil.getInstance().getClientIssuer() + "/.well-known/openid-configuration";
+        }
+        return null;
+    }
+
+    @Override
+    public String getOidcClientId() {
+        if (isSsoAuthenticationEnabled()) {
+            return SsoConfigurationUtil.getInstance().getClientId();
+        }
+        return null;
+    }
+
+    @Override
+    public String getOidcClientSecret() {
+        if (isSsoAuthenticationEnabled()) {
+            return SsoConfigurationUtil.getInstance().getClientSecret();
+        }
+        return null;
+    }
+
+    private boolean isSsoAuthenticationEnabled() {
+        String jwtEnabled = get(SsoConfigurationUtil.HADOOP_JWT_ENABLED);
+        return Boolean.parseBoolean(jwtEnabled);
+    }
+
 }
