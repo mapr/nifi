@@ -1,6 +1,7 @@
 package org.apache.nifi.util.hpe;
 
 import java.io.IOException;
+
 /**
  * Interface used to isolate Hadoop Configuration and it's libraries from the root NiFi classloader
  */
@@ -28,28 +29,28 @@ public interface HpeProperties {
      * Resolves a child path against a parent path: org.apache.hadoop.fs.Path(String parent, String child)
      *
      * @param parent parent path
-     * @param child  child path
+     * @param child child path
      */
     void addResource(String parent, String child);
 
     /**
      * Retrieve the OIDC discovery url configured in the environment.
      *
-     * @return null if SSO is not enabled in the environment, regardless of whether the OIDC discovery URL is set or not.
+     * @return empty string if SSO is not enabled in the environment, regardless of whether the OIDC discovery URL is set or not.
      */
     String getOidcDiscoveryUrl();
 
     /**
      * Retrieve the OIDC client ID configured in the environment.
      *
-     * @return null if SSO is not enabled in the environment, regardless of whether the OIDC client ID is set or not.
+     * @return empty string if SSO is not enabled in the environment, regardless of whether the OIDC client ID is set or not.
      */
     String getOidcClientId();
 
     /**
      * Retrieve the OIDC client secret configured in the environment.
      *
-     * @return null if SSO is not enabled in the environment, regardless of whether the OIDC client secret is set or not.
+     * @return empty string if SSO is not enabled in the environment, regardless of whether the OIDC client secret is set or not.
      */
     String getOidcClientSecret();
 }

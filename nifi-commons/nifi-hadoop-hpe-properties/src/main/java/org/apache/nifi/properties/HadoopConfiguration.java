@@ -4,6 +4,7 @@ package org.apache.nifi.properties;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.security.authentication.util.SsoConfigurationUtil;
+import org.apache.nifi.util.StringUtils;
 import org.apache.nifi.util.hpe.HpeProperties;
 
 import java.io.IOException;
@@ -53,7 +54,7 @@ public class HadoopConfiguration implements HpeProperties {
         if (isSsoAuthenticationEnabled()) {
             return SsoConfigurationUtil.getInstance().getClientIssuer() + "/.well-known/openid-configuration";
         }
-        return null;
+        return StringUtils.EMPTY;
     }
 
     @Override
@@ -61,7 +62,7 @@ public class HadoopConfiguration implements HpeProperties {
         if (isSsoAuthenticationEnabled()) {
             return SsoConfigurationUtil.getInstance().getClientId();
         }
-        return null;
+        return StringUtils.EMPTY;
     }
 
     @Override
@@ -69,7 +70,7 @@ public class HadoopConfiguration implements HpeProperties {
         if (isSsoAuthenticationEnabled()) {
             return SsoConfigurationUtil.getInstance().getClientSecret();
         }
-        return null;
+        return StringUtils.EMPTY;
     }
 
     private boolean isSsoAuthenticationEnabled() {
