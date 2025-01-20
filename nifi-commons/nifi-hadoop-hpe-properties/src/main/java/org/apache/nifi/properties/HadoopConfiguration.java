@@ -8,6 +8,7 @@ import org.apache.nifi.util.StringUtils;
 import org.apache.nifi.util.hpe.HpeProperties;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 
 public class HadoopConfiguration implements HpeProperties {
     private final Configuration configuration;
@@ -28,11 +29,13 @@ public class HadoopConfiguration implements HpeProperties {
     }
 
     @Override
-    public char[] getPassword(String name) throws IOException {
+    public char[] getPassword(String name) {
         final ClassLoader originalClassLoader = Thread.currentThread().getContextClassLoader();
         Thread.currentThread().setContextClassLoader(this.getClass().getClassLoader());
         try {
             return configuration.getPassword(name);
+        } catch (IOException e) {
+            throw new UncheckedIOException(String.format("Failed to get property '%s'", name), e);
         } finally {
             Thread.currentThread().setContextClassLoader(originalClassLoader);
         }

@@ -1,7 +1,5 @@
 package org.apache.nifi.util.hpe;
 
-import java.io.IOException;
-
 /**
  * Interface used to isolate Hadoop Configuration and it's libraries from the root NiFi classloader
  */
@@ -20,9 +18,8 @@ public interface HpeProperties {
      *
      * @param name property name
      * @return password
-     * @throws IOException
      */
-    char[] getPassword(String name) throws IOException;
+    char[] getPassword(String name);
 
     /**
      * Wrap around org.apache.hadoop.conf.Configuration#addResource(Path file).
