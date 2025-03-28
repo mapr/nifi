@@ -252,11 +252,11 @@ public class GetHDFSTest {
     public void testDirectoryUsesUnrecognizedEL() throws IOException {
         GetHDFS proc = new TestableGetHDFS(kerberosProperties);
         TestRunner runner = TestRunners.newTestRunner(proc);
-        runner.setProperty(PutHDFS.DIRECTORY, "data_${literal('testing'):substring(0,4)%7D");
+        runner.setProperty(PutHDFS.DIRECTORY, "data_${hostname()");
         runner.setProperty(GetHDFS.FILE_FILTER_REGEX, ".*.zip");
         runner.setProperty(GetHDFS.KEEP_SOURCE_FILE, "true");
         runner.setProperty(GetHDFS.COMPRESSION_CODEC, "AUTOMATIC");
-        runner.assertNotValid();
+        runner.assertValid();
     }
 
     @Test

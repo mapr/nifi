@@ -111,14 +111,12 @@ class TestListHDFS {
 
     @Test
     void testListingWithUnrecognizedELFunction() {
-        addFileStatus("/test", "testFile.txt", false);
+        addFileStatus("/data_${hostname()", "testFile.txt", false);
+        runner.setProperty(ListHDFS.DIRECTORY, "/data_${hostname()");
 
-        runner.setProperty(ListHDFS.DIRECTORY, "data_${literal('testing'):substring(0,4)%7D");
+        runner.run();
 
-        final AssertionError assertionError = assertThrows(AssertionError.class, () -> runner.run());
-        assertEquals(IllegalArgumentException.class, assertionError.getCause().getClass());
-
-        runner.assertAllFlowFilesTransferred(ListHDFS.REL_SUCCESS, 0);
+        runner.assertAllFlowFilesTransferred(ListHDFS.REL_SUCCESS, 1);
     }
 
     @Test

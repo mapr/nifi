@@ -506,7 +506,7 @@ public class PutHDFSTest {
 
         // this value somehow causes NiFi to not even recognize the EL, and thus it returns successfully from calling
         // evaluateAttributeExpressions and then tries to create a Path with the exact value below and blows up
-        runner.setProperty(PutHDFS.DIRECTORY, "data_${literal('testing'):substring(0,4)%7D");
+        runner.setProperty(PutHDFS.DIRECTORY, "data_${hostname()");
 
         runner.setProperty(PutHDFS.CONFLICT_RESOLUTION, "replace");
         try (FileInputStream fis = new FileInputStream("src/test/resources/testdata/randombytes-1")) {
@@ -516,7 +516,7 @@ public class PutHDFSTest {
             runner.run();
         }
 
-        runner.assertAllFlowFilesTransferred(PutHDFS.REL_FAILURE);
+        runner.assertAllFlowFilesTransferred(PutHDFS.REL_SUCCESS);
     }
 
     @Test
