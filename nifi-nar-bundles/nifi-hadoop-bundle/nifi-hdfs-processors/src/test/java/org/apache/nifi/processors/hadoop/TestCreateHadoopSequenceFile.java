@@ -39,6 +39,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -356,6 +357,11 @@ public class TestCreateHadoopSequenceFile {
         @Override
         protected KerberosProperties getKerberosProperties(File kerberosConfigFile) {
             return testKerbersProperties;
+        }
+
+        @Override
+        protected List<String> findConfigLocations() {
+            return Collections.emptyList();
         }
     }
 

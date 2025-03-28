@@ -44,6 +44,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.PrivilegedExceptionAction;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -353,6 +354,11 @@ public class GetHDFSTest {
         @Override
         protected KerberosProperties getKerberosProperties(File kerberosConfigFile) {
             return testKerberosProperties;
+        }
+
+        @Override
+        protected List<String> findConfigLocations() {
+            return Collections.emptyList();
         }
     }
 

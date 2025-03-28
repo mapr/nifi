@@ -38,6 +38,7 @@ import org.mockito.ArgumentCaptor;
 import java.io.File;
 import java.io.IOException;
 import java.security.PrivilegedExceptionAction;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -153,6 +154,11 @@ public class GetHDFSSequenceFileTest {
 
         protected UserGroupInformation getUserGroupInformation() {
             return userGroupInformation;
+        }
+
+        @Override
+        protected List<String> findConfigLocations() {
+            return Collections.emptyList();
         }
     }
 }

@@ -22,6 +22,8 @@ import org.apache.nifi.processor.ProcessSession;
 import org.apache.nifi.processor.exception.ProcessException;
 
 import java.io.File;
+import java.util.Collections;
+import java.util.List;
 
 public class SimpleHadoopProcessor extends AbstractHadoopProcessor {
 
@@ -56,5 +58,10 @@ public class SimpleHadoopProcessor extends AbstractHadoopProcessor {
     @Override
     boolean isLocalFileSystemAccessDenied() {
         return localFileSystemAccessDenied;
+    }
+
+    @Override
+    protected List<String> findConfigLocations() {
+        return Collections.emptyList();
     }
 }

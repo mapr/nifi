@@ -779,5 +779,10 @@ public class PutHDFSTest {
         protected FileSystem getFileSystem() {
             return fileSystem;
         }
+
+        @Override
+        protected List<String> findConfigLocations() {
+            return Collections.emptyList();
+        }
     }
 }

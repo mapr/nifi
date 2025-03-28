@@ -32,6 +32,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -254,6 +255,11 @@ public class TestFetchHDFS {
         @Override
         protected FileSystem getFileSystem() {
             return fileSystem == null ? super.getFileSystem() : fileSystem;
+        }
+
+        @Override
+        protected List<String> findConfigLocations() {
+            return Collections.emptyList();
         }
     }
 }

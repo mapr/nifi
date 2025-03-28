@@ -21,10 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.apache.hadoop.conf.Configuration;
@@ -800,6 +797,11 @@ public class TestGetHDFSFileInfo {
         @Override
         protected FileSystem getFileSystem(final Configuration config) throws IOException {
             return fileSystem;
+        }
+
+        @Override
+        protected List<String> findConfigLocations() {
+            return Collections.emptyList();
         }
     }
 }

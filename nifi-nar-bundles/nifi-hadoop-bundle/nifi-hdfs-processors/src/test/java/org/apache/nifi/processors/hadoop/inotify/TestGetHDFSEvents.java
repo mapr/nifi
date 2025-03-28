@@ -34,6 +34,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -257,6 +258,11 @@ public class TestGetHDFSEvents {
         @Override
         protected HdfsAdmin getHdfsAdmin() {
             return hdfsAdmin;
+        }
+
+        @Override
+        protected List<String> findConfigLocations() {
+            return Collections.emptyList();
         }
     }
 }

@@ -400,10 +400,14 @@ public abstract class AbstractHadoopProcessor extends AbstractProcessor implemen
 
             // Adding auto-detected configs if no configs were provided
             if(locations.isEmpty()) {
-                locations.addAll(HpePropertiesUtils.getHadoopClientConfigs());
+                locations.addAll(findConfigLocations());
             }
 
             return locations;
+    }
+
+    protected List<String> findConfigLocations() {
+        return HpePropertiesUtils.getHadoopClientConfigs();
     }
 
     @OnStopped

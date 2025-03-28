@@ -41,14 +41,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 import static org.apache.nifi.processors.hadoop.ListHDFS.LATEST_TIMESTAMP_KEY;
 import static org.apache.nifi.processors.hadoop.ListHDFS.REL_SUCCESS;
@@ -579,6 +572,11 @@ class TestListHDFS {
         @Override
         protected FileSystem getFileSystem(final Configuration config) {
             return fileSystem;
+        }
+
+        @Override
+        protected List<String> findConfigLocations() {
+            return Collections.emptyList();
         }
     }
 

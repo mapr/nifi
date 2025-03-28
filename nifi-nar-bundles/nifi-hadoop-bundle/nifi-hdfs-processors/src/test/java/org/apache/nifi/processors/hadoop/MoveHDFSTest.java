@@ -45,11 +45,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -307,7 +303,12 @@ public class MoveHDFSTest {
       Files.copy(Paths.get(TEST_DATA_DIRECTORY, "randombytes-2"), Paths.get(INPUT_DIRECTORY, "randombytes-1"));
       Files.copy(Paths.get(TEST_DATA_DIRECTORY, "randombytes-1"), Paths.get(OUTPUT_DIRECTORY, "randombytes-1"));
 
-      MoveHDFS processor = new MoveHDFS();
+      MoveHDFS processor = new MoveHDFS() {
+          @Override
+          protected List<String> findConfigLocations() {
+              return Collections.emptyList();
+          }
+      };
 
       TestRunner runner = TestRunners.newTestRunner(processor);
       runner.setProperty(MoveHDFS.INPUT_DIRECTORY_OR_FILE, INPUT_DIRECTORY);
@@ -357,6 +358,11 @@ public class MoveHDFSTest {
         @Override
         protected FileSystem getFileSystem() {
             return fileSystem == null ? super.getFileSystem() : fileSystem;
+        }
+
+        @Override
+        protected List<String> findConfigLocations() {
+            return Collections.emptyList();
         }
     }
 }

@@ -34,6 +34,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -243,6 +244,11 @@ public class TestDeleteHDFS {
         @Override
         protected FileSystem getFileSystem() {
             return mockFileSystem;
+        }
+
+        @Override
+        protected List<String> findConfigLocations() {
+            return Collections.emptyList();
         }
     }
 
