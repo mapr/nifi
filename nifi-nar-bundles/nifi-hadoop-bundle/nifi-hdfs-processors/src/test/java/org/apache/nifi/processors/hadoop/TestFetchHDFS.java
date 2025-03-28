@@ -92,7 +92,9 @@ public class TestFetchHDFS {
         final ProvenanceEventRecord fetchEvent = provenanceEvents.get(0);
         assertEquals(ProvenanceEventType.FETCH, fetchEvent.getEventType());
         // As absolute path call results a different format under Windows, the assertion directly looks for duplication.
-        assertFalse(fetchEvent.getTransitUri().contains(File.separator + File.separator));
+        // In HPE Hadoop, Path.toString() returns the path in the format "file:///" instead of "file:/".
+        // See details in the Path.toString() code comments.
+        assertTrue(fetchEvent.getTransitUri().contains(File.separator + File.separator + File.separator));
     }
 
     @Test
