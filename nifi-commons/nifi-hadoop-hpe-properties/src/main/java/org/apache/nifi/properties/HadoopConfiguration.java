@@ -69,4 +69,9 @@ public class HadoopConfiguration implements HpeProperties {
     public String getOidcClientSecret() {
         return SsoConfigurationUtil.getInstance().getClientSecret();
     }
+
+    @Override
+    public String getUserClaim() {
+        return SsoConfigurationUtil.getInstance().getUserAttrName();
+    }
 }

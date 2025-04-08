@@ -171,6 +171,8 @@ public final class HpePropertiesUtils {
                 return getHpeProperties().getOidcClientId();
             case NiFiProperties.SECURITY_USER_OIDC_CLIENT_SECRET:
                 return getHpeProperties().getOidcClientSecret();
+            case NiFiProperties.SECURITY_USER_OIDC_CLAIM_IDENTIFYING_USER:
+                return getHpeProperties().getUserClaim();
             default:
                 logger.warn("OIDC property '{}' can't be loaded from Hadoop", key);
                 return null;

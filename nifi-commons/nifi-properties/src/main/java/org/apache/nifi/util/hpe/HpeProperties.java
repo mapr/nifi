@@ -50,4 +50,11 @@ public interface HpeProperties {
      * @return empty string if SSO is not enabled in the environment, regardless of whether the OIDC client secret is set or not.
      */
     String getOidcClientSecret();
+
+    /**
+     * Retrieve the OIDC claim that identifies the authenticated user.
+     *
+     * @return empty string if SSO is not enabled in the environment, regardless of whether the OIDC client secret is set or not.
+     */
+    String getUserClaim();
 }
