@@ -75,7 +75,6 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
-import org.springframework.security.oauth2.client.web.OAuth2AuthorizationCodeGrantFilter;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter;
 import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
@@ -151,25 +150,6 @@ public class OidcSecurityConfiguration {
         this.jwtDecoder = Objects.requireNonNull(jwtDecoder, "JWT Decoder required");
         this.logoutRequestManager = Objects.requireNonNull(logoutRequestManager, "Logout Request Manager required");
         this.keyRotationPeriod = properties.getSecurityUserJwsKeyRotationPeriod();
-    }
-
-    /**
-     * Authorization Code Grant Filter handles Authorization Server responses and updates the Authorized Client
-     * Repository with ID Token and optional Refresh Token information
-     *
-     * @param authenticationManager Spring Security Authentication Manager
-     * @return OAuth2 Authorization Code Grant Filter
-     */
-    @Bean
-    public OAuth2AuthorizationCodeGrantFilter oAuth2AuthorizationCodeGrantFilter(final AuthenticationManager authenticationManager) {
-        final OAuth2AuthorizationCodeGrantFilter filter = new OAuth2AuthorizationCodeGrantFilter(
-                clientRegistrationRepository(),
-                authorizedClientRepository(),
-                authenticationManager
-        );
-        filter.setAuthorizationRequestRepository(authorizationRequestRepository());
-        filter.setRequestCache(nullRequestCache);
-        return filter;
     }
 
     /**

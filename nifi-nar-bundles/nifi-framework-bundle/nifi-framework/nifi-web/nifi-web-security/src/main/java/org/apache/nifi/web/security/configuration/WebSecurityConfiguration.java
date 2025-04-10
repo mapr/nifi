@@ -38,7 +38,6 @@ import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.oauth2.client.web.OAuth2AuthorizationCodeGrantFilter;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter;
 import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter;
@@ -86,7 +85,6 @@ public class WebSecurityConfiguration {
             final KnoxAuthenticationFilter knoxAuthenticationFilter,
             final NiFiAnonymousAuthenticationFilter anonymousAuthenticationFilter,
             final OAuth2LoginAuthenticationFilter oAuth2LoginAuthenticationFilter,
-            final OAuth2AuthorizationCodeGrantFilter oAuth2AuthorizationCodeGrantFilter,
             final OAuth2AuthorizationRequestRedirectFilter oAuth2AuthorizationRequestRedirectFilter,
             final OidcBearerTokenRefreshFilter oidcBearerTokenRefreshFilter,
             final OidcLogoutFilter oidcLogoutFilter,
@@ -160,7 +158,6 @@ public class WebSecurityConfiguration {
 
         if (properties.isOidcEnabled()) {
             http.addFilterBefore(oAuth2LoginAuthenticationFilter, AnonymousAuthenticationFilter.class);
-            http.addFilterBefore(oAuth2AuthorizationCodeGrantFilter, AnonymousAuthenticationFilter.class);
             http.addFilterBefore(oAuth2AuthorizationRequestRedirectFilter, AnonymousAuthenticationFilter.class);
             http.addFilterBefore(oidcBearerTokenRefreshFilter, AnonymousAuthenticationFilter.class);
             http.addFilterBefore(oidcLogoutFilter, CsrfFilter.class);
