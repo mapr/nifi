@@ -15,6 +15,20 @@
   limitations under the License.
 --%>
 <%@ page contentType="text/html" pageEncoding="UTF-8" session="false" %>
+<%
+    boolean isOidcSupported = Boolean.parseBoolean(
+            application.getInitParameter("oidc-supported")
+    );
+%>
 <div id="login-submission-container" class="login-container hidden">
-    <div id="login-submission-button" class="button">Log in</div>
+    <div class="button-wrapper">
+        <div id="login-submission-button" class="button">Log in</div>
+    </div>
+    <hr class="horizontal-line">
+    <div class="button-wrapper">
+        <div id="oidc-button"
+             class="<%= isOidcSupported ? "button" : "button disabled-button" %>">
+            Log in with SSO
+        </div>
+    </div>
 </div>

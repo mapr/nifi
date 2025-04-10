@@ -72,12 +72,20 @@ body.login-body input, body.login-body textarea {
 
 div.login-container {
     width: 412px;
-    overflow: hidden
+}
+
+div.button-wrapper {
+    text-align: right;
+}
+
+div.button-wrapper > .button {
+    float: none;
+    display: inline-block;
 }
 
 #oidc-button {
-    width: inherit;
-    padding: inherit;
+    width: 100%;
+    padding: 0;
 }
 
 /*
