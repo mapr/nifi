@@ -19,7 +19,7 @@
     </parent>
     <groupId>org.apache.nifi</groupId>
     <artifactId>nifi</artifactId>
-    <version>1.28.0.0-eep-940-SNAPSHOT</version>
+    <version>1.28.0.0-eep-940</version>
     <packaging>pom</packaging>
     <description>Apache NiFi is an easy to use, powerful, and reliable system to process and distribute data.</description>
     <modules>
@@ -835,18 +835,18 @@
             <dependency>
                 <groupId>org.apache.nifi</groupId>
                 <artifactId>nifi-standard-shared-nar</artifactId>
-                <version>1.28.0.0-eep-940-SNAPSHOT</version>
+                <version>1.28.0.0-eep-940</version>
                 <type>nar</type>
             </dependency>
             <dependency>
                 <groupId>org.apache.nifi</groupId>
                 <artifactId>nifi-property-utils</artifactId>
-                <version>1.28.0.0-eep-940-SNAPSHOT</version>
+                <version>1.28.0.0-eep-940</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.nifi</groupId>
                 <artifactId>nifi-utils</artifactId>
-                <version>1.28.0.0-eep-940-SNAPSHOT</version>
+                <version>1.28.0.0-eep-940</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
