@@ -147,12 +147,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-	<!-- Override vulnerable protobuf-java 3.21.9 from maprfs -->
-        <dependency>
-            <groupId>com.google.protobuf</groupId>
-            <artifactId>protobuf-java</artifactId>
-            <version>3.25.7</version>
-        </dependency>
     </dependencies>
 
 </project>
