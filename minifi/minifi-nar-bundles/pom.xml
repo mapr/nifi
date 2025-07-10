@@ -21,7 +21,7 @@ limitations under the License.
     <parent>
         <groupId>org.apache.nifi.minifi</groupId>
         <artifactId>minifi</artifactId>
-        <version>1.28.0.100-eep-941-SNAPSHOT</version>
+        <version>1.28.0.200-eep-1000-SNAPSHOT</version>
     </parent>
     <artifactId>minifi-nar-bundles</artifactId>
     <packaging>pom</packaging>
