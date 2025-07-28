@@ -1,13 +1,13 @@
 %undefine __check_files
 
-summary:     Ezmeral
+summary:     HPE DataFabric Ecosystem Pack: NiFi
 license:     Hewlett Packard Enterprise, CopyRight
-Vendor:      Hewlett Packard Enterprise, <ezmeral_software_support@hpe.com>
+Vendor:      Hewlett Packard Enterprise
 name:        mapr-nifi
 version:     __RELEASE_VERSION__
 release:     1
 prefix:      /
-group:       MapR
+group:       HPE
 buildarch:   noarch
 requires:    mapr-client >= 7.1.0, mapr-hadoop-client >= 3.3.4, zip
 conflicts:   mapr-core < 7.1.0
@@ -15,7 +15,7 @@ AutoReqProv: no
 
 
 %description
-Ezmeral Ecosystem Pack: NiFi package
+Apache NiFi distribution included in HPE DataFabric Software Ecosystem Pack
 Commit: __GIT_COMMIT__
 Tag: __RELEASE_BRANCH__
 
