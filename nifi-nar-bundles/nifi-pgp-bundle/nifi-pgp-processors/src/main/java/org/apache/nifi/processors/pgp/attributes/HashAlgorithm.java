@@ -16,7 +16,7 @@
  */
 package org.apache.nifi.processors.pgp.attributes;
 
-import org.bouncycastle.shaded.bcpg.HashAlgorithmTags;
+import org.bouncycastle.bcpg.HashAlgorithmTags;
 
 /**
  * PGP Hash Algorithm Definitions supported for Signing

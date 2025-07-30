@@ -71,8 +71,8 @@ import org.apache.nifi.security.util.crypto.OpenPGPKeyBasedEncryptor;
 import org.apache.nifi.security.util.crypto.OpenPGPPasswordBasedEncryptor;
 import org.apache.nifi.security.util.crypto.PasswordBasedEncryptor;
 import org.apache.nifi.util.StopWatch;
-import org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.shaded.openpgp.PGPEncryptedData;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.openpgp.PGPEncryptedData;
 
 @EventDriven
 @SideEffectFree

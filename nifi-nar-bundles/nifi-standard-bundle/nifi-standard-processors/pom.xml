@@ -151,20 +151,19 @@
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-shaded-jdk15to18</artifactId>
+            <artifactId>bcprov-jdk18on</artifactId>
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcpg-shaded-jdk15to18</artifactId>
+            <artifactId>bcpg-jdk18on</artifactId>
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcpkix-shaded-jdk15to18</artifactId>
+            <artifactId>bcpkix-jdk18on</artifactId>
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcutil-shaded-jdk15to18</artifactId>
-            <version>${org.bouncycastle.version}</version>
+            <artifactId>bcutil-jdk18on</artifactId>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>

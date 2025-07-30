@@ -16,7 +16,7 @@
  */
 package org.apache.nifi.pgp.util;
 
-import org.bouncycastle.shaded.bcpg.ArmoredOutputStream;
+import org.bouncycastle.bcpg.ArmoredOutputStream;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

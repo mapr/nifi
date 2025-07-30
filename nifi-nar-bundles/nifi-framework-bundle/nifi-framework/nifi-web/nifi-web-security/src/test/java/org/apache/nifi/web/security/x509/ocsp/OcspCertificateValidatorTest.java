@@ -16,19 +16,19 @@
  */
 package org.apache.nifi.web.security.x509.ocsp;
 
-import org.bouncycastle.shaded.asn1.x500.X500Name;
-import org.bouncycastle.shaded.asn1.x509.ExtendedKeyUsage;
-import org.bouncycastle.shaded.asn1.x509.KeyPurposeId;
-import org.bouncycastle.shaded.asn1.x509.KeyUsage;
-import org.bouncycastle.shaded.asn1.x509.SubjectPublicKeyInfo;
-import org.bouncycastle.shaded.asn1.x509.X509Extension;
-import org.bouncycastle.shaded.cert.X509CertificateHolder;
-import org.bouncycastle.shaded.cert.X509v3CertificateBuilder;
-import org.bouncycastle.shaded.cert.jcajce.JcaX509CertificateConverter;
-import org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.shaded.operator.ContentSigner;
-import org.bouncycastle.shaded.operator.OperatorCreationException;
-import org.bouncycastle.shaded.operator.jcajce.JcaContentSignerBuilder;
+import org.bouncycastle.asn1.x500.X500Name;
+import org.bouncycastle.asn1.x509.ExtendedKeyUsage;
+import org.bouncycastle.asn1.x509.KeyPurposeId;
+import org.bouncycastle.asn1.x509.KeyUsage;
+import org.bouncycastle.asn1.x509.SubjectPublicKeyInfo;
+import org.bouncycastle.asn1.x509.X509Extension;
+import org.bouncycastle.cert.X509CertificateHolder;
+import org.bouncycastle.cert.X509v3CertificateBuilder;
+import org.bouncycastle.cert.jcajce.JcaX509CertificateConverter;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.operator.ContentSigner;
+import org.bouncycastle.operator.OperatorCreationException;
+import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -45,7 +45,9 @@ import java.security.Security;
 import java.security.SignatureException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -126,10 +128,10 @@ public class OcspCertificateValidatorTest {
                 new KeyUsage(KeyUsage.digitalSignature | KeyUsage.keyEncipherment | KeyUsage.dataEncipherment | KeyUsage.keyAgreement));
 
         // (2) extendedKeyUsage extension
-        Vector<KeyPurposeId> ekUsages = new Vector<>();
+        List<KeyPurposeId> ekUsages = new ArrayList<>();
         ekUsages.add(KeyPurposeId.id_kp_clientAuth);
         ekUsages.add(KeyPurposeId.id_kp_serverAuth);
-        certBuilder.addExtension(X509Extension.extendedKeyUsage, false, new ExtendedKeyUsage(ekUsages));
+        certBuilder.addExtension(X509Extension.extendedKeyUsage, false, new ExtendedKeyUsage(ekUsages.toArray(new KeyPurposeId[0])));
 
         // Sign the certificate
         X509CertificateHolder certificateHolder = certBuilder.build(sigGen);

@@ -72,19 +72,19 @@
             <!-- Bouncy Castle -->
             <dependency>
                 <groupId>org.bouncycastle</groupId>
-                <artifactId>bcprov-shaded-jdk15to18</artifactId>
+                <artifactId>bcprov-jdk18on</artifactId>
                 <version>${org.bouncycastle.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.bouncycastle</groupId>
-                <artifactId>bcpkix-shaded-jdk15to18</artifactId>
+                <artifactId>bcpkix-jdk18on</artifactId>
                 <version>${org.bouncycastle.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.bouncycastle</groupId>
-                <artifactId>bcutil-shaded-jdk15to18</artifactId>
+                <artifactId>bcutil-jdk18on</artifactId>
                 <version>${org.bouncycastle.version}</version>
                 <scope>provided</scope>
             </dependency>

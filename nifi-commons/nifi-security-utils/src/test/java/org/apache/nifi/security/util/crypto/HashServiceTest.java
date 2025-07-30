@@ -18,7 +18,7 @@ package org.apache.nifi.security.util.crypto;
 
 import org.apache.nifi.components.AllowableValue;
 import org.apache.nifi.util.StringUtils;
-import org.bouncycastle.shaded.util.encoders.Hex;
+import org.bouncycastle.util.encoders.Hex;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;

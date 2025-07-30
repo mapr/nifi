@@ -162,9 +162,6 @@
         <eep.zookeeper.version>3.8.3.0-mapr-SNAPSHOT</eep.zookeeper.version>
         <eep.core.version>7.10.0.0-mapr</eep.core.version>
 
-        <bc-fips.version>1.0.2.3</bc-fips.version>
-        <bctls-fips.version>1.0.12.2</bctls-fips.version>
-
         <mapr.repo>http://df-mvn-dev.mip.storage.hpecorp.net/nexus/content/groups/public/</mapr.repo>
 
         <!-- maven plugin versions -->
@@ -328,22 +325,27 @@
             </dependency>
             <dependency>
                 <groupId>org.bouncycastle</groupId>
-                <artifactId>bcprov-shaded-jdk15to18</artifactId>
+                <artifactId>bcprov-jdk18on</artifactId>
                 <version>${org.bouncycastle.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.bouncycastle</groupId>
-                <artifactId>bcpkix-shaded-jdk15to18</artifactId>
+                <artifactId>bcpkix-jdk18on</artifactId>
                 <version>${org.bouncycastle.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.bouncycastle</groupId>
-                <artifactId>bcpg-shaded-jdk15to18</artifactId>
+                <artifactId>bcpg-jdk18on</artifactId>
                 <version>${org.bouncycastle.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.bouncycastle</groupId>
-                <artifactId>bcutil-shaded-jdk15to18</artifactId>
+                <artifactId>bcutil-jdk18on</artifactId>
+                <version>${org.bouncycastle.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcmail-jdk18on</artifactId>
                 <version>${org.bouncycastle.version}</version>
             </dependency>
             <dependency>
@@ -817,6 +819,14 @@
                     <exclusion>
                         <groupId>org.slf4j</groupId>
                         <artifactId>slf4j-reload4j</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.bouncycastle</groupId>
+                        <artifactId>bc-fips</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.bouncycastle</groupId>
+                        <artifactId>bctls-fips</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>

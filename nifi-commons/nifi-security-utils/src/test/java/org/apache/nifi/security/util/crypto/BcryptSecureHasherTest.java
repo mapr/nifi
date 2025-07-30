@@ -17,7 +17,7 @@
 package org.apache.nifi.security.util.crypto;
 
 import at.favre.lib.crypto.bcrypt.Radix64Encoder;
-import org.bouncycastle.shaded.util.encoders.Hex;
+import org.bouncycastle.util.encoders.Hex;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;

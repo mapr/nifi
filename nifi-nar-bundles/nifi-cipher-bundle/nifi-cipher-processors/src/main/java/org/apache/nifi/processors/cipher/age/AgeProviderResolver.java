@@ -16,7 +16,7 @@
  */
 package org.apache.nifi.processors.cipher.age;
 
-import org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import java.security.Provider;
 import java.security.Security;

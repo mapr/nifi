@@ -6,12 +6,6 @@ function prepare_nifi_install_packages() {
   echo "Cleaning '${DIST_DIR}' dir..."
   rm -rf ${DIST_DIR}
 
-  echo "Build shaded BouncyCastle"
-  mvn -f bouncycastle-shaded/ clean install
-  if (($?)); then
-    return 1
-  fi
-
   echo "Building project..."
   build_nifi
   if (($?)); then

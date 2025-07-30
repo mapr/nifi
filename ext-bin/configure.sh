@@ -122,17 +122,6 @@ function configureUiSecurity() {
   fi
 }
 
-function enableFipsIfConfigured() {
-  get_fips_mode=$(sysctl crypto.fips_enabled 2>/dev/null)
-  fips_enabled='crypto.fips_enabled = 1'
-  if [ "$get_fips_mode" == "$fips_enabled" ]; then
-    # FIPS-mode implies -secure
-    if [ "$IS_SECURED" == "true" ]; then
-      sed -i "s~#java.arg.19=.*~java.arg.19=-Djava.security.properties=$FIPS_CONF~" $BOOTSTRAP_CONF
-    fi
-  fi
-}
-
 function migratePreviousConfiguration() {
   if [ -f ${NIFI_HOME}"/conf/.not_configured_yet" ]; then
     nifi_folders="$MAPR_HOME/nifi/*"
@@ -331,7 +320,6 @@ configureUiSecurity
 changePermission
 updateWardenLocalConfFile
 setupWardenConfFile
-enableFipsIfConfigured
 createRestartFile
 
 rm -rf ${NIFI_HOME}/conf/.not_configured_yet

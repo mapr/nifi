@@ -16,7 +16,7 @@
  */
 package org.apache.nifi.security.cert.builder;
 
-import org.bouncycastle.shaded.asn1.x509.KeyPurposeId;
+import org.bouncycastle.asn1.x509.KeyPurposeId;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

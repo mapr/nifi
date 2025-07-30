@@ -35,9 +35,9 @@ import org.apache.nifi.util.MockProcessContext;
 import org.apache.nifi.util.StringUtils;
 import org.apache.nifi.util.TestRunner;
 import org.apache.nifi.util.TestRunners;
-import org.bouncycastle.shaded.bcpg.BCPGInputStream;
-import org.bouncycastle.shaded.bcpg.SymmetricKeyEncSessionPacket;
-import org.bouncycastle.shaded.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.bcpg.BCPGInputStream;
+import org.bouncycastle.bcpg.SymmetricKeyEncSessionPacket;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -63,7 +63,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static org.bouncycastle.shaded.openpgp.PGPUtil.getDecoderStream;
+import static org.bouncycastle.openpgp.PGPUtil.getDecoderStream;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
