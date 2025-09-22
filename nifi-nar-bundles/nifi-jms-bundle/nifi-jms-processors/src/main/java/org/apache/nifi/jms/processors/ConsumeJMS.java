@@ -52,7 +52,7 @@ import org.springframework.jms.connection.SingleConnectionFactory;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.JmsHeaders;
 
-import javax.jms.Session;
+import jakarta.jms.Session;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -481,7 +481,7 @@ public class ConsumeJMS extends AbstractJMSProcessor<JMSConsumer> {
      * Use provided clientId for non shared durable consumers, if not set
      * always a different value as defined in {@link AbstractJMSProcessor#setClientId(ProcessContext, SingleConnectionFactory)}.
      * </p>
-     * See {@link Session#createDurableConsumer(javax.jms.Topic, String, String, boolean)},
+     * See {@link Session#createDurableConsumer(jakarta.jms.Topic, String, String, boolean)},
      * in special following part: <i>An unshared durable subscription is
      * identified by a name specified by the client and by the client identifier,
      * which must be set. An application which subsequently wishes to create

@@ -38,15 +38,15 @@
     Configuring ConsumeJMS:
 </p>
 <ol>
-    <li><b>User Name</b> - [OPTIONAL] User Name used for authentication and authorization when this processor obtains <i>javax.jms.Connection</i> 
-    from the pre-configured <i>javax.jms.ConnectionFactory</i> (see below).
+    <li><b>User Name</b> - [OPTIONAL] User Name used for authentication and authorization when this processor obtains <i>jakarta.jms.Connection</i>
+    from the pre-configured <i>jakarta.jms.ConnectionFactory</i> (see below).
     </li>
     <li><b>Password</b> - [OPTIONAL] Password used in conjunction with <b>User Name</b>.
     </li>
-    <li><b>Destination Name</b> - [REQUIRED] the name of the <i>javax.jms.Destination</i>. 
+    <li><b>Destination Name</b> - [REQUIRED] the name of the <i>jakarta.jms.Destination</i>.
     Usually provided by administrator (e.g., 'topic://myTopic'). 
     </li>
-    <li><b>Destination Type</b> - [REQUIRED] the type of the <i>javax.jms.Destination</i>. Could be one of 'QUEUE' or 'TOPIC'
+    <li><b>Destination Type</b> - [REQUIRED] the type of the <i>jakarta.jms.Destination</i>. Could be one of 'QUEUE' or 'TOPIC'
     Usually provided by the administrator. Defaults to 'QUEUE'.
     </li>
 </ol>

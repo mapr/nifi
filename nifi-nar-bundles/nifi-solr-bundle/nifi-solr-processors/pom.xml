@@ -22,9 +22,6 @@
     </parent>
     <artifactId>nifi-solr-processors</artifactId>
     <packaging>jar</packaging>
-    <properties>
-        <solr.version>9.2.1</solr.version>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.nifi</groupId>
@@ -100,6 +97,10 @@
                     <artifactId>log4j-core</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>

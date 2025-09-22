@@ -102,7 +102,7 @@ language governing permissions and limitations under the License. -->
                                 <apiPackage>org.apache.nifi.api.toolkit.api</apiPackage>
                                 <modelPackage>org.apache.nifi.api.toolkit.model</modelPackage>
                                 <httpUserAgent>apache-nifi-api-toolkit-agent</httpUserAgent>
-                                <library>jersey2</library>
+                                <library>jersey3</library>
                                 <dateLibrary>java8</dateLibrary>
                             </configOptions>
                         </configuration>

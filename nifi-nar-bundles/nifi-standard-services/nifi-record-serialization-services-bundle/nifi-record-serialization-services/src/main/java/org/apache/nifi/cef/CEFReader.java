@@ -17,7 +17,6 @@
 package org.apache.nifi.cef;
 
 import com.fluenda.parcefone.parser.CEFParser;
-import org.apache.bval.jsr.ApacheValidationProvider;
 import org.apache.nifi.annotation.documentation.CapabilityDescription;
 import org.apache.nifi.annotation.documentation.Tags;
 import org.apache.nifi.annotation.lifecycle.OnEnabled;
@@ -122,8 +121,7 @@ public final class CEFReader extends SchemaRegistryService implements RecordRead
             .allowableValues("true", "false")
             .build();
 
-    private final javax.validation.Validator validator = Validation.byProvider(ApacheValidationProvider.class).configure().buildValidatorFactory().getValidator();
-    private final CEFParser parser = new CEFParser(validator);
+    private final CEFParser parser = new CEFParser();
 
     private volatile String rawMessageField;
     private volatile String invalidField;

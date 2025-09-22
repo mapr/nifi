@@ -19,9 +19,9 @@ package org.apache.nifi.persistence;
 import org.apache.nifi.controller.serialization.FlowSerializationException;
 import org.apache.nifi.web.api.dto.TemplateDTO;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

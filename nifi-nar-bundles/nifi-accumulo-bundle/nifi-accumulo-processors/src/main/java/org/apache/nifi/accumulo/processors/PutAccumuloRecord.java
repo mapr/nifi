@@ -68,7 +68,7 @@ import org.apache.nifi.util.StringUtils;
 import org.apache.nifi.accumulo.controllerservices.BaseAccumuloService;
 import org.apache.nifi.accumulo.data.AccumuloRecordConfiguration;
 
-import javax.xml.bind.DatatypeConverter;
+import jakarta.xml.bind.DatatypeConverter;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;

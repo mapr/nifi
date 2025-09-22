@@ -550,7 +550,7 @@ public class PutEmail extends AbstractProcessor {
     }
 
     /**
-     * Uses the mapping of javax.mail properties to NiFi PropertyDescriptors to build the required Properties object to be used for sending this email
+     * Uses the mapping of jakarta.mail properties to NiFi PropertyDescriptors to build the required Properties object to be used for sending this email
      *
      * @param context context
      * @param flowFile flowFile

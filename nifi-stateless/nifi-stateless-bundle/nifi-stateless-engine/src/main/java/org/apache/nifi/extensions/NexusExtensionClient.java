@@ -80,7 +80,7 @@ public class NexusExtensionClient implements ExtensionClient {
             };
         } else {
             try {
-                if (response.code() == javax.ws.rs.core.Response.Status.NOT_FOUND.getStatusCode()) {
+                if (response.code() == jakarta.ws.rs.core.Response.Status.NOT_FOUND.getStatusCode()) {
                     logger.debug("Received NOT FOUND response for extension {} from {}", bundleCoordinate, url);
                     return null;
                 } else {

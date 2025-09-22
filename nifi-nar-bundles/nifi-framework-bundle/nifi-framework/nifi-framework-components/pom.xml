@@ -102,6 +102,10 @@
             <version>1.28.0.200-eep-1000-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-mock</artifactId>
             <version>1.28.0.200-eep-1000-SNAPSHOT</version>

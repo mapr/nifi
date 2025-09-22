@@ -67,28 +67,25 @@ language governing permissions and limitations under the License. -->
             <version>1.28.0.200-eep-1000-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
-        <!-- Jakarta Mail 1 required for compatibility with Jakarta Activation 1 used with JAXB 2 -->
         <dependency>
             <groupId>jakarta.mail</groupId>
             <artifactId>jakarta.mail-api</artifactId>
-            <version>1.6.7</version>
+            <version>2.0.1</version>
         </dependency>
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>jakarta.mail</artifactId>
-            <version>1.6.7</version>
+            <version>2.0.1</version>
         </dependency>
         <dependency>
             <groupId>jakarta.activation</groupId>
             <artifactId>jakarta.activation-api</artifactId>
-            <version>1.2.2</version>
-            <scope>runtime</scope>
+            <version>2.0.1</version>
         </dependency>
         <dependency>
             <groupId>com.sun.activation</groupId>
             <artifactId>jakarta.activation</artifactId>
-            <version>1.2.2</version>
-            <scope>runtime</scope>
+            <version>2.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>

@@ -67,19 +67,21 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.web.BearerTokenResolver;
 import org.springframework.security.web.authentication.preauth.x509.X509PrincipalExtractor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.FormParam;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriBuilder;
+
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.security.cert.X509Certificate;
 import java.time.Instant;
@@ -155,13 +157,13 @@ public class AccessResource extends ApplicationResource {
     public void knoxRequest(@Context HttpServletRequest httpServletRequest, @Context HttpServletResponse httpServletResponse) throws Exception {
         // only consider user specific access over https
         if (!httpServletRequest.isSecure()) {
-            forwardToLoginMessagePage(httpServletRequest, httpServletResponse, AUTHENTICATION_NOT_ENABLED_MSG);
+            httpServletResponse.sendError(HttpURLConnection.HTTP_NOT_ACCEPTABLE, AUTHENTICATION_NOT_ENABLED_MSG);
             return;
         }
 
         // ensure knox is enabled
         if (!knoxService.isKnoxEnabled()) {
-            forwardToLoginMessagePage(httpServletRequest, httpServletResponse, "Apache Knox SSO support is not configured.");
+            httpServletResponse.sendError(HttpURLConnection.HTTP_NOT_ACCEPTABLE, "Apache Knox SSO support is not configured.");
             return;
         }
 
@@ -188,13 +190,13 @@ public class AccessResource extends ApplicationResource {
     public void knoxCallback(@Context HttpServletRequest httpServletRequest, @Context HttpServletResponse httpServletResponse) throws Exception {
         // only consider user specific access over https
         if (!httpServletRequest.isSecure()) {
-            forwardToLoginMessagePage(httpServletRequest, httpServletResponse, AUTHENTICATION_NOT_ENABLED_MSG);
+            httpServletResponse.sendError(HttpURLConnection.HTTP_NOT_ACCEPTABLE, AUTHENTICATION_NOT_ENABLED_MSG);
             return;
         }
 
         // ensure knox is enabled
         if (!knoxService.isKnoxEnabled()) {
-            forwardToLoginMessagePage(httpServletRequest, httpServletResponse, "Apache Knox SSO support is not configured.");
+            httpServletResponse.sendError(HttpURLConnection.HTTP_NOT_ACCEPTABLE, "Apache Knox SSO support is not configured.");
             return;
         }
 

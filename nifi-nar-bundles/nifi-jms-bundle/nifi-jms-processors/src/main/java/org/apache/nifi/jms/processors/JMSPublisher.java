@@ -22,12 +22,12 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.jms.support.JmsHeaders;
 
-import javax.jms.BytesMessage;
-import javax.jms.Destination;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.Session;
-import javax.jms.TextMessage;
+import jakarta.jms.BytesMessage;
+import jakarta.jms.Destination;
+import jakarta.jms.JMSException;
+import jakarta.jms.Message;
+import jakarta.jms.Session;
+import jakarta.jms.TextMessage;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -135,7 +135,7 @@ class JMSPublisher extends JMSWorker {
     }
 
     /**
-     * Implementations of this interface use {@link javax.jms.Message} methods to set strongly typed properties.
+     * Implementations of this interface use {@link jakarta.jms.Message} methods to set strongly typed properties.
      */
     public interface JmsPropertySetter {
         void setProperty(final Message message, final String name, final String value) throws JMSException, NumberFormatException;

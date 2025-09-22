@@ -24,7 +24,7 @@ import org.apache.nifi.util.FormatUtils;
 import org.apache.nifi.util.NiFiProperties;
 import org.apache.nifi.web.controller.ControllerFacade;
 
-import javax.ws.rs.WebApplicationException;
+import jakarta.ws.rs.WebApplicationException;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
