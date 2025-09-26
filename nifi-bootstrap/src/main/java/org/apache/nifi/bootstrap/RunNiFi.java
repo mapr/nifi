@@ -1286,6 +1286,7 @@ public class RunNiFi {
             cmd.add("--add-modules=java.xml.bind");
         }
         cmd.add("--add-opens=java.base/java.lang=ALL-UNNAMED");
+        cmd.add("--add-opens=java.base/java.net=ALL-UNNAMED");
         cmd.add("org.apache.nifi.NiFi");
         if (isSensitiveKeyPresent(props)) {
             Path sensitiveKeyFile = createSensitiveKeyFile(confDir);
