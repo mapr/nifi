@@ -195,8 +195,8 @@ function restoreLibFromNotUsedLibs() {
       else
         RESTART_NEED=true
       fi
-      if ! [ "$(ls -A $NIFI_NOT_USED_LIBS)" ]; then
-        rm -rf $NIFI_NOT_USED_LIBS
+      if [ -d "$NIFI_NOT_USED_LIBS" ] && [ -z "$(ls -A "$NIFI_NOT_USED_LIBS")" ]; then
+        rm -rf "$NIFI_NOT_USED_LIBS"
       fi
     fi
   fi
@@ -205,7 +205,7 @@ function restoreLibFromNotUsedLibs() {
 function handleNotUsedLibsFor() {
   # $1 -- role name
   lib_mask="nifi*$1*.nar"
-  libs=$(find $NIFI_LIBS $NIFI_NOT_USED_LIBS -iname "$lib_mask" -printf "%f ")
+  libs=$(find $NIFI_LIBS $NIFI_NOT_USED_LIBS -iname "$lib_mask" -printf "%f " 2>/dev/null)
 
   for lib in $libs; do
    if ! [ -f "$MAPR_HOME/roles/$1" ]; then
