@@ -160,6 +160,10 @@ public class NiFi implements NiFiEntryPoint {
             throw new IllegalStateException("Unable to find a NiFiServer implementation.");
         }
         Thread.currentThread().setContextClassLoader(nifiServer.getClass().getClassLoader());
+
+        // HPE-specific logic
+        overrideSslSystemProperties();
+
         // Filter out the framework NAR from being loaded by the NiFiServer
         nifiServer.initialize(properties,
                 systemBundle,
@@ -318,6 +322,41 @@ public class NiFi implements NiFiEntryPoint {
         };
         final Timer timer = new Timer(true);
         timer.schedule(timerTask, 60000L);
+    }
+
+    /**
+     * HPE-specific method.
+     *
+     * If the system property 'javax.net.ssl.trustStore' is set to 'NONE',
+     * it indicates that it has not been configured with an actual truststore path.
+     * In this case, override it with the value from nifi.properties if available.
+     *
+     * The 'NONE' value is used intentionally to prevent uncontrolled modification
+     * of 'javax.net.ssl.trustStore' by com.mapr.baseutils.JVMProperties.
+     *
+     * For all other values, the truststore is considered user-specified
+     * and should not be overridden.
+     */
+    private void overrideSslSystemProperties() {
+        final String JAVA_TRUSTSTORE = "javax.net.ssl.trustStore";
+        final String JAVA_TRUSTSTORE_TYPE = "javax.net.ssl.trustStoreType";
+        final String JAVA_TRUSTSTORE_PASSWORD = "javax.net.ssl.trustStorePassword";
+
+        if ("NONE".equalsIgnoreCase(System.getProperty(JAVA_TRUSTSTORE))) {
+            String trustStorePath = properties.getProperty(NiFiProperties.SECURITY_TRUSTSTORE);
+            if (trustStorePath != null) {
+                System.setProperty(JAVA_TRUSTSTORE, trustStorePath);
+                String trustStoreType = properties.getProperty(NiFiProperties.SECURITY_TRUSTSTORE_TYPE);
+                if (trustStoreType != null) {
+                    System.setProperty(JAVA_TRUSTSTORE_TYPE, trustStoreType);
+                }
+
+                String trustStorePassword = properties.getProperty(NiFiProperties.SECURITY_TRUSTSTORE_PASSWD);
+                if (trustStorePassword != null) {
+                    System.setProperty(JAVA_TRUSTSTORE_PASSWORD, trustStorePassword);
+                }
+            }
+        }
     }
 
     /**

@@ -70,11 +70,8 @@ public final class HpePropertiesUtils {
 
     private static volatile HpeProperties hpeProperties = null;
 
-    private static volatile boolean sslResourceLoaded = false;
-
     private static final Map<String, String> mapNifiToHadoopProperties = new HashMap<>();
 
-    private static final List<String> sslProperties = new ArrayList<>();
     private static final List<String> hadoopClientConfigs = new ArrayList<>();
 
     static {
@@ -88,15 +85,6 @@ public final class HpePropertiesUtils {
         mapNifiToHadoopProperties.put(NiFiProperties.SECURITY_TRUSTSTORE, SERVER_TRUSTSTORE_LOCATION);
         mapNifiToHadoopProperties.put(NiFiProperties.SECURITY_TRUSTSTORE_TYPE, SERVER_TRUSTSTORE_TYPE);
         mapNifiToHadoopProperties.put(NiFiProperties.SECURITY_TRUSTSTORE_PASSWD, SERVER_TRUSTSTORE_PASSWORD);
-
-        //SSL properties
-        sslProperties.add(SERVER_KEYSTORE_LOCATION);
-        sslProperties.add(SERVER_KEYSTORE_TYPE);
-        sslProperties.add(SERVER_KEYSTORE_PASSWORD);
-        sslProperties.add(SERVER_KEYSTORE_KEY_PASSWORD);
-        sslProperties.add(SERVER_TRUSTSTORE_LOCATION);
-        sslProperties.add(SERVER_TRUSTSTORE_TYPE);
-        sslProperties.add(SERVER_TRUSTSTORE_PASSWORD);
 
         //hadoop conf
         hadoopClientConfigs.add(HADOOP_CONF_PATH.resolve(HADOOP_CONF_HDFS_SITE_XML).toString());
@@ -142,7 +130,6 @@ public final class HpePropertiesUtils {
      * @return property value
      */
     public static String getProperty(final String property) {
-        lazyLoadSslResources(property);
         return getHpeProperties().get(property);
     }
 
@@ -153,7 +140,6 @@ public final class HpePropertiesUtils {
      * @return password
      */
     public static String getPassword(final String property) {
-        lazyLoadSslResources(property);
         char[] data = getHpeProperties().getPassword(property);
 
         if (data == null) {
@@ -179,18 +165,11 @@ public final class HpePropertiesUtils {
         }
     }
 
-    private static void lazyLoadSslResources(String propertyKey) {
-        if (!sslResourceLoaded && sslProperties.contains(propertyKey)) {
-            HpeProperties properties = getHpeProperties();
-            properties.addResource(HADOOP_CONF_PATH.toString(), HADOOP_CONF_SSL_SERVER_XML);
-            sslResourceLoaded = true;
-        }
-    }
-
     private static synchronized HpeProperties getHpeProperties() {
         if (hpeProperties == null) {
             hpeProperties = HpePropertiesLoader.getHpeProperties();
             hpeProperties.addResource(HADOOP_CONF_PATH.toString(), HADOOP_CONF_CORE_SITE_XML);
+            hpeProperties.addResource(HADOOP_CONF_PATH.toString(), HADOOP_CONF_SSL_SERVER_XML);
         }
 
         return hpeProperties;

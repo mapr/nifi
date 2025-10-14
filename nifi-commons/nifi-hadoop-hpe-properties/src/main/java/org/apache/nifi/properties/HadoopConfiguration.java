@@ -5,11 +5,16 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.security.authentication.util.SsoConfigurationUtil;
 import org.apache.nifi.util.hpe.HpeProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 
 public class HadoopConfiguration implements HpeProperties {
+    private static final Logger LOGGER = LoggerFactory.getLogger(HadoopConfiguration.class);
+
     private final Configuration configuration;
 
     public HadoopConfiguration() {
@@ -45,7 +50,12 @@ public class HadoopConfiguration implements HpeProperties {
         final ClassLoader originalClassLoader = Thread.currentThread().getContextClassLoader();
         Thread.currentThread().setContextClassLoader(this.getClass().getClassLoader());
         try {
-            configuration.addResource(new Path(parent, child));
+            File resource = new File(parent, child);
+            if (resource.exists() && resource.canRead()) {
+                configuration.addResource(new Path(parent, child));
+            } else {
+                LOGGER.info("Hadoop resource '{}' is not accessible; skipping load.", resource);
+            }
         } finally {
             Thread.currentThread().setContextClassLoader(originalClassLoader);
         }
