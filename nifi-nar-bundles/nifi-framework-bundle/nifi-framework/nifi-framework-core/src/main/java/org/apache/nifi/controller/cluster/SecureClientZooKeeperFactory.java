@@ -17,6 +17,7 @@
 
 package org.apache.nifi.controller.cluster;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.curator.utils.ZookeeperFactory;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
@@ -55,6 +56,10 @@ public class SecureClientZooKeeperFactory implements ZookeeperFactory {
         zkSecureClientConfig.setProperty(clientX509util.getSslTruststoreLocationProperty(), zkConfig.getTrustStore());
         zkSecureClientConfig.setProperty(clientX509util.getSslTruststoreTypeProperty(), zkConfig.getTrustStoreType());
         zkSecureClientConfig.setProperty(clientX509util.getSslTruststorePasswdProperty(), zkConfig.getTrustStorePassword());
+        String loginContextName = zkConfig.getLoginContextName();
+        if (StringUtils.isNoneEmpty(loginContextName)) {
+            zkSecureClientConfig.setProperty(ZKClientConfig.LOGIN_CONTEXT_NAME_KEY, loginContextName);
+        }
     }
 
     @Override

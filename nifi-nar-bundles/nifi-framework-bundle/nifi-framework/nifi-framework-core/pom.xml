@@ -261,6 +261,12 @@
             <artifactId>caffeine</artifactId>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.nifi</groupId>
+            <artifactId>nifi-maprsasl</artifactId>
+            <version>1.28.0.100-eep-941-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

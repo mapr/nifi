@@ -33,6 +33,7 @@ import org.apache.nifi.controller.cluster.SecureClientZooKeeperFactory;
 import org.apache.nifi.controller.state.StandardStateMap;
 import org.apache.nifi.controller.state.providers.AbstractStateProvider;
 import org.apache.nifi.processor.util.StandardValidators;
+import org.apache.nifi.security.util.JaasConfigWrapper;
 import org.apache.nifi.util.NiFiProperties;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
@@ -54,6 +55,8 @@ import org.apache.zookeeper.data.Stat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.security.auth.login.AppConfigurationEntry;
+import javax.security.auth.login.Configuration;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -222,6 +225,8 @@ public class ZooKeeperStateProvider extends AbstractStateProvider {
         }
 
         if (zooKeeper == null) {
+            addZookeeperLoginContextIfMissing();
+
             if (clientConfig != null && clientConfig.isClientSecure()) {
                 SecureClientZooKeeperFactory factory = new SecureClientZooKeeperFactory(clientConfig);
                 try {
@@ -235,6 +240,10 @@ public class ZooKeeperStateProvider extends AbstractStateProvider {
                 final ZKClientConfig zkClientConfig = new ZKClientConfig();
                 if (clientConfig != null) {
                     zkClientConfig.setProperty(ZKConfig.JUTE_MAXBUFFER, Integer.toString(clientConfig.getJuteMaxbuffer()));
+                    String loginContextName = clientConfig.getLoginContextName();
+                    if (StringUtils.isNoneEmpty(loginContextName)) {
+                        zkClientConfig.setProperty(ZKClientConfig.LOGIN_CONTEXT_NAME_KEY, loginContextName);
+                    }
                 }
                 zooKeeper = new ZooKeeper(connectionString, timeoutMillis, new NoOpWatcher(), zkClientConfig);
                 logger.debug("Standard ZooKeeper Client connection [{}] created", connectionString);
@@ -246,6 +255,16 @@ public class ZooKeeperStateProvider extends AbstractStateProvider {
         }
 
         return zooKeeper;
+    }
+
+    private void addZookeeperLoginContextIfMissing() {
+        String loginContextName = nifiProperties.getProperty(NiFiProperties.ZOOKEEPER_LOGIN_CONTEXT_NAME);
+        if (org.apache.nifi.util.StringUtils.isNotEmpty(loginContextName)) {
+            AppConfigurationEntry[] zookeeperLoginContext = Configuration.getConfiguration().getAppConfigurationEntry(loginContextName);
+            if (zookeeperLoginContext == null) {
+                JaasConfigWrapper.wrapDefaultConfig(ZKClientConfig.LOGIN_CONTEXT_NAME_KEY_DEFAULT, loginContextName);
+            }
+        }
     }
 
     private ZooKeeperClientConfig getZooKeeperConfig() {
