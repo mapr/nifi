@@ -532,6 +532,11 @@ language governing permissions and limitations under the License. -->
             <artifactId>nifi-hadoop-hpe-properties</artifactId>
             <version>1.28.0.200-eep-1000-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.nifi</groupId>
+            <artifactId>nifi-maprsasl</artifactId>
+            <version>1.28.0.200-dep-1000</version>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.apache.nifi</groupId>-->
 <!--            <artifactId>nifi-hbase_2-client-service-nar</artifactId>-->

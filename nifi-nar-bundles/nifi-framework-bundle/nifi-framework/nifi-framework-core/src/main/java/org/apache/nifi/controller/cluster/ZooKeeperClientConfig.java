@@ -19,6 +19,7 @@ package org.apache.nifi.controller.cluster;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.nifi.util.FormatUtils;
 import org.apache.nifi.util.NiFiProperties;
+import org.apache.zookeeper.client.ZKClientConfig;
 import org.apache.zookeeper.common.PathUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,12 +57,13 @@ public class ZooKeeperClientConfig {
     private final String removeHostFromPrincipal;
     private final String removeRealmFromPrincipal;
     private final int juteMaxbuffer;
+    private final String loginContextName;
 
     private ZooKeeperClientConfig(String connectString, int sessionTimeoutMillis, int connectionTimeoutMillis,
                                   String rootPath, String authType, String authPrincipal, String removeHostFromPrincipal,
                                   String removeRealmFromPrincipal, boolean clientSecure, String keyStore, String keyStoreType,
                                   String keyStorePassword, String trustStore, String trustStoreType, String trustStorePassword,
-                                  final int juteMaxbuffer, boolean withEnsembleTracker) {
+                                  final int juteMaxbuffer, boolean withEnsembleTracker, String loginContextName) {
         this.connectString = connectString;
         this.sessionTimeoutMillis = sessionTimeoutMillis;
         this.connectionTimeoutMillis = connectionTimeoutMillis;
@@ -79,6 +81,7 @@ public class ZooKeeperClientConfig {
         this.removeRealmFromPrincipal = removeRealmFromPrincipal;
         this.juteMaxbuffer = juteMaxbuffer;
         this.withEnsembleTracker = withEnsembleTracker;
+        this.loginContextName = loginContextName;
     }
 
     public String getConnectString() {
@@ -153,6 +156,10 @@ public class ZooKeeperClientConfig {
         return juteMaxbuffer;
     }
 
+    public String getLoginContextName() {
+        return loginContextName;
+    }
+
     public String resolvePath(final String path) {
         if (path.startsWith("/")) {
             return rootPath + path;
@@ -189,6 +196,7 @@ public class ZooKeeperClientConfig {
         final String removeRealmFromPrincipal = nifiProperties.getProperty(NiFiProperties.ZOOKEEPER_KERBEROS_REMOVE_REALM_FROM_PRINCIPAL,
                 NiFiProperties.DEFAULT_ZOOKEEPER_KERBEROS_REMOVE_REALM_FROM_PRINCIPAL);
         final int juteMaxbuffer = nifiProperties.getIntegerProperty(NiFiProperties.ZOOKEEPER_JUTE_MAXBUFFER, NiFiProperties.DEFAULT_ZOOKEEPER_JUTE_MAXBUFFER);
+        final String loginContextName = nifiProperties.getProperty(NiFiProperties.ZOOKEEPER_LOGIN_CONTEXT_NAME);
 
         try {
             PathUtils.validatePath(rootPath);
@@ -213,7 +221,8 @@ public class ZooKeeperClientConfig {
             trustStoreType,
             trustStorePassword,
             juteMaxbuffer,
-            withEnsembleTracker
+            withEnsembleTracker,
+            loginContextName
         );
     }
 

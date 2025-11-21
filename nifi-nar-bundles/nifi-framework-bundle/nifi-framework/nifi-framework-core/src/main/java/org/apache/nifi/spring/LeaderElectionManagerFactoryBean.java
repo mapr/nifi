@@ -20,8 +20,14 @@ package org.apache.nifi.spring;
 import org.apache.nifi.controller.leader.election.CuratorLeaderElectionManager;
 import org.apache.nifi.controller.leader.election.LeaderElectionManager;
 import org.apache.nifi.controller.leader.election.StandaloneLeaderElectionManager;
+import org.apache.nifi.security.util.JaasConfigWrapper;
 import org.apache.nifi.util.NiFiProperties;
+import org.apache.nifi.util.StringUtils;
+import org.apache.zookeeper.client.ZKClientConfig;
 import org.springframework.beans.factory.FactoryBean;
+
+import javax.security.auth.login.AppConfigurationEntry;
+import javax.security.auth.login.Configuration;
 
 public class LeaderElectionManagerFactoryBean implements FactoryBean<LeaderElectionManager> {
     private int numThreads;
@@ -31,9 +37,29 @@ public class LeaderElectionManagerFactoryBean implements FactoryBean<LeaderElect
     public LeaderElectionManager getObject() throws Exception {
         final boolean isNode = properties.isNode();
         if (isNode) {
+            addZookeeperLoginContextIfMissing();
             return new CuratorLeaderElectionManager(numThreads, properties);
         } else {
             return new StandaloneLeaderElectionManager();
+        }
+    }
+
+    /**
+     * Ensures that a JAAS login context for Zookeeper exists.
+     * <p>
+     * If the login context specified in NiFi properties is missing in the current system configuration,
+     * this method wraps the default Zookeeper client entry using a wrapper login module, preserving the same control
+     * flag and options, and adds it under the configured name.
+     * <p>
+     * We used it to add an isolated MaprSasl login module.
+     */
+    private void addZookeeperLoginContextIfMissing() {
+        String loginContextName = properties.getProperty(NiFiProperties.ZOOKEEPER_LOGIN_CONTEXT_NAME);
+        if (StringUtils.isNotEmpty(loginContextName)) {
+            AppConfigurationEntry[] zookeeperLoginContext = Configuration.getConfiguration().getAppConfigurationEntry(loginContextName);
+            if (zookeeperLoginContext == null) {
+                JaasConfigWrapper.wrapDefaultConfig(ZKClientConfig.LOGIN_CONTEXT_NAME_KEY_DEFAULT, loginContextName);
+            }
         }
     }
 
