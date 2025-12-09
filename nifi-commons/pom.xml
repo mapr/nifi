@@ -73,5 +73,6 @@
         <module>nifi-write-ahead-log</module>
         <module>nifi-xml-processing</module>
         <module>nifi-hadoop-hpe-properties</module>
+	<module>nifi-maprsasl</module>
     </modules>
 </project>

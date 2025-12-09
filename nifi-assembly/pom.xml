@@ -518,6 +518,11 @@ language governing permissions and limitations under the License. -->
             <artifactId>nifi-hadoop-hpe-properties</artifactId>
             <version>1.19.1.0-eep-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.nifi</groupId>
+            <artifactId>nifi-maprsasl</artifactId>
+            <version>1.19.1.151-eep-923</version>
+        </dependency>
 <!-- Unused dependencies       -->
 <!--        <dependency>-->
 <!--            <groupId>org.apache.nifi</groupId>-->

@@ -277,6 +277,12 @@
             <version>2.8.1</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.nifi</groupId>
+            <artifactId>nifi-maprsasl</artifactId>
+            <version>1.19.1.151-eep-923</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

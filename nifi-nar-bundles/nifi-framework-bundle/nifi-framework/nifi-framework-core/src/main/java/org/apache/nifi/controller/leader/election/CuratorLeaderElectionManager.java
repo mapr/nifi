@@ -433,6 +433,13 @@ public class CuratorLeaderElectionManager implements LeaderElectionManager {
 
         if (zkConfig.isClientSecure()) {
             clientBuilder.zookeeperFactory(new SecureClientZooKeeperFactory(zkConfig));
+        } else {
+            String loginContextName = zkConfig.getLoginContextName();
+            if (StringUtils.isNoneEmpty(loginContextName)) {
+                ZKClientConfig zkClientConfig = new ZKClientConfig();
+                zkClientConfig.setProperty(ZKClientConfig.LOGIN_CONTEXT_NAME_KEY, loginContextName);
+                clientBuilder.zkClientConfig(zkClientConfig);
+            }
         }
 
         final CuratorFramework client = clientBuilder.build();
@@ -687,6 +694,10 @@ public class CuratorLeaderElectionManager implements LeaderElectionManager {
             zkSecureClientConfig.setProperty(clientX509util.getSslTruststoreTypeProperty(), zkConfig.getTrustStoreType());
             zkSecureClientConfig.setProperty(clientX509util.getSslTruststorePasswdProperty(), zkConfig.getTrustStorePassword());
             zkSecureClientConfig.setProperty(ZKConfig.JUTE_MAXBUFFER, Integer.toString(zkConfig.getJuteMaxbuffer()));
+            String loginContextName = zkConfig.getLoginContextName();
+            if (StringUtils.isNoneEmpty(loginContextName)) {
+                zkSecureClientConfig.setProperty(ZKClientConfig.LOGIN_CONTEXT_NAME_KEY, loginContextName);
+            }
         }
 
         @Override
