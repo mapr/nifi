@@ -19,7 +19,7 @@
     </parent>
     <groupId>org.apache.nifi</groupId>
     <artifactId>nifi</artifactId>
-    <version>1.19.1.100-eep-922-SNAPSHOT</version>
+    <version>1.19.1.175-eep-924</version>
     <packaging>pom</packaging>
     <description>Apache NiFi is an easy to use, powerful, and reliable system to process and distribute data.</description>
     <modules>
@@ -152,7 +152,7 @@
         <!-- EEP ECO components versions -->
         <eep.hadoop.version>3.3.5.325-eep-923</eep.hadoop.version>
         <eep.hbase.version>1.4.14.700-eep-922</eep.hbase.version>
-        <eep.hive.version>3.1.3.560-eep-923</eep.hive.version>
+        <eep.hive.version>3.1.3.570-eep-924</eep.hive.version>
         <eep.kafka.version>2.6.1.800-eep-923</eep.kafka.version>
         <eep.zookeeper.version>3.8.3.0-mapr-2509</eep.zookeeper.version>
         <eep.core.version>7.7.0.8-mapr</eep.core.version>
