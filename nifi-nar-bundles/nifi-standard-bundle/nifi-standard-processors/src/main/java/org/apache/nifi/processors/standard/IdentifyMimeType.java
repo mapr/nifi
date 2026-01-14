@@ -237,11 +237,6 @@ public class IdentifyMimeType extends AbstractProcessor {
             logger.warn("MIME type extension lookup failed: {}", new Object[]{ex});
         }
 
-        // Workaround for bug in Tika - https://issues.apache.org/jira/browse/TIKA-1563
-        if (mimeType != null && mimeType.equals("application/gzip") && extension.equals(".tgz")) {
-            extension = ".gz";
-        }
-
         if (mimeType == null) {
             flowFile = session.putAttribute(flowFile, CoreAttributes.MIME_TYPE.key(), "application/octet-stream");
             flowFile = session.putAttribute(flowFile, "mime.extension", "");
