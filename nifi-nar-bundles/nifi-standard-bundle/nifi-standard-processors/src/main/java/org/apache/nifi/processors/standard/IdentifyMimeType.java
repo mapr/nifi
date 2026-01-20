@@ -254,10 +254,6 @@ public class IdentifyMimeType extends AbstractProcessor {
             logger.warn("MIME type extension lookup failed", e);
         }
 
-        // Workaround for bug in Tika - https://issues.apache.org/jira/browse/TIKA-1563
-        if (mediaTypeString.equals("application/gzip") && extension.equals(".tgz")) {
-            extension = ".gz";
-        }
         return extension;
     }
 
