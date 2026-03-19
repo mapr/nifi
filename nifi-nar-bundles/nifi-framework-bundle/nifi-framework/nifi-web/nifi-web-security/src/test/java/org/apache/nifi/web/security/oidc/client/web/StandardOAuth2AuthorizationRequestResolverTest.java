@@ -46,9 +46,11 @@ import static org.mockito.Mockito.when;
 class StandardOAuth2AuthorizationRequestResolverTest {
     private static final String REDIRECT_URI = "https://localhost:8443/nifi-api/callback";
 
+    private static final int FORWARDED_HTTPS_PORT = 443;
+
     private static final String FORWARDED_PATH = "/forwarded";
 
-    private static final String FORWARDED_REDIRECT_URI = String.format("https://localhost.localdomain%s/nifi-api/callback", FORWARDED_PATH);
+    private static final String FORWARDED_REDIRECT_URI = String.format("https://localhost.localdomain:%d%s/nifi-api/callback", FORWARDED_HTTPS_PORT, FORWARDED_PATH);
 
     private static final String ALLOWED_CONTEXT_PATHS_PARAMETER = "allowedContextPaths";
 
