@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.apache.nifi</groupId>
         <artifactId>nifi-nar-bundles</artifactId>
-        <version>1.19.1.100-eep-922-SNAPSHOT</version>
+        <version>1.19.1.195-eep-933</version>
     </parent>
 
     <artifactId>nifi-gcp-bundle</artifactId>
