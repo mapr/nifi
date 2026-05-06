@@ -18,7 +18,7 @@
     <parent>
         <groupId>org.apache.nifi</groupId>
         <artifactId>nifi-solr-bundle</artifactId>
-        <version>1.28.0.300-dep-1010-SNAPSHOT</version>
+        <version>1.28.0.320-dep-1011-SNAPSHOT</version>
     </parent>
     <artifactId>nifi-solr-processors</artifactId>
     <packaging>jar</packaging>
@@ -26,7 +26,7 @@
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-record-path</artifactId>
-            <version>1.28.0.300-dep-1010-SNAPSHOT</version>
+            <version>1.28.0.320-dep-1011-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>
@@ -61,12 +61,12 @@
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-utils</artifactId>
-            <version>1.28.0.300-dep-1010-SNAPSHOT</version>
+            <version>1.28.0.320-dep-1011-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-security-kerberos</artifactId>
-            <version>1.28.0.300-dep-1010-SNAPSHOT</version>
+            <version>1.28.0.320-dep-1011-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>
@@ -105,19 +105,19 @@
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-record-serialization-services</artifactId>
-            <version>1.28.0.300-dep-1010-SNAPSHOT</version>
+            <version>1.28.0.320-dep-1011-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-mock</artifactId>
-            <version>1.28.0.300-dep-1010-SNAPSHOT</version>
+            <version>1.28.0.320-dep-1011-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-mock-record-utils</artifactId>
-            <version>1.28.0.300-dep-1010-SNAPSHOT</version>
+            <version>1.28.0.320-dep-1011-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>

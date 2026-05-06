@@ -17,7 +17,7 @@
     <parent>
         <groupId>org.apache.nifi</groupId>
         <artifactId>nifi-compress-bundle</artifactId>
-        <version>1.28.0.300-dep-1010-SNAPSHOT</version>
+        <version>1.28.0.320-dep-1011-SNAPSHOT</version>
     </parent>
     <artifactId>nifi-compress-nar</artifactId>
     <packaging>nar</packaging>
@@ -26,7 +26,7 @@
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-compress-processors</artifactId>
-            <version>1.28.0.300-dep-1010-SNAPSHOT</version>
+            <version>1.28.0.320-dep-1011-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
