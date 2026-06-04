@@ -20,7 +20,7 @@ limitations under the License.
     <parent>
         <groupId>org.apache.nifi.minifi</groupId>
         <artifactId>minifi-provenance-repository-bundle</artifactId>
-        <version>1.19.1.175-eep-924</version>
+        <version>1.19.1.180-eep-925-SNAPSHOT</version>
     </parent>
 
     <artifactId>minifi-provenance-repositories</artifactId>
