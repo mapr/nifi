@@ -17,7 +17,7 @@
     <parent>
         <groupId>org.apache.nifi</groupId>
         <artifactId>nifi-commons</artifactId>
-        <version>1.28.0.320-dep-1011-SNAPSHOT</version>
+        <version>1.28.0.310-dep-1011-SNAPSHOT</version>
     </parent>
     <artifactId>nifi-security-crypto-key</artifactId>
     <description>Cryptographic key derivation function components with minimal dependencies</description>
