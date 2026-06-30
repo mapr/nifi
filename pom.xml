@@ -160,7 +160,7 @@
         <bc-fips.version>1.0.2.3</bc-fips.version>
         <bctls-fips.version>1.0.12.2</bctls-fips.version>
 
-        <mapr.repo>http://df-mvn-dev.ftc.storage.hpecorp.net/nexus/content/groups/public/</mapr.repo>
+        <mapr.repo>http://df-mvn-dev.ftc.hcocto.hpecorp.net/nexus/content/groups/public/</mapr.repo>
 
         <!-- maven plugin versions -->
         <maven-deploy-plugin.version>3.0.0</maven-deploy-plugin.version>
@@ -211,7 +211,7 @@
         <repository>
             <id>hpe-stage</id>
             <name>HPE Stage Repository</name>
-            <url>http://df-mvn-stage.ftc.storage.hpecorp.net/nexus/content/repositories/releases/</url>
+            <url>http://df-mvn-stage.ftc.hcocto.hpecorp.net/nexus/content/repositories/releases/</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
