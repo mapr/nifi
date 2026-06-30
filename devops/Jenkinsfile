@@ -126,7 +126,7 @@ def build(yamlCurrentBuildItem) {
   def image = yamlCurrentBuildItem.image.replace("_defaultregistry_", DOCKER_REGISTRY)
   def buildCommand = yamlCurrentBuildItem.basicBuildCommands.replace("_MAKEFILE_ARGS_","TIMESTAMP=${ID} ${MAKEFILE_ARGS}")
 
-  configFileProvider([configFile(fileId: 'maven_settings', variable: 'mvn_settings')]) {
+  configFileProvider([configFile(fileId: 'maven_settings_mvn381_above', variable: 'mvn_settings')]) {
     sh "cat ${env.mvn_settings} > settings.xml"
   }
   docker.image(image).inside (
