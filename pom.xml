@@ -150,9 +150,9 @@
         <zookeeper.version>${eep.zookeeper.version}</zookeeper.version>
 
         <!-- EEP ECO components versions -->
-        <eep.hadoop.version>3.3.5.325-eep-923</eep.hadoop.version>
+        <eep.hadoop.version>3.3.5.350-eep-925</eep.hadoop.version>
         <eep.hbase.version>1.4.14.700-eep-922</eep.hbase.version>
-        <eep.hive.version>3.1.3.570-eep-924</eep.hive.version>
+        <eep.hive.version>3.1.3.580-eep-925</eep.hive.version>
         <eep.kafka.version>2.6.1.800-eep-923</eep.kafka.version>
         <eep.zookeeper.version>3.8.3.0-mapr-2509</eep.zookeeper.version>
         <eep.core.version>7.7.0.8-mapr</eep.core.version>
