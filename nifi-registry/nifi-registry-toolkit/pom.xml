@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.apache.nifi.registry</groupId>
         <artifactId>nifi-registry</artifactId>
-        <version>1.19.1.180-eep-925-SNAPSHOT</version>
+        <version>1.19.1.180-eep-925</version>
     </parent>
     <artifactId>nifi-registry-toolkit</artifactId>
     <packaging>pom</packaging>

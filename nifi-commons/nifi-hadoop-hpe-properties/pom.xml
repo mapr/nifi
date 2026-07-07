@@ -19,7 +19,7 @@
     <parent>
         <artifactId>nifi</artifactId>
         <groupId>org.apache.nifi</groupId>
-        <version>1.19.1.180-eep-925-SNAPSHOT</version>
+        <version>1.19.1.180-eep-925</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <artifactId>nifi-hadoop-hpe-properties</artifactId>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-properties</artifactId>
-            <version>1.19.1.180-eep-925-SNAPSHOT</version>
+            <version>1.19.1.180-eep-925</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

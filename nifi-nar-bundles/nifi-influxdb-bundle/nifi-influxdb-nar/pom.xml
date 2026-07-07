@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.apache.nifi</groupId>
         <artifactId>nifi-influxdb-bundle</artifactId>
-        <version>1.19.1.180-eep-925-SNAPSHOT</version>
+        <version>1.19.1.180-eep-925</version>
     </parent>
 
     <artifactId>nifi-influxdb-nar</artifactId>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-standard-services-api-nar</artifactId>
-            <version>1.19.1.180-eep-925-SNAPSHOT</version>
+            <version>1.19.1.180-eep-925</version>
             <type>nar</type>
         </dependency>
         <dependency>

@@ -21,12 +21,12 @@ limitations under the License.
     <parent>
         <groupId>org.apache.nifi.minifi</groupId>
         <artifactId>minifi-c2</artifactId>
-        <version>1.19.1.180-eep-925-SNAPSHOT</version>
+        <version>1.19.1.180-eep-925</version>
     </parent>
 
     <groupId>org.apache.nifi.minifi</groupId>
     <artifactId>minifi-c2-docker</artifactId>
-    <version>1.19.1.180-eep-925-SNAPSHOT</version>
+    <version>1.19.1.180-eep-925</version>
     <packaging>pom</packaging>
 
     <properties>
