@@ -126,7 +126,7 @@
         <com.jayway.jsonpath.version>2.9.0</com.jayway.jsonpath.version>
         <ranger.version>2.4.0</ranger.version>
         <ranger.solr.version>8.11.3</ranger.solr.version>
-        <jetty.version>9.4.56.v20240826</jetty.version>
+        <jetty.version>9.4.60.v20260717-df</jetty.version>
         <jackson.bom.version>2.18.0</jackson.bom.version>
         <avro.version>1.11.4</avro.version>
         <jaxb.runtime.version>2.3.9</jaxb.runtime.version>
@@ -141,7 +141,7 @@
         <gcs.version>2.1.9</gcs.version>
         <aspectj.version>1.9.6</aspectj.version>
         <jersey.bom.version>2.45</jersey.bom.version>
-        <log4j2.version>2.24.1</log4j2.version>
+        <log4j2.version>2.26.0</log4j2.version>
         <mockito.version>4.11.0</mockito.version>
         <logback.version>1.3.14</logback.version>
         <netty.3.version>3.10.6.Final</netty.3.version>
