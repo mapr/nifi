@@ -51,8 +51,6 @@ function build_nifi() {
     echo "Building without deploy jar artifacts"
   fi
 
-  sed -i "s~<mapr.repo>.*~<mapr.repo>$MAVEN_CENTRAL</mapr.repo>~" pom.xml
-
   mvn -pl nifi-assembly -am clean ${OPERATION} -DskipTests -Dmapr.repo=${MAPR_CENTRAL}
   return $?
 }

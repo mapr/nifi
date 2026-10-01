@@ -165,7 +165,7 @@
         <bc-fips.version>1.0.2.3</bc-fips.version>
         <bctls-fips.version>1.0.12.2</bctls-fips.version>
 
-        <mapr.repo>http://df-mvn-dev.mip.storage.hpecorp.net/nexus/content/groups/public/</mapr.repo>
+        <mapr.repo>http://df-mvn-dev.ftc.storage.hpecorp.net/nexus/content/groups/public/</mapr.repo>
 
         <!-- maven plugin versions -->
         <maven-deploy-plugin.version>3.0.0</maven-deploy-plugin.version>
@@ -216,7 +216,7 @@
         <repository>
             <id>hpe-stage</id>
             <name>HPE Stage Repository</name>
-            <url>http://df-mvn-stage.mip.storage.hpecorp.net/nexus/content/repositories/releases/</url>
+            <url>http://df-mvn-stage.ftc.storage.hpecorp.net/nexus/content/repositories/releases/</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -255,6 +255,41 @@
             <url>https://repo.maven.apache.org/maven2</url>
             <snapshots>
                 <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </pluginRepository>
+        <pluginRepository>
+            <id>hpe-repo-group</id>
+            <name>HPE Repositories Group</name>
+            <url>${mapr.repo}</url>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <updatePolicy>always</updatePolicy>
+                <enabled>true</enabled>
+            </releases>
+        </pluginRepository>
+        <pluginRepository>
+            <id>hpe-release</id>
+            <name>HPE Releases Repository</name>
+            <url>${env.MAPR_RELEASES_REPO}</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </pluginRepository>
+        <pluginRepository>
+            <id>hpe-snapshot</id>
+            <name>HPE Snapshot Repository</name>
+            <url>${env.MAPR_SNAPSHOTS_REPO}</url>
+            <snapshots>
+                <enabled>true</enabled>
             </snapshots>
             <releases>
                 <enabled>true</enabled>
