@@ -126,7 +126,7 @@
         <com.jayway.jsonpath.version>2.9.0</com.jayway.jsonpath.version>
         <ranger.version>2.4.0</ranger.version>
         <ranger.solr.version>8.11.3</ranger.solr.version>
-        <jetty.version>9.4.63.v20260812-df</jetty.version>
+        <jetty.version>9.4.64.v20261006-df</jetty.version>
         <jackson.bom.version>2.18.0</jackson.bom.version>
         <avro.version>1.11.4</avro.version>
         <jaxb.runtime.version>2.3.9</jaxb.runtime.version>
