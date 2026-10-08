@@ -19,14 +19,14 @@
     <parent>
         <groupId>org.apache.nifi</groupId>
         <artifactId>nifi-commons</artifactId>
-        <version>1.28.0.110-eep-942-SNAPSHOT</version>
+        <version>1.28.0.110-eep-942</version>
     </parent>
     <artifactId>nifi-maprsasl</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.apache.nifi</groupId>
             <artifactId>nifi-properties</artifactId>
-            <version>1.28.0.110-eep-942-SNAPSHOT</version>
+            <version>1.28.0.110-eep-942</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

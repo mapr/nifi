@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.apache.nifi</groupId>
         <artifactId>nifi-h2</artifactId>
-        <version>1.28.0.110-eep-942-SNAPSHOT</version>
+        <version>1.28.0.110-eep-942</version>
     </parent>
 
     <artifactId>nifi-h2-database-v21</artifactId>
